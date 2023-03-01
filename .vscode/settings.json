@@ -1,0 +1,17 @@
+{
+  "workbench.colorCustomizations": {
+    "titleBar.activeBackground": "#00B0A7",
+    "titleBar.inactiveBackground": "#00B0A799",
+    "titleBar.activeForeground": "#14484d",
+    "titleBar.inactiveForeground": "#afd0d399"
+  },
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+}
