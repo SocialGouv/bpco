@@ -1,0 +1,62 @@
+{
+  "expo": {
+    "name": "bpco",
+    "slug": "bpco",
+    "version": "1.0.1",
+    "orientation": "portrait",
+    "icon": "./assets/imgs/logo.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/imgs/logo.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "bpco"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/imgs/logo.png",
+        "backgroundColor": "#FFFFFF"
+      },
+      "package": "com.bpcosuiviquotidien"
+    },
+    "web": {
+      "favicon": "./assets/imgs/logo.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "037ea21f-b193-457e-b165-b39b61cf98a5"
+      }
+    },
+    "owner": "bpco",
+    "plugins": [
+      "expo-build-properties",
+      "sentry-expo",
+      [
+        "expo-build-properties",
+        {
+          // "android": {
+          //   "compileSdkVersion": 21,
+          //   "targetSdkVersion": 21,
+          //   "buildToolsVersion": "21.0.0"
+          // },
+          // "ios": {
+          //   "deploymentTarget": "9.0"
+          // }
+        }
+      ]
+    ]
+  },
+  "android": {
+    "googleServicesFile": "./google-services.json"
+  },
+  "ios": {
+    "usesNonExemptEncryption": false
+  }
+}
