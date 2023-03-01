@@ -6,5 +6,7 @@ const HOST = __DEV__ ? "localhost:3000" : "";
 const APP_ENV = __DEV__ ? "local" : "production";
 const VERSION = version;
 const BUILD_NUMBER = buildNumber;
+const SENTRY_DSN =
+  "https://17ade30c8dc343ceb3e36c7fbcab9cca@sentry.fabrique.social.gouv.fr/86";
 
-export { SCHEME, HOST, APP_ENV, VERSION, BUILD_NUMBER };
+export { SCHEME, HOST, APP_ENV, VERSION, BUILD_NUMBER, SENTRY_DSN };

@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import { ScrollView } from "react-native";
 import BackButton from "../../components/BackButton";
-import { HOST, APP_ENV } from "../../config";
+import { HOST, APP_ENV, SENTRY_DSN } from "../../config";
 import { wipeData } from "../../utils";
 
 const Settings = ({ navigation }) => {
@@ -57,6 +57,11 @@ const Settings = ({ navigation }) => {
         </View>
         <View className="px-3 py-2">
           <Text className="text-gray-700 italic">environment : {APP_ENV}</Text>
+        </View>
+        <View className="px-3 py-2">
+          <Text className="text-gray-700 italic">
+            SENTRY_DSN : {SENTRY_DSN}
+          </Text>
         </View>
       </ScrollView>
     </SafeAreaView>

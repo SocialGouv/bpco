@@ -5,6 +5,7 @@ import fetchRetry from "fetch-retry";
 
 import { SCHEME, HOST, BUILD_NUMBER } from "../config";
 import matomo from "./matomo";
+import { capture } from "./sentry";
 
 export const checkNetwork = async (test = false) => {
   const isConnected = await NetInfo.fetch().then((state) => state.isConnected);
@@ -21,9 +22,20 @@ class ApiService {
   scheme = SCHEME;
   fetch = fetchRetry(fetch);
   getUrl = (path, query) => {
-    return new URI().host(this.host).scheme(this.scheme).path(path).setSearch(query).toString();
+    return new URI()
+      .host(this.host)
+      .scheme(this.scheme)
+      .path(path)
+      .setSearch(query)
+      .toString();
   };
-  execute = async ({ method = "GET", path = "", query = {}, headers = {}, body = null }) => {
+  execute = async ({
+    method = "GET",
+    path = "",
+    query = {},
+    headers = {},
+    body = null,
+  }) => {
     try {
       const config = {
         method,
@@ -49,12 +61,14 @@ class ApiService {
 
       if (response.json) {
         const readableRes = await response.json();
-        if (readableRes.sendInApp) this.handleInAppMessage(readableRes.sendInApp);
+        if (readableRes.sendInApp)
+          this.handleInAppMessage(readableRes.sendInApp);
         return readableRes;
       }
 
       return response;
     } catch (e) {
+      capture(e);
       return {
         ok: false,
         error:
