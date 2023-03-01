@@ -2,7 +2,6 @@ import React from "react";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import Status from "../scenes/status";
 import SurveyMenu from "../../assets/SurveyMenu";
-import { colors } from "../utils/colors";
 import Text from "../components/MyText";
 import SvgGear from "../../assets/Gear";
 import Settings from "../scenes/settings";
@@ -17,12 +16,11 @@ const Tabs = () => {
         tabBarPosition="bottom"
         screenOptions={{
           swipeEnabled: true,
-          activeTintColor: colors.BLUE,
-          inactiveTintColor: "#a1a1a1",
+          tabBarActiveTintColor: "#1fc6d5",
+          tabBarInactiveTintColor: "#AAAEAD",
           showIcon: true,
-          indicatorStyle: { height: 0 },
-          style: {
-            maxHeight: 80,
+          tabBarIndicatorStyle: { height: 0 },
+          tabBarStyle: {
             shadowColor: "#000",
             shadowOffset: {
               width: 0,
@@ -37,12 +35,6 @@ const Tabs = () => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-          },
-          labelStyle: {
-            textTransform: "capitalize",
-            fontSize: 10,
-            marginHorizontal: 0,
-            padding: 0,
           },
         }}
       >
