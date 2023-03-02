@@ -72,36 +72,44 @@ const logEvent = async ({ category, action, name, value }) => {
 
 const getUserId = () => Matomo.userId;
 
-/*
-APP VISIT
-
-*/
-
-const APP = "APP";
-const APP_OPEN = "APP_OPEN";
-const APP_CLOSE = "APP_CLOSE";
+const CATEGORIES = {
+  APP: "APP",
+  ONBOARDING: "ONBOARDING",
+  NPS: "NPS",
+  OPEN_TAB: "OPEN_TAB",
+  RECOMMEND: "RECOMMEND",
+};
+const ACTIONS = {
+  APP_OPEN: "APP_OPEN",
+  ONBOARDING_NEXT_CLICK: "ONBOARDING_NEXT_CLICK",
+  NPS_OPEN: "NPS_OPEN",
+  NPS_SEND: "NPS_SEND",
+  PRO_NPS_SEND: "PRO_NPS_SEND",
+  ONBOARDING_USER_TYPE_CHOOSE: "ONBOARDING_USER_TYPE_CHOOSE",
+  RECOMMEND_SHOW_MODAL: "RECOMMEND_SHOW_MODAL",
+  RECOMMEND_SENT: "RECOMMEND_SENT",
+  RECOMMEND_DISMISSED: "RECOMMEND_DISMISSED",
+  RECOMMEND_ERROR: "RECOMMEND_ERROR",
+};
 
 const logAppVisit = async () => {
   await logEvent({
-    category: APP,
-    action: APP_OPEN,
+    category: CATEGORIES.APP,
+    action: ACTIONS.APP_OPEN,
   });
 };
 
 const logAppClose = async () => {
   await logEvent({
-    category: APP,
-    action: APP_CLOSE,
+    category: CATEGORIES.APP,
+    action: ACTIONS.APP_CLOSE,
   });
 };
 
-const ONBOARDING = "ONBOARDING";
-const NEXT_CLICK = "NEXT_CLICK";
-
 const logOnboardingSwipe = async (page) => {
   await logEvent({
-    category: ONBOARDING,
-    action: NEXT_CLICK,
+    category: CATEGORIES.ONBOARDING,
+    action: ACTIONS.NEXT_CLICK,
     name: "page",
     value: page,
   });
@@ -110,32 +118,12 @@ const logOnboardingSwipe = async (page) => {
 const FEELING = "FEELING";
 const FEELING_START = "FEELING_START";
 const FEELING_DATE_CHOOSE = "FEELING_DATE_CHOOSE";
-const FEELING_ADD = "FEELING_ADD";
-const FEELING_ADD_SURVEY = "FEELING_ADD_SURVEY";
 const FEELING_START_YESTERDAY = "FEELING_START_YESTERDAY";
-const FEELING_START_FLOATING_PlUS = "FEELING_START_FLOATING_PLUS";
-const FEELING_START_FROM_RECAP = "FEELING_START_FROM_RECAP";
 
 const logFeelingStart = async () => {
   await logEvent({
     category: FEELING,
     action: FEELING_START,
-  });
-};
-
-const logFeelingStartFloatingPlus = async () => {
-  await logEvent({
-    category: FEELING,
-    action: FEELING_START_FLOATING_PlUS,
-  });
-};
-
-const logFeelingStartFromRecap = async (offset) => {
-  await logEvent({
-    category: FEELING,
-    action: FEELING_START_FROM_RECAP,
-    name: "offset",
-    value: offset,
   });
 };
 
@@ -155,22 +143,6 @@ const logFeelingStartYesterday = async (v) => {
   });
 };
 
-const logFeelingAdd = async () => {
-  await logEvent({
-    category: FEELING,
-    action: FEELING_ADD,
-  });
-};
-
-const logFeelingSubmitSurvey = async (value) => {
-  await logEvent({
-    category: FEELING,
-    action: FEELING_ADD_SURVEY,
-    name: "indicateur",
-    value,
-  });
-};
-
 // todo : pas besoin d'edit ?
 const logFeelingEditButtonClick = async () => {
   await logEvent({
@@ -179,24 +151,18 @@ const logFeelingEditButtonClick = async () => {
   });
 };
 
-const SYMPTOM = "SYMPTOM";
-const SYMPTOM_SETTING_FROM_SURVEY = "SYMPTOM_SETTING_FROM_SURVEY";
-const SYMPTOM_ADD = "SYMPTOM_ADD";
-const SYMPTOM_CANCEL = "SYMPTOM_CANCEL";
-const CUSTOM_SYMPTOM = "CUSTOM_SYMPTOM";
-const CUSTOM_SYMPTOM_ADD = "CUSTOM_SYMPTOM_ADD";
-
 const logNPSOpen = async () => {
   await logEvent({
-    category: "NPS",
-    action: "NPS_OPEN",
+    category: CATEGORIES.NPS,
+    action: ACTIONS.NPS_OPEN,
   });
 };
 
+// todo: remove reco
 const logNPSSend = async (useful, reco) => {
   await logEvent({
-    category: "NPS",
-    action: "NPS_SEND",
+    category: CATEGORIES.NPS,
+    action: ACTIONS.NPS_SEND,
     name: "notes",
     value: `${useful}-${reco}`,
   });
@@ -204,8 +170,8 @@ const logNPSSend = async (useful, reco) => {
 
 const logNPSUsefulSend = async (value) => {
   await logEvent({
-    category: "NPS",
-    action: "NPS_SEND",
+    category: CATEGORIES.NPS,
+    action: ACTIONS.NPS_SEND,
     name: "notes-useful",
     value,
   });
@@ -214,15 +180,15 @@ const logNPSUsefulSend = async (value) => {
 // todo : besoin ?
 const logProNPSSend = async () => {
   await logEvent({
-    category: "NPS",
-    action: "PRO_NPS_SEND",
+    category: CATEGORIES.NPS,
+    action: ACTIONS.PRO_NPS_SEND,
   });
 };
 
 const logUserTypeSelect = async (userType) => {
   await logEvent({
-    category: "USER_TYPE",
-    action: "USER_TYPE_CHOOSE",
+    category: CATEGORIES.ONBOARDING,
+    action: ACTION.ONBOARDING_USER_TYPE_CHOOSE,
     name: userType,
   });
 };
@@ -243,36 +209,36 @@ const logDeleteNoteDiary = async () => {
   });
 };
 
-const logOpenPage = async (category) => {
+const logOpenPage = async (tab) => {
   await logEvent({
-    category: "OPEN_TAB",
-    action: `${category.toUpperCase()}_OPEN`,
+    category: CATEGORIES.OPEN_TAB,
+    action: `OPEN_${tab.toUpperCase()}`,
   });
 };
 
 const logRecommendAppShow = async () => {
   await logEvent({
-    category: "RECOMMEND",
-    action: "SHOW_MODAL",
+    category: CATEGORIES.RECOMMEND,
+    action: ACTIONS.RECOMMEND_SHOW_MODAL,
   });
 };
 const logRecommendAppSent = async (type) => {
   await logEvent({
-    category: "RECOMMEND",
-    action: "SENT",
+    category: CATEGORIES.RECOMMEND,
+    action: ACTIONS.RECOMMEND_SENT,
     type,
   });
 };
 const logRecommendAppDismissed = async () => {
   await logEvent({
-    category: "RECOMMEND",
-    action: "DISMISSED",
+    category: CATEGORIES.RECOMMEND,
+    action: ACTIONS.RECOMMEND_DISMISSED,
   });
 };
 const logRecommendAppError = async () => {
   await logEvent({
-    category: "RECOMMEND",
-    action: "ERROR",
+    category: CATEGORIES.RECOMMEND,
+    action: ACTIONS.RECOMMEND_ERROR,
   });
 };
 
@@ -302,8 +268,6 @@ export default {
   logOnboardingSwipe,
   logFeelingStart,
   logFeelingDateChoose,
-  logFeelingAdd,
-  logFeelingSubmitSurvey,
   getUserId,
   logNPSOpen,
   logNPSSend,
@@ -315,8 +279,6 @@ export default {
   logDeleteNoteDiary,
   logOpenPage,
   logFeelingEditButtonClick,
-  logFeelingStartFloatingPlus,
-  logFeelingStartFromRecap,
   logRecommendAppShow,
   logRecommendAppSent,
   logRecommendAppDismissed,
