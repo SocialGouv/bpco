@@ -11,12 +11,12 @@ export const capture = (err, context = {}) => {
     context = JSON.parse(JSON.stringify(context));
   }
   if (Sentry && err) {
-    console.log("sending to sentry", err, context);
+    // console.log("sending to sentry", err, context);
     if (typeof err === "string") {
-      console.log("captureMessage");
+      // console.log("captureMessage");
       Sentry.captureMessage(err, context);
     } else {
-      console.log("captureException");
+      // console.log("captureException");
       Sentry.captureException(err, context);
     }
   }
