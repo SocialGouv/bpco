@@ -61,12 +61,12 @@ const UserType = ({ navigation }) => {
               Vous êtes actuellement :
             </Text>
           </View>
-          <DarkCard
+          <Card
             title="Suivi et le professionnel qui me suit m’a recommandé l’application"
             color="#F4FCFD"
             handleClick={() => handleClick(USER_TYPES.suivi_recommande)}
           />
-          <DarkCard
+          <Card
             title="Suivi et j’ai téléchargé moi-même l’application"
             color="#F4FCFD"
             handleClick={() => handleClick(USER_TYPES.suivi_non_recommande)}
