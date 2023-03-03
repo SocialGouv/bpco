@@ -416,6 +416,7 @@ export const questionsScores = {
   },
 };
 
+// todo : change categorie ?
 export const questions = [
   {
     name: "Plus de toux ?",

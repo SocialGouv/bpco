@@ -1,37 +1,19 @@
-import React, { useEffect, useState, useContext, useRef } from "react";
-import {
-  StyleSheet,
-  ScrollView,
-  View,
-  SafeAreaView,
-  Keyboard,
-  KeyboardAvoidingView,
-  TouchableOpacity,
-  Platform,
-  Dimensions,
-  StatusBar,
-} from "react-native";
+import React, { useState, useContext } from "react";
+import { StyleSheet, View, Keyboard, Platform, StatusBar } from "react-native";
 import Text from "../../components/MyText";
 import { colors } from "../../utils/colors";
-import {
-  beforeToday,
-  formatDay,
-  formatRelativeDate,
-} from "../../utils/date/helpers";
+import { beforeToday, formatDay } from "../../utils/date/helpers";
 import { computeNewSurveyAvailable } from "../../utils";
 import { DiaryDataContext } from "../../context/diaryData";
 import { useFocusEffect } from "@react-navigation/native";
-import ArrowUpSvg from "../../../assets/ArrowUp";
 import { Screen } from "../../components/Screen";
 import { Button2 } from "../../components/Button2";
-import { Card } from "../../components/Card";
-import { IndicatorSurveyItem } from "./components/IndicatorSurveyItem";
+import { SurveyItem } from "./components/SurveyItem";
 import dayjs from "dayjs";
 import "dayjs/locale/fr";
 import { questions } from "../../utils/constants";
 import { computeHasOxygen } from "../../utils";
 import { computeResult } from "./utils";
-import { ReloadInstructions } from "react-native/Libraries/NewAppScreen";
 
 const DaySurvey = ({ navigation, route }) => {
   const initSurvey = route?.params?.currentSurvey ?? {
@@ -76,7 +58,6 @@ const DaySurvey = ({ navigation, route }) => {
       })();
     }, [])
   );
-  // const scrollRef = useRef();
 
   const toggleAnswer = async ({ key, value }) => {
     setAnswers((prev) => {
@@ -117,7 +98,7 @@ const DaySurvey = ({ navigation, route }) => {
     !computeNewSurveyAvailable(diaryData)
   ) {
     // should not happen
-    // came to this screen but survey is not available (was already done today)
+    // TODO : came to this screen but survey is not available (was already done today)
     console.log("ERROR - survey already done");
     navigation.navigate("tabs");
   }
@@ -133,8 +114,8 @@ const DaySurvey = ({ navigation, route }) => {
         <Button2
           disabled={
             Object.entries(answers).length <
-            questions.filter((ind) =>
-              hasOxygen ? true : ind.disabledWithoutOxygen === false
+            questions.filter((question) =>
+              hasOxygen ? true : question.disabledWithoutOxygen === false
             ).length
           }
           fill
@@ -146,48 +127,49 @@ const DaySurvey = ({ navigation, route }) => {
         onScrollBeginDrag: Keyboard.dismiss,
       }}
       contentContainerStyle={{ alignItems: "stretch" }}
-      // scrollRef={scrollRef}
     >
       <View>
         <View style={{ marginBottom: 8 }}>
           <Text style={styles.date}>{renderTodayDate()}</Text>
           <Text style={styles.title}>Par rapport à hier, avez-vous...</Text>
           {questions
-            .filter((ind) => ind.category === "1")
-            .map((ind) => (
-              <IndicatorSurveyItem
-                key={ind?.uuid}
-                indicator={ind}
-                value={answers?.[ind?.uuid]}
-                onValueChanged={({ indicator, value }) =>
-                  toggleAnswer({ key: indicator?.uuid, value })
+            .filter((question) => question.category === "1")
+            .map((question) => (
+              <SurveyItem
+                key={question?.uuid}
+                question={question}
+                value={answers?.[question?.uuid]}
+                onValueChanged={({ question, value }) =>
+                  toggleAnswer({ key: question?.uuid, value })
                 }
               />
             ))}
           <Text style={styles.title}>Par rapport à hier, utilisez-vous...</Text>
           {questions
-            .filter((ind) => ind.category === "2")
-            .filter((ind) => (hasOxygen ? true : !ind.disabledWithoutOxygen))
-            .map((ind) => (
-              <IndicatorSurveyItem
-                key={ind?.uuid}
-                indicator={ind}
-                value={answers?.[ind?.uuid]}
-                onValueChanged={({ indicator, value }) =>
-                  toggleAnswer({ key: indicator?.uuid, value })
+            .filter((question) => question.category === "2")
+            .filter((question) =>
+              hasOxygen ? true : !question.disabledWithoutOxygen
+            )
+            .map((question) => (
+              <SurveyItem
+                key={question?.uuid}
+                question={question}
+                value={answers?.[question?.uuid]}
+                onValueChanged={({ question, value }) =>
+                  toggleAnswer({ key: question?.uuid, value })
                 }
               />
             ))}
           <Text style={styles.title}>Par rapport à hier,</Text>
           {questions
-            .filter((ind) => ind.category === "3")
-            .map((ind) => (
-              <IndicatorSurveyItem
-                key={ind?.uuid}
-                indicator={ind}
-                value={answers?.[ind?.uuid]}
-                onValueChanged={({ indicator, value }) =>
-                  toggleAnswer({ key: indicator?.uuid, value })
+            .filter((question) => question.category === "3")
+            .map((question) => (
+              <SurveyItem
+                key={question?.uuid}
+                question={question}
+                value={answers?.[question?.uuid]}
+                onValueChanged={({ question, value }) =>
+                  toggleAnswer({ key: question?.uuid, value })
                 }
               />
             ))}

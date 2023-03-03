@@ -2,7 +2,12 @@ import React from "react";
 import { View, TouchableOpacity } from "react-native";
 import Text from "../../../components/MyText";
 
-export const Boolean = ({ order = "DESC", value, onChange, center = true }) => {
+export const BooleanInput = ({
+  order = "DESC",
+  value,
+  onChange,
+  center = true,
+}) => {
   const color = {
     ASC: {
       false: { text: "text-white", bg: "border-red-400 bg-red-400" },
