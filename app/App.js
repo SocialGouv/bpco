@@ -14,7 +14,7 @@ import { useEffect, useState } from "react";
 import * as Notifications from "expo-notifications";
 import localStorage from "./src/utils/localStorage";
 import { StatusBar } from "expo-status-bar";
-import * as Sentry from "@sentry/react-native";
+import * as Sentry from "sentry-expo";
 import { SENTRY_DSN } from "./src/config";
 import { version } from "./app.json";
 
@@ -28,24 +28,15 @@ Notifications.setNotificationHandler({
 
 SplashScreen.preventAutoHideAsync();
 
-if (!__DEV__) {
-  Sentry.init({
-    dsn: SENTRY_DSN,
-    environment: "app",
-    release: version,
-    enableNative: false,
-    ignoreErrors: [
-      "Network request failed",
-      "Failed to fetch",
-      "NetworkError",
-      // This error seems to happen only in firefox and to be ignorable.
-      // The "fetch" failed because user has navigated.
-      // Since other browsers don't have this problem, we don't care about it,
-      // it may be a false positive.
-      "AbortError: The operation was aborted",
-    ],
-  });
-}
+Sentry.init({
+  dsn: SENTRY_DSN,
+  enableInExpoDevelopment: false,
+  environment: "app",
+  setCommits: true,
+  enableNative: true, // Set to true to enable Sentry for EAS builds.
+  logLevel: 3,
+  debug: false,
+});
 
 export default function App() {
   const [initialRouteName, setInitialRouteName] = useState("tabs");
