@@ -205,7 +205,7 @@ const styles = {
   }),
   primary: StyleSheet.create({
     button: {
-      backgroundColor: "#1FC6D5",
+      backgroundColor: "#0074d4",
       shadowColor: "#0A215C",
       shadowOffset: {
         width: 0,

@@ -1,60 +1,71 @@
-import React, { forwardRef, useEffect, useState, useImperativeHandle } from "react";
+import React, {
+  forwardRef,
+  useEffect,
+  useState,
+  useImperativeHandle,
+} from "react";
 import { StyleSheet, View, Pressable } from "react-native";
 import { autoLayoutAnimation } from "../utils/autoLayoutAnimation";
 
-export const InputToggle = forwardRef(({ checked, onCheckedChanged, containerStyle }, ref) => {
-  useImperativeHandle(ref, () => {
-    return {
-      toggle,
+export const InputToggle = forwardRef(
+  ({ checked, onCheckedChanged, containerStyle }, ref) => {
+    useImperativeHandle(ref, () => {
+      return {
+        toggle,
+      };
+    });
+
+    const [_checked, _setChecked] = useState(checked);
+    useEffect(() => {
+      _setChecked(checked);
+    }, [checked]);
+
+    const toggle = () => {
+      const nextChecked = !_checked;
+      _setChecked(nextChecked);
+      autoLayoutAnimation();
+      onCheckedChanged?.({ checked: nextChecked });
     };
-  });
 
-  const [_checked, _setChecked] = useState(checked);
-  useEffect(() => {
-    _setChecked(checked);
-  }, [checked]);
-
-  const toggle = () => {
-    const nextChecked = !_checked;
-    _setChecked(nextChecked);
-    autoLayoutAnimation();
-    onCheckedChanged?.({ checked: nextChecked });
-  };
-
-  return (
-    <View
-      style={[
-        styles.container,
-        {
-          borderColor: _checked ? "#1FC6D5" : "#CCCCCC",
-          backgroundColor: _checked ? "rgba(31, 198, 213, 0.1)" : "#FFFFFF",
-        },
-        containerStyle,
-      ]}
-    >
-      <Pressable style={{ flex: 1 }} onPress={toggle} hitSlop={{ bottom: 8, left: 8, right: 8, top: 8 }}>
-        <View
-          style={[
-            styles.contentContainer,
-            {
-              alignItems: !_checked ? "flex-start" : "flex-end",
-            },
-          ]}
+    return (
+      <View
+        style={[
+          styles.container,
+          {
+            borderColor: _checked ? "#0074d4" : "#CCCCCC",
+            backgroundColor: _checked ? "rgba(31, 198, 213, 0.1)" : "#FFFFFF",
+          },
+          containerStyle,
+        ]}
+      >
+        <Pressable
+          style={{ flex: 1 }}
+          onPress={toggle}
+          hitSlop={{ bottom: 8, left: 8, right: 8, top: 8 }}
         >
           <View
             style={[
-              styles.circle,
+              styles.contentContainer,
               {
-                backgroundColor: _checked ? "#1FC6D5" : "#CCCCCC",
+                alignItems: !_checked ? "flex-start" : "flex-end",
               },
             ]}
-            collapsable={false}
-          />
-        </View>
-      </Pressable>
-    </View>
-  );
-});
+          >
+            <View
+              style={[
+                styles.circle,
+                {
+                  backgroundColor: _checked ? "#0074d4" : "#CCCCCC",
+                },
+              ]}
+              collapsable={false}
+            />
+          </View>
+        </Pressable>
+      </View>
+    );
+  }
+);
 
 const styles = StyleSheet.create({
   container: {

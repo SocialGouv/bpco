@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
 
     paddingTop: 5,
     paddingBottom: 0,
-    backgroundColor: "#1FC6D5",
+    backgroundColor: "#0074d4",
   },
   arrowDown: {
     transform: [{ rotate: "180deg" }],
@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
       paddingTop: (StatusBar.currentHeight || 24) + 10,
     }),
     flex: 1,
-    backgroundColor: "#1FC6D5",
+    backgroundColor: "#0074d4",
   },
   scrollView: {
     backgroundColor: "white",

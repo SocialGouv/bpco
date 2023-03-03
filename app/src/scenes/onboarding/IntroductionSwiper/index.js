@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   emphasis: {
-    color: "#1FC6D5",
+    color: "#0074d4",
   },
   presentationText: {
     fontSize: 20,

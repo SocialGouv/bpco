@@ -34,8 +34,8 @@ export const InputCheckbox = ({
                     borderColor: "#26387C",
                   }
                 : {
-                    borderColor: "#1FC6D5",
-                    backgroundColor: "#1FC6D5",
+                    borderColor: "#0074d4",
+                    backgroundColor: "#0074d4",
                   },
             ]}
           >

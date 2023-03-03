@@ -94,8 +94,8 @@ export const Screen2 = ({ navigation, isCguChecked, setIsCguChecked }) => {
             <View className="flex flex-row items-center h-fit max-w-xl mx-auto pl-6 pr-3 tablet:px-0">
               <Checkbox
                 animationDuration={0.2}
-                tintColor="#1FC6D5"
-                tintColors={{ true: "#1FC6D5", false: "grey" }}
+                tintColor="#0074d4"
+                tintColors={{ true: "#0074d4", false: "grey" }}
                 boxType="square"
                 // style={styles.checkbox}
                 className="mr-5 w-8 h-8 tablet:w-12 tablet:h-12 tablet:mr-10"
@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
     alignItems: "stretch",
   },
   emphasis: {
-    color: "#1FC6D5",
+    color: "#0074d4",
   },
   h1: {
     fontFamily: "Karla-Bold",

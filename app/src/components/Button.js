@@ -47,7 +47,7 @@ const Button = ({
   return (
     <TouchableOpacity
       style={[
-        { ...styles.button, backgroundColor: color || "#1FC6D5" },
+        { ...styles.button, backgroundColor: color || "#0074d4" },
         buttonStyle,
       ]}
       onPress={onPress}

@@ -100,7 +100,7 @@ const _styles = {
   groupItem: StyleSheet.create({
     container: {
       backgroundColor: "#FFFFFF",
-      borderColor: "#1FC6D5",
+      borderColor: "#0074d4",
       borderRadius: 4,
     },
     contentContainer: {

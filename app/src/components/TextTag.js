@@ -14,7 +14,7 @@ export default ({
   textStyle,
   value,
   selected,
-  color = "#1FC6D5",
+  color = "#0074d4",
   enableClosed = false,
   enableAdd = false,
 }) => {
@@ -32,19 +32,32 @@ export default ({
   return (
     <View style={styles.container}>
       <TouchableOpacity
-        style={[{ ...styles.button, backgroundColor, borderColor }, buttonStyle]}
+        style={[
+          { ...styles.button, backgroundColor, borderColor },
+          buttonStyle,
+        ]}
         onPress={() => onPress(value)}
         disabled={disabled}
       >
-        <Text style={[{ ...styles.text, color: myTextColor }, textStyle]}>{value}</Text>
+        <Text style={[{ ...styles.text, color: myTextColor }, textStyle]}>
+          {value}
+        </Text>
       </TouchableOpacity>
       {enableClosed && (
-        <TouchableOpacity style={styles.close} onPress={() => onClose(value)} disabled={disabled}>
+        <TouchableOpacity
+          style={styles.close}
+          onPress={() => onClose(value)}
+          disabled={disabled}
+        >
           <Icon icon="CrossSvg" width={8} height={8} color={colors.BLUE} />
         </TouchableOpacity>
       )}
       {enableAdd && (
-        <TouchableOpacity style={styles.add} onPress={() => onAdd(value)} disabled={disabled}>
+        <TouchableOpacity
+          style={styles.add}
+          onPress={() => onAdd(value)}
+          disabled={disabled}
+        >
           <Icon icon="CrossSvg" width={8} height={8} color={colors.BLUE} />
         </TouchableOpacity>
       )}

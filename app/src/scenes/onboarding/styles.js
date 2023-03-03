@@ -66,7 +66,7 @@ export const onboardingStyles = StyleSheet.create({
     paddingVertical: 20,
   },
   emphasis: {
-    color: "#1FC6D5",
+    color: "#0074d4",
   },
   centeredBoldText: {
     textAlign: "center",

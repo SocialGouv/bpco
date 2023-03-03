@@ -16,7 +16,7 @@ const Tabs = () => {
         tabBarPosition="bottom"
         screenOptions={{
           swipeEnabled: true,
-          tabBarActiveTintColor: "#1fc6d5",
+          tabBarActiveTintColor: "#0074d4",
           tabBarInactiveTintColor: "#AAAEAD",
           showIcon: true,
           tabBarIndicatorStyle: { height: 0 },

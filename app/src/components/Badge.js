@@ -11,7 +11,7 @@ export const Badge = ({ children, textStyle, style, circle }) => {
 
 const styles = StyleSheet.create({
   badge: {
-    backgroundColor: "#1FC6D5",
+    backgroundColor: "#0074d4",
     minHeight: 24,
     borderRadius: 100,
     alignItems: "center",
