@@ -9,7 +9,6 @@ import {
   Platform,
   StatusBar,
 } from "react-native";
-import LegalItem from "../../components/drawer/legal-item";
 import Header from "../../components/Header";
 import NPS from "../../services/NPS/NPS";
 import { colors } from "../../utils/colors";
@@ -18,6 +17,7 @@ import { recommendApp } from "../../utils/share";
 import app from "../../../app.json";
 
 import SettingItem from "./setting-item";
+import LegalItem from "./legal-item";
 import { ScrollView } from "react-native";
 
 const Settings = ({ navigation }) => {
@@ -64,15 +64,6 @@ const Settings = ({ navigation }) => {
             navigation={navigation}
           />
         ) : null}
-
-        {/* <SettingItem
-          title="Envoyer un récapitulatif de mes données"
-          path="export"
-          navigation={navigation}
-          onClick={onClick}
-          icon="ExportDataSettingSvg"
-        /> */}
-
         <Separator />
         <LegalItem
           title="Conditions générales d'utilisation"

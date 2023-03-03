@@ -8,7 +8,7 @@ const SvgPlus = (props) => (
     xmlns="http://www.w3.org/2000/svg"
     {...props}
   >
-    <Rect width={50} height={50} rx={25} fill="#1FC6D5" />
+    <Rect width={50} height={50} rx={25} fill="#0074d4" />
     <Path
       d="M26.213 17.692a1.213 1.213 0 1 0-2.426 0v16.616a1.213 1.213 0 0 0 2.426 0V17.692Z"
       fill="#fff"
