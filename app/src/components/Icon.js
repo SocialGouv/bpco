@@ -32,7 +32,6 @@ import Bin2Svg from "../../assets/Bin2";
 import NotesSvg from "../../assets/Notes";
 import TuneSvg from "../../assets/Tune";
 import CheckSvg from "../../assets/Check";
-import Text from "../components/MyText";
 import PhoneSvg from "../../assets/Phone";
 import PeopleSvg from "../../assets/People";
 import GlobeSvg from "../../assets/Globe";
