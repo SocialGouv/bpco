@@ -67,13 +67,6 @@ const Result = ({ navigation, route }) => {
           <View className="w-full h-[95%] justify-center">
             <AlertComponent alert={alertLevel} />
           </View>
-          {/* <Card
-            preset="lighten"
-            title={"Resultat"}
-            text={renderTodayDate()}
-            image={{ source: require("./../../../assets/imgs/indicateur.png") }}
-            containerStyle={{ marginBottom: 16 }}
-          /> */}
         </View>
       </View>
     </Screen>
@@ -96,7 +89,7 @@ const handlePressSMS = async () => {
   if (isAvailable) {
     const { result } = await SMS.sendSMSAsync(
       [phoneNumber],
-      "J'ai besoin d'aide. Mon application BPCO'MIEUX me conseille de consulter en urgence. (envoyé automatiquement depuis l'application BPCO'MIEUX)"
+      "J'ai besoin d'aide. Mon application BPCO'Mieux me conseille de consulter en urgence. (envoyé automatiquement depuis l'application BPCO'Mieux)"
     );
     // result empty for android users
   } else {

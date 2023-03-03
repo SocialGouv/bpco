@@ -132,7 +132,7 @@ class Router extends React.Component {
             <Stack.Screen name="dev-tools" component={DevTools} />
           </Stack.Navigator>
         </NavigationContainer>
-        {/* <EnvironmentIndicator /> */}
+        <EnvironmentIndicator />
       </>
     );
   }

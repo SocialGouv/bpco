@@ -1,31 +1,18 @@
-import React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
-import { APP_ENV } from '../config';
+import React from "react";
+import { Text, View } from "react-native";
+import { APP_ENV } from "../config";
 
 const EnvironmentIndicator = () => {
-  if (APP_ENV === 'production') return null;
-
+  if (APP_ENV === "production") return null;
   return (
-    <View style={styles.container}>
-      <Text allowFontScaling={false} allow style={styles.text}>
-        {APP_ENV}
-      </Text>
+    <View className="opacity-30">
+      <View className="absolute bottom-2 right-2 z-50 bg-red-600 px-2 py-1 rounded-full">
+        <Text allowFontScaling={false} className="text-white text-sm">
+          {APP_ENV}
+        </Text>
+      </View>
     </View>
   );
 };
 
 export default EnvironmentIndicator;
-
-const styles = StyleSheet.create({
-  container: {
-    position: 'absolute',
-    bottom: 5,
-    right: 20,
-    zIndex: 9999,
-    color: 'red',
-    fontSize: 16,
-  },
-  text: {
-    color: 'red',
-  },
-});

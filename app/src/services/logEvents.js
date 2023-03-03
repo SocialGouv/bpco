@@ -81,6 +81,7 @@ const CATEGORIES = {
 };
 const ACTIONS = {
   APP_OPEN: "APP_OPEN",
+  APP_CLOSE: "APP_CLOSE",
   ONBOARDING_NEXT_CLICK: "ONBOARDING_NEXT_CLICK",
   NPS_OPEN: "NPS_OPEN",
   NPS_SEND: "NPS_SEND",
@@ -109,7 +110,7 @@ const logAppClose = async () => {
 const logOnboardingSwipe = async (page) => {
   await logEvent({
     category: CATEGORIES.ONBOARDING,
-    action: ACTIONS.NEXT_CLICK,
+    action: ACTIONS.ONBOARDING_NEXT_CLICK,
     name: "page",
     value: page,
   });
@@ -188,7 +189,7 @@ const logProNPSSend = async () => {
 const logUserTypeSelect = async (userType) => {
   await logEvent({
     category: CATEGORIES.ONBOARDING,
-    action: ACTION.ONBOARDING_USER_TYPE_CHOOSE,
+    action: ACTIONS.ONBOARDING_USER_TYPE_CHOOSE,
     name: userType,
   });
 };
