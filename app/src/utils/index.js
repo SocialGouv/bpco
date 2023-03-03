@@ -1,6 +1,32 @@
 import { beforeToday, formatDay } from "./date/helpers";
 import localStorage from "./localStorage";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import {
+  STORAGE_KEY_SURVEY_RESULTS,
+  STORAGE_KEY_START_DATE,
+  STORAGE_KEY_SYMPTOMS,
+  STORAGE_KEY_INDICATEURS,
+  STORAGE_KEY_IS_FIRST_LAUNCH,
+  STORAGE_KEY_USER_TYPE,
+  STORAGE_KEY_CUSTOM_DRUGS,
+  STORAGE_KEY_MEDICAL_TREATMENT,
+  STORAGE_KEY_NOTES_VERSION,
+  STORAGE_KEY_VISIT_PRO_NPS,
+  STORAGE_KEY_IS_BECK_ACTIVATED,
+  STORAGE_KEY_BECK_WHERE_LIST,
+  STORAGE_KEY_BECK_WHO_LIST,
+  STORAGE_KEY_BECK_SENSATION_LIST,
+  STORAGE_KEY_BECK_EMOTION_LIST,
+  STORAGE_KEY_ONBOARDING_STEP,
+  STORAGE_KEY_ONBOARDING_DONE,
+  STORAGE_KEY_WEIGHT,
+  STORAGE_KEY_AGE,
+  STORAGE_KEY_SEX,
+  STORAGE_KEY_FAMILY_PHONE_NUMBER,
+  STORAGE_KEY_REMINDER,
+  STORAGE_KEY_VENTILATION_DEVICE,
+  STORAGE_KEY_OXYGEN,
+} from "../utils/constants";
 
 export const classNames = (...classes) => {
   return classes.filter(Boolean).join(" ");
@@ -106,5 +132,12 @@ export const wipeData = async () => {
   await AsyncStorage.removeItem(STORAGE_KEY_BECK_EMOTION_LIST);
   await AsyncStorage.removeItem(STORAGE_KEY_ONBOARDING_STEP);
   await AsyncStorage.removeItem(STORAGE_KEY_ONBOARDING_DONE);
+  await AsyncStorage.removeItem(STORAGE_KEY_WEIGHT);
+  await AsyncStorage.removeItem(STORAGE_KEY_AGE);
+  await AsyncStorage.removeItem(STORAGE_KEY_SEX);
+  await AsyncStorage.removeItem(STORAGE_KEY_FAMILY_PHONE_NUMBER);
+  await AsyncStorage.removeItem(STORAGE_KEY_REMINDER);
+  await AsyncStorage.removeItem(STORAGE_KEY_VENTILATION_DEVICE);
+  await AsyncStorage.removeItem(STORAGE_KEY_OXYGEN);
   await AsyncStorage.removeItem("@Reminder");
 };
