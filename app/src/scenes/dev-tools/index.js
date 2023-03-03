@@ -13,6 +13,7 @@ import { ScrollView } from "react-native";
 import BackButton from "../../components/BackButton";
 import { HOST, APP_ENV, SENTRY_DSN } from "../../config";
 import { wipeData } from "../../utils";
+import { capture } from "../../services/sentry";
 
 const Settings = ({ navigation }) => {
   return (
@@ -50,6 +51,27 @@ const Settings = ({ navigation }) => {
         <TouchableOpacity className="border-b border-gray-100 px-3 py-5">
           <View className="">
             <Text>Générer des données de tests</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          className="border-b border-gray-100 px-3 py-5"
+          onPress={() =>
+            Alert.alert(
+              `Êtes-vous sûr de vouloir simuler une erreur Sentry ?`,
+              "",
+              [
+                {
+                  text: "Oui",
+                  onPress: () => capture({ error: "test", date: new Date() }),
+                },
+                { text: "Non", style: "cancel" },
+              ],
+              { cancelable: true }
+            )
+          }
+        >
+          <View className="">
+            <Text>Ping Sentry</Text>
           </View>
         </TouchableOpacity>
         <View className="px-3 py-2">
