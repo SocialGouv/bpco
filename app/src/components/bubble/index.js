@@ -1,26 +1,25 @@
 import React, { useState } from "react";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
-
-import ReminderItem from "./reminder-item";
-import ExportItem from "./export-item";
+import ReminderBubble from "./reminder-bubble";
 const ReminderStorageKey = "@Reminder";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+
+// todo : la bulle s'affiche alors qu'un rappel est set
 export default () => {
   const navigation = useNavigation();
-  const [reminderItemVisible, setReminderItemVisible] = useState();
+  const [reminderBubbleVisible, setReminderBubbleVisible] = useState(true);
 
   useFocusEffect(
     React.useCallback(() => {
       (async () => {
-        const reminder = await AsyncStorage.getItem(ReminderStorageKey);
-        setReminderItemVisible(!reminder);
+        const reminder = await AsyncStorage.getBubble(ReminderStorageKey);
+        setReminderBubbleVisible(!reminder);
       })();
     }, [])
   );
 
   const onPressReminder = () => navigation.navigate("reminder");
-  const onPressExport = () => navigation.navigate("export");
 
-  if (reminderItemVisible) return <ReminderItem onPress={onPressReminder} />;
-  return <ExportItem onPress={onPressExport} />;
+  if (reminderBubbleVisible)
+    return <ReminderBubble onPress={onPressReminder} />;
 };

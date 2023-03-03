@@ -1,23 +1,21 @@
 import React from "react";
 import { View, TouchableOpacity } from "react-native";
-import Text from "../../components/MyText";
+import Text from "../MyText";
 
-const ContributeItem = ({ onPress }) => {
+const ReminderItem = ({ onPress }) => {
   return (
     <TouchableOpacity onPress={onPress}>
       <View className="bg-white border shadow-sm border-gray-300 rounded-xl p-3 mb-5">
         <Text className="font-bold text-primary text-base">
-          Contribuer à BPCO
+          Mettre un rappel
         </Text>
         <Text className="text-black text-sm mt-2">
-          Dites-nous comment améliorer l'application{"\n"}
-          <Text className="text-black text-xs">
-            Nous lisons tous les messages
-          </Text>
+          Saisir tous les jours votre suivi me permet de mieux suivre mon
+          évolution
         </Text>
       </View>
     </TouchableOpacity>
   );
 };
 
-export default ContributeItem;
+export default ReminderItem;
