@@ -76,7 +76,7 @@ const CATEGORIES = {
   APP: "APP",
   ONBOARDING: "ONBOARDING",
   NPS: "NPS",
-  OPEN_TAB: "OPEN_TAB",
+  PAGE_VIEW: "PAGE_VIEW",
   RECOMMEND: "RECOMMEND",
 };
 const ACTIONS = {
@@ -87,6 +87,12 @@ const ACTIONS = {
   NPS_SEND: "NPS_SEND",
   PRO_NPS_SEND: "PRO_NPS_SEND",
   ONBOARDING_USER_TYPE_CHOOSE: "ONBOARDING_USER_TYPE_CHOOSE",
+  ONBOARDING_USER_OXYGEN_SELECT: "ONBOARDING_USER_OXYGEN_SELECT",
+  ONBOARDING_USER_OXYGEN_CLICK: "ONBOARDING_USER_OXYGEN_CLICK",
+  ONBOARDING_USER_VENTILATION_DEVICE_SELECT:
+    "ONBOARDING_USER_VENTILATION_DEVICE_SELECT",
+  ONBOARDING_USER_VENTILATION_DEVICE_CLICK:
+    "ONBOARDING_USER_VENTILATION_DEVICE_CLICK",
   RECOMMEND_SHOW_MODAL: "RECOMMEND_SHOW_MODAL",
   RECOMMEND_SENT: "RECOMMEND_SENT",
   RECOMMEND_DISMISSED: "RECOMMEND_DISMISSED",
@@ -194,6 +200,35 @@ const logUserTypeSelect = async (userType) => {
   });
 };
 
+const logUserOxygenSelect = async (oxygen) => {
+  await logEvent({
+    category: CATEGORIES.ONBOARDING,
+    action: ACTIONS.ONBOARDING_USER_OXYGEN_SELECT,
+    name: oxygen,
+  });
+};
+const logUserOxygenClick = async (oxygen) => {
+  await logEvent({
+    category: CATEGORIES.ONBOARDING,
+    action: ACTIONS.ONBOARDING_USER_OXYGEN_CLICK,
+    name: oxygen,
+  });
+};
+const logUserVentilationDeviceSelect = async (ventilationDevice) => {
+  await logEvent({
+    category: CATEGORIES.ONBOARDING,
+    action: ACTIONS.ONBOARDING_USER_VENTILATION_DEVICE_SELECT,
+    name: ventilationDevice,
+  });
+};
+const logUserVentilationDeviceClick = async (ventilationDevice) => {
+  await logEvent({
+    category: CATEGORIES.ONBOARDING,
+    action: ACTIONS.ONBOARDING_USER_VENTILATION_DEVICE_CLICK,
+    name: ventilationDevice,
+  });
+};
+
 // besoin ?
 const logEditNoteDiary = async () => {
   await logEvent({
@@ -210,10 +245,10 @@ const logDeleteNoteDiary = async () => {
   });
 };
 
-const logOpenPage = async (tab) => {
+const logPageView = async (tab) => {
   await logEvent({
-    category: CATEGORIES.OPEN_TAB,
-    action: `OPEN_${tab.toUpperCase()}`,
+    category: CATEGORIES.PAGE_VIEW,
+    action: `PAGE_VIEW_${tab.toUpperCase()}`,
   });
 };
 
@@ -273,12 +308,16 @@ export default {
   logNPSOpen,
   logNPSSend,
   logUserTypeSelect,
+  logUserOxygenSelect,
+  logUserOxygenClick,
+  logUserVentilationDeviceSelect,
+  logUserVentilationDeviceClick,
   logFeelingStartYesterday,
   logProNPSSend,
   logNPSUsefulSend,
   logEditNoteDiary,
   logDeleteNoteDiary,
-  logOpenPage,
+  logPageView,
   logFeelingEditButtonClick,
   logRecommendAppShow,
   logRecommendAppSent,

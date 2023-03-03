@@ -94,7 +94,7 @@ class Router extends React.Component {
     const route = this.navigationRef.getCurrentRoute();
     if (route.name === this.prevCurrentRouteName) return;
     this.prevCurrentRouteName = route.name;
-    logEvents.logOpenPage(route.name);
+    logEvents.logPageView(route.name);
   };
 
   render() {

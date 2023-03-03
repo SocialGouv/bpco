@@ -10,28 +10,40 @@ import { onboardingStyles } from "./styles";
 import { StickyButtonContainer } from "./components/StickyButton";
 import { SafeAreaViewWithOptionalHeader } from "./ProgressHeader";
 import { OnboardingBackButton } from "./components/BackButton";
-import { setOxygen } from "../../utils/localStorage";
-import { Boolean } from "../survey/components/Boolean";
+import { BooleanInput } from "./components/BooleanInput";
 import { colors } from "../../utils/colors";
+import logEvents from "../../services/logEvents";
 
 const Explanation = ({ navigation }) => {
   const [answerOxygen, setAnswerOxygen] = useState(null);
-  const [answerDevice, setAnswerDevice] = useState(null);
+  const [answerVentilationDevice, setAnswerVentilationDevice] = useState(null);
 
   useEffect(() => {
     (async () => {
       const oxygenStorage = await localStorage.getOxygen();
-      if (oxygenStorage?.device !== undefined)
-        setAnswerDevice(oxygenStorage.device);
-      if (oxygenStorage?.oxygen !== undefined)
-        setAnswerOxygen(oxygenStorage.oxygen);
+      if (oxygenStorage !== undefined) setAnswerOxygen(oxygenStorage);
+      const ventilationDevice = await localStorage.getVentilationDevice();
+      if (ventilationDevice !== undefined)
+        setAnswerVentilationDevice(ventilationDevice);
       await localStorage.setOnboardingStep(ONBOARDING_STEPS.STEP_OXYGEN);
     })();
   }, []);
 
   const handlePress = () => {
-    localStorage.setOxygen({ oxygen: answerOxygen, device: answerDevice });
+    localStorage.setOxygen(answerOxygen);
+    localStorage.setVentilationDevice(answerVentilationDevice);
+    logEvents.logUserOxygenSelect(answerOxygen);
+    logEvents.logUserVentilationDeviceSelect(answerVentilationDevice);
     navigation.navigate(ONBOARDING_STEPS.STEP_REMINDER, { inOnboarding: true });
+  };
+
+  const handlePressOxygen = (value) => {
+    setAnswerOxygen(value);
+    logEvents.logUserOxygenClick(value);
+  };
+  const handlePressVentilationDevice = (value) => {
+    setAnswerVentilationDevice(value);
+    logEvents.logUserVentilationDeviceClick(value);
   };
 
   return (
@@ -55,14 +67,22 @@ const Explanation = ({ navigation }) => {
           <Text style={onboardingStyles.centeredBoldText}>
             Avez-vous au quotidien besoin d’oxygène
           </Text>
-          <Boolean center value={answerOxygen} onChange={setAnswerOxygen} />
+          <BooleanInput
+            center
+            value={answerOxygen}
+            onChange={handlePressOxygen}
+          />
           <View style={onboardingStyles.imageContainer}>
             <VentilationDevice />
           </View>
           <Text style={onboardingStyles.centeredBoldText}>
             Avez-vous un appareil de ventilation ?
           </Text>
-          <Boolean center value={answerDevice} onChange={setAnswerDevice} />
+          <BooleanInput
+            center
+            value={answerVentilationDevice}
+            onChange={handlePressVentilationDevice}
+          />
         </View>
       </ScrollView>
       <StickyButtonContainer>

@@ -13,6 +13,7 @@ import {
   STORAGE_KEY_ONBOARDING_DONE,
   STORAGE_KEY_NPS_PRO_CONTACT,
   STORAGE_KEY_OXYGEN,
+  STORAGE_KEY_VENTILATION_DEVICE,
   STORAGE_KEY_REMINDER,
   STORAGE_KEY_FAMILY_PHONE_NUMBER,
   STORAGE_KEY_SEX,
@@ -198,6 +199,21 @@ const getOxygen = async () => {
 const setOxygen = async (oxygen) =>
   await AsyncStorage.setItem(STORAGE_KEY_OXYGEN, JSON.stringify(oxygen));
 
+const getVentilationDevice = async () => {
+  const ventilationDevice = await AsyncStorage.getItem(
+    STORAGE_KEY_VENTILATION_DEVICE
+  );
+  if (ventilationDevice) {
+    return JSON.parse(ventilationDevice);
+  }
+};
+
+const setVentilationDevice = async (ventilationDevice) =>
+  await AsyncStorage.setItem(
+    STORAGE_KEY_VENTILATION_DEVICE,
+    JSON.stringify(ventilationDevice)
+  );
+
 const getReminder = async () => {
   const reminder = await AsyncStorage.getItem(STORAGE_KEY_REMINDER);
   if (reminder) {
@@ -261,6 +277,8 @@ export default {
   setReminder,
   getOxygen,
   setOxygen,
+  getVentilationDevice,
+  setVentilationDevice,
   getSymptoms,
   setSymptoms,
   getIsFirstAppLaunch,
