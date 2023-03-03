@@ -4,14 +4,11 @@ import Text from "../../components/MyText";
 import Button from "../../components/Button";
 import localStorage from "../../utils/localStorage";
 import { ONBOARDING_STEPS } from "../../utils/constants";
-import OxygenBottle from "../../../assets/onboarding/OxygenBottle";
-import VentilationDevice from "../../../assets/onboarding/VentilationDevice";
 import { onboardingStyles } from "../onboarding/styles";
 import { StickyButtonContainer } from "../onboarding/components/StickyButton";
 import { SafeAreaViewWithOptionalHeader } from "../onboarding/ProgressHeader";
 import { OnboardingBackButton } from "../onboarding/components/BackButton";
-import { setOxygen } from "../../utils/localStorage";
-import { Boolean } from "../survey/components/Boolean";
+import { BooleanInput } from "./components/BooleanInput";
 import { colors } from "../../utils/colors";
 import SelectDropdown from "react-native-select-dropdown";
 import ArrowUpSvg from "../../../assets/ArrowUp";
@@ -20,7 +17,7 @@ import BackButton from "../../components/BackButton";
 
 const Profile = ({ navigation }) => {
   const [answerOxygen, setAnswerOxygen] = useState(null);
-  const [answerDevice, setAnswerDevice] = useState(null);
+  const [answerVentilationDevice, setAnswerVentilationDevice] = useState(null);
 
   const [sex, setSex] = useState(null);
   const [birthyear, setBirthyear] = useState(null);
@@ -29,10 +26,10 @@ const Profile = ({ navigation }) => {
   useEffect(() => {
     (async () => {
       const oxygenStorage = await localStorage.getOxygen();
-      if (oxygenStorage?.device !== undefined)
-        setAnswerDevice(oxygenStorage.device);
-      if (oxygenStorage?.oxygen !== undefined)
-        setAnswerOxygen(oxygenStorage.oxygen);
+      if (oxygenStorage !== undefined) setAnswerOxygen(oxygenStorage);
+      const ventilationDevice = await localStorage.getVentilationDevice();
+      if (ventilationDevice !== undefined)
+        setAnswerVentilationDevice(ventilationDevice);
 
       const sexStorage = await localStorage.getSex();
       const ageStorage = await localStorage.getBirthyear();
@@ -45,7 +42,8 @@ const Profile = ({ navigation }) => {
   }, []);
 
   const handlePress = async () => {
-    localStorage.setOxygen({ oxygen: answerOxygen, device: answerDevice });
+    localStorage.setOxygen(answerOxygen);
+    localStorage.setVentilationDevice(answerVentilationDevice);
     if (!validate(birthyear, weight)) return;
     if (sex) localStorage.setSex(sex);
     if (birthyear) localStorage.setBirthyear(birthyear);
@@ -86,14 +84,22 @@ const Profile = ({ navigation }) => {
           <Text style={onboardingStyles.centeredBoldText} className="mt-8">
             Avez-vous au quotidien besoin d’oxygène
           </Text>
-          <Boolean center value={answerOxygen} onChange={setAnswerOxygen} />
+          <BooleanInput
+            center
+            value={answerOxygen}
+            onChange={setAnswerOxygen}
+          />
           {/* <View style={onboardingStyles.imageContainer}>
             <VentilationDevice />
           </View> */}
           <Text style={onboardingStyles.centeredBoldText} className="mt-8">
             Avez-vous un appareil de ventilation ?
           </Text>
-          <Boolean center value={answerDevice} onChange={setAnswerDevice} />
+          <BooleanInput
+            center
+            value={answerVentilationDevice}
+            onChange={setAnswerVentilationDevice}
+          />
         </View>
       </ScrollView>
       <StickyButtonContainer>
