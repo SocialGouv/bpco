@@ -4,7 +4,6 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import EnvironmentIndicator from "../services/EnvironmentIndicator";
 import DaySurveyScreen from "../scenes/survey/daySurvey";
-import SelectDayScreen from "../scenes/survey/selectDay";
 import { AppState, Linking } from "react-native";
 import Onboarding from "../scenes/onboarding";
 import OnboardingFelicitation from "../scenes/onboarding/Felicitation";
@@ -115,7 +114,6 @@ class Router extends React.Component {
               name="day-survey-result"
               component={DaySurveyResult}
             />
-            <Stack.Screen name="select-day" component={SelectDayScreen} />
             <Stack.Screen name="reminder" component={Reminder} />
             <Stack.Screen name="set-warn-family" component={SetWarnFamily} />
             <Stack.Screen name="profile" component={Profile} />
