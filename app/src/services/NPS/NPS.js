@@ -1,10 +1,8 @@
 import React from "react";
 import {
-  Dimensions,
   Modal,
   Platform,
   AppState,
-  Alert,
   StyleSheet,
   View,
   ScrollView,
@@ -57,9 +55,8 @@ class NPS extends React.Component {
     reco: null,
     feedback: "",
     contact: "",
-    sendButton: getCaption("post"),
+    sendButtonText: "Envoyer",
     NPSKey: 0,
-    page: 2,
   };
 
   async componentDidMount() {
@@ -102,7 +99,7 @@ class NPS extends React.Component {
 
   handleNotification = (notification) => {
     if (
-      notification.title === getCaption("notifTitle") &&
+      notification.title === "Vos retours sont importants pour nous" &&
       notification.userInteraction === true
     ) {
       this.setState({ visible: true });
@@ -131,8 +128,8 @@ class NPS extends React.Component {
       );
       // Notifications.scheduleNotification({
       //   date: new Date(Date.now() + NPSTimeoutMS),
-      //   title: getCaption("notifTitle"),
-      //   message: getCaption("notifMessage"),
+      //   title: "Vos retours sont importants pour nous",
+      //   message: "Avez-vous quelques secondes pour donner votre avis ?",
       // });
       return;
     }
@@ -160,7 +157,7 @@ class NPS extends React.Component {
   setUseful = (useful) => this.setState({ useful });
   setReco = (reco) => this.setState({ reco });
   setFeedback = (feedback) => this.setState({ feedback });
-  setSendButton = (sendButton) => this.setState({ sendButton });
+  setSendButtonText = (sendButtonText) => this.setState({ sendButtonText });
   setContact = (contact) => this.setState({ contact });
 
   onClose = async () => {
@@ -169,10 +166,6 @@ class NPS extends React.Component {
       await this.sendNPS();
     }
     this.setState({ visible: false });
-  };
-
-  nextPage = () => {
-    this.setState(({ page }) => ({ page: page + 1 }));
   };
 
   sendNPS = async () => {
@@ -200,81 +193,48 @@ class NPS extends React.Component {
     this.setState({ visible: false, useful: null, reco: null });
   };
 
-  renderFirstPage() {
-    const { useful, reco, sendButton } = this.state;
+  renderPage() {
+    const { feedback, sendButtonText, contact, useful, reco } = this.state;
     return (
       <>
-        <Text style={styles.topTitle}>
-          {getCaption("feedback.rate-app.title")}
-        </Text>
         <Text style={styles.topSubTitle}>
-          {getCaption("feedback.rate-app.useful")}
+          Ce service vous a-t-il été utile ?
         </Text>
         <Mark
           selected={useful}
           onPress={this.setUseful}
-          bad={getCaption("feedback.rate-app.useful.not")}
-          good={getCaption("feedback.rate-app.useful.extremely")}
+          bad="Pas utile du tout"
+          good="Extrêmement utile"
         />
         <Text style={styles.topSubTitle}>
-          {getCaption("feedback.rate-app.probable")}
-        </Text>
-        <Mark
-          selected={reco}
-          onPress={this.setReco}
-          bad={getCaption("feedback.rate-app.probable.not")}
-          good={getCaption("feedback.rate-app.probable.extremely")}
-        />
-        <TouchableOpacity
-          style={styles.buttonContainer}
-          disabled={!useful || !reco}
-          onPress={this.nextPage}
-        >
-          <Text style={styles.buttonText}>{sendButton}</Text>
-        </TouchableOpacity>
-      </>
-    );
-  }
-
-  renderSecondPage() {
-    const { feedback, sendButton, contact, useful, reco } = this.state;
-    return (
-      <>
-        <Text style={styles.topSubTitle}>
-          {getCaption("feedback.rate-app.useful")}
-        </Text>
-        <Mark
-          selected={useful}
-          onPress={this.setUseful}
-          bad={getCaption("feedback.rate-app.useful.not")}
-          good={getCaption("feedback.rate-app.useful.extremely")}
-        />
-        <Text style={styles.topSubTitle}>
-          {getCaption("feedback.improvements.question")}
+          Pour améliorer notre service, avez-vous quelques recommandations à
+          nous faire ?
         </Text>
         <TextInput
           style={styles.feedback}
           onChangeText={this.setFeedback}
-          placeholder={getCaption("feedback.improvements.placeholder")}
+          placeholder=""
           value={feedback}
           multiline
           textAlignVertical="top"
           returnKeyType="next"
         />
-        {/* <Text style={styles.topSubTitle}>{getCaption("feedback.rate-app.probable")}</Text>
+        {/* <Text style={styles.topSubTitle}>Quelle est la probabilité que vous recommandiez ce service à un ami ou un proche ?</Text>
         <Mark
           selected={reco}
           onPress={this.setReco}
-          bad={getCaption("feedback.rate-app.probable.not")}
-          good={getCaption("feedback.rate-app.probable.extremely")}
+          bad="Pas du tout probable"
+          good="Très probable"
         /> */}
         <Text style={styles.topSubTitle}>
-          {getCaption("feedback.contact.description")}
+          Echanger avec vous serait précieux pour améliorer notre service,
+          laissez-nous votre numéro de téléphone ou votre adresse mail si vous
+          le souhaitez.
         </Text>
         <TextInput
           style={styles.contact}
           value={contact}
-          placeholder={getCaption("feedback.contact")}
+          placeholder="Numéro de téléphone ou adresse mail (facultatif)"
           onChangeText={this.setContact}
           autoCorrect={false}
           autoCapitalize="none"
@@ -283,17 +243,17 @@ class NPS extends React.Component {
         />
         <TouchableOpacity
           style={styles.buttonContainer}
-          disabled={sendButton === "Merci !"}
+          disabled={sendButtonText === "Merci !"}
           onPress={this.sendNPS}
         >
-          <Text style={styles.buttonText}>{sendButton}</Text>
+          <Text style={styles.buttonText}>{sendButtonText}</Text>
         </TouchableOpacity>
       </>
     );
   }
 
   render() {
-    const { visible, page } = this.state;
+    const { visible } = this.state;
     return (
       <Modal
         visible={visible}
@@ -308,7 +268,7 @@ class NPS extends React.Component {
           >
             <View style={styles.backContainer}>
               <TouchableOpacity onPress={this.onClose}>
-                <Text style={styles.backText}>{getCaption("back")}</Text>
+                <Text style={styles.backText}>Retour</Text>
               </TouchableOpacity>
             </View>
             <ScrollView
@@ -316,8 +276,7 @@ class NPS extends React.Component {
               keyboardDismissMode="on-drag"
               onScrollBeginDrag={Keyboard.dismiss}
             >
-              {page === 1 && this.renderFirstPage()}
-              {page === 2 && this.renderSecondPage()}
+              {this.renderPage()}
             </ScrollView>
           </KeyboardAvoidingView>
         </View>
@@ -329,7 +288,6 @@ class NPS extends React.Component {
 const styles = StyleSheet.create({
   container: {
     height: "100%",
-    width: Dimensions.get("window").width,
     backgroundColor: "#f9f9f9",
   },
   scrollView: {
@@ -413,35 +371,5 @@ const styles = StyleSheet.create({
     color: "#666",
   },
 });
-
-const captions = {
-  notifTitle: "Vos retours sont importants pour nous",
-  notifMessage: "Avez-vous quelques secondes pour donner votre avis ?",
-  post: "Envoyer",
-  back: "Retour",
-  "feedback.rate-app.title":
-    "5 secondes pour nous aider\u00A0?\u000AVos retours sont importants pour nous.",
-  "feedback.rate-app.useful": "Ce service vous a-t-il été utile\u00A0?",
-  "feedback.rate-app.useful.not": "Pas utile du tout",
-  "feedback.rate-app.useful.extremely": "Extrêmement utile",
-  "feedback.rate-app.probable":
-    "Quelle est la probabilité que vous recommandiez ce service à un ami ou un proche\u00A0?",
-  "feedback.rate-app.probable.not": "Pas du tout probable",
-  "feedback.rate-app.probable.extremely": "Très probable",
-  "feedback.improvements.question":
-    "Pour améliorer notre service, avez-vous quelques recommandations à nous faire\u00A0?",
-  // 'feedback.improvements.question':
-  //   'Comment pouvons-nous vous être encore plus utile\u00A0? Comment pouvons-nous améliorer ce service\u00A0?',
-  "feedback.improvements.legal-message":
-    "Merci de ne mentionner aucune information personnelle qui permettrait de vous identifier (nom, prénom, adresse mail, n° de téléphone, toute information sur votre état de santé)",
-  "feedback.improvements.placeholder": "Idées d'améliorations (facultatif)",
-  "feedback.contact.description":
-    "Echanger avec vous serait précieux pour améliorer notre service, laissez-nous votre numéro de téléphone ou votre adresse mail si vous le souhaitez.",
-  "feedback.contact": "Numéro de téléphone ou adresse mail (facultatif)",
-};
-
-// in case of i18n, we need to get the caption with a function
-// if not, if language changes, it's not repercuted
-const getCaption = (key) => captions[key];
 
 export default NPS;
