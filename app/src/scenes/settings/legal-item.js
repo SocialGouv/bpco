@@ -9,7 +9,7 @@ const LegalItem = ({ title, navigation, path = "tabs", onClick }) => {
   };
   return (
     <TouchableOpacity onPress={handleClick}>
-      <View className="py-3 pl-2">
+      <View className="py-2">
         <View className="flex flex-row items-center justify-center">
           <Text className="text-xs text-gray-400 underline">{title}</Text>
         </View>

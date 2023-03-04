@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, TouchableOpacity } from "react-native";
+import { View, TouchableOpacity } from "react-native";
 import Text from "../../components/MyText";
 import { colors } from "../../utils/colors";
 import Icon from "../../components/Icon";
@@ -19,23 +19,15 @@ export const SettingItem = ({
   };
   return (
     <TouchableOpacity onPress={handleClick}>
-      <View style={styles.container}>
-        <View style={styles.answer}>
-          {icon && (
-            <Icon
-              icon={icon}
-              color={color}
-              width={30}
-              height={30}
-              styleContainer={{ marginRight: 20 }}
-            />
-          )}
-          <Text className="text-BLUE text-md tablet:text-xl flex-1">
+      <View className="p-2">
+        <View className="flex flex-row items-center">
+          {icon && <Icon icon={icon} color="#555555" width={20} height={20} />}
+          <Text className="text-gray-800 text-md tablet:text-xl flex-1 ml-1">
             {title}
           </Text>
           {navigation && (
-            <View style={styles.button}>
-              <ArrowRightSvg />
+            <View className="w-11 h-11 items-center justify-center">
+              <ArrowRightSvg color="#555555" />
             </View>
           )}
         </View>
@@ -43,22 +35,5 @@ export const SettingItem = ({
     </TouchableOpacity>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    padding: 20,
-  },
-  button: {
-    width: 45,
-    height: 45,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  answer: {
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-  },
-});
 
 export default SettingItem;

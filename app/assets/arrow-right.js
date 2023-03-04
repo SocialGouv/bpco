@@ -4,7 +4,6 @@ import Svg, { Path } from "react-native-svg";
 function SvgComponent(props) {
   return (
     <Svg
-      color="#0074d4"
       width={8}
       height={13}
       fill="none"
