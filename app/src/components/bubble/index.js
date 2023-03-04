@@ -12,7 +12,7 @@ export default () => {
   useFocusEffect(
     React.useCallback(() => {
       (async () => {
-        const reminder = await AsyncStorage.getBubble(ReminderStorageKey);
+        const reminder = await AsyncStorage.getItem(ReminderStorageKey);
         setReminderBubbleVisible(!reminder);
       })();
     }, [])
