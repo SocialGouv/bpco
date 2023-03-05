@@ -14,6 +14,7 @@ import SelectDropdown from "react-native-select-dropdown";
 import ArrowUpSvg from "../../../assets/ArrowUp";
 import dayjs from "dayjs";
 import BackButton from "../../components/BackButton";
+import Header from "../../components/Header";
 
 const Profile = ({ navigation }) => {
   const [answerOxygen, setAnswerOxygen] = useState(null);
@@ -52,15 +53,8 @@ const Profile = ({ navigation }) => {
   };
 
   return (
-    <SafeAreaViewWithOptionalHeader style={onboardingStyles.safe}>
-      <View className="flex flex-row items-center">
-        <BackButton className="z-10" onPress={navigation.goBack} />
-        <View className="absolute w-full">
-          <Text className="text-2xl text-DARK_BLUE font-[Karla-Bold] text-center w-full">
-            Mon profil
-          </Text>
-        </View>
-      </View>
+    <SafeAreaViewWithOptionalHeader className="flex-1">
+      <Header title="Mon profil" navigation={navigation} backArrow />
       <ScrollView
         style={onboardingStyles.scroll}
         contentContainerStyle={onboardingStyles.scrollContentContainer}

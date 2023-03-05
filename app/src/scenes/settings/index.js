@@ -21,7 +21,7 @@ import { ScrollView } from "react-native";
 const Settings = ({ navigation }) => {
   const [devModeCount, setDevModeCount] = useState(1);
   return (
-    <SafeAreaView style={styles.safe} className="bg-primary flex-1">
+    <SafeAreaView style={styles.safe} className="bg-gray-100 flex-1">
       {/* <NPS forceView={NPSvisible} close={() => setNPSvisible(false)} /> */}
       <Header title="Mes paramètres" navigation={navigation} />
       <ScrollView className="bg-white flex-1">

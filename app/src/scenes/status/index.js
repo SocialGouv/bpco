@@ -78,13 +78,13 @@ const Status = ({ navigation }) => {
   }, [diaryData]);
 
   return (
-    <SafeAreaView style={[styles.safe]} className="bg-primary">
+    <SafeAreaView style={[styles.safe]} className="bg-gray-100 flex-1">
       <NPS forceView={NPSvisible} close={() => setNPSvisible(false)} />
       <Header title="Mon suivi" navigation={navigation} />
 
       {/* TODO: this card is outsine the animated flatlist of DiaryList. Not nice for UX */}
       {!computeNewSurveyAvailable(diaryData) && (
-        <View className="bg-[#FFF] px-4 pt-6 pb-2">
+        <View className="bg-white px-4 pt-6 pb-2">
           <Card
             preset="grey"
             title="Vous avez déjà rempli votre suivi aujourd'hui"
@@ -95,7 +95,6 @@ const Status = ({ navigation }) => {
           />
         </View>
       )}
-
       <DiaryList ListFooterComponent={renderFooter} />
     </SafeAreaView>
   );
@@ -106,7 +105,6 @@ const styles = StyleSheet.create({
     ...(Platform.OS === "android" && {
       paddingTop: (StatusBar.currentHeight || 24) + 10,
     }),
-    flex: 1,
   },
 });
 

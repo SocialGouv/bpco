@@ -14,18 +14,12 @@ import BackButton from "../../components/BackButton";
 import { HOST, APP_ENV, SENTRY_DSN } from "../../config";
 import { wipeData } from "../../utils";
 import { capture } from "../../services/sentry";
+import Header from "../../components/Header";
 
 const Settings = ({ navigation }) => {
   return (
-    <SafeAreaView style={styles.safe}>
-      <View className="flex flex-row items-center">
-        <BackButton className="z-10" onPress={navigation.goBack} />
-        <View className="absolute w-full">
-          <Text className="text-2xl text-DARK_BLUE font-[Karla-Bold] text-center w-full">
-            Outils développeur
-          </Text>
-        </View>
-      </View>
+    <SafeAreaView style={styles.safe} className="bg-gray-100 flex-1">
+      <Header title="Outils développeur" navigation={navigation} backArrow />
       <ScrollView className="bg-white">
         <TouchableOpacity
           className="border-b border-gray-100 px-3 py-5"
@@ -95,8 +89,6 @@ const styles = StyleSheet.create({
     ...(Platform.OS === "android" && {
       paddingTop: (StatusBar.currentHeight || 24) + 10,
     }),
-    flex: 1,
-    backgroundColor: "white",
   },
 });
 
