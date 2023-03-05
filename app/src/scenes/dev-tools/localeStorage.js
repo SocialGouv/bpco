@@ -1,11 +1,10 @@
 import React from "react";
 import { View, SafeAreaView, Text } from "react-native";
 import { ScrollView } from "react-native";
-import Header from "../../components/Header";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const LocalStorage = ({ navigation }) => {
+const LocalStorage = () => {
   const [keys, setKeys] = React.useState();
   const [values, setValues] = React.useState({});
 
@@ -35,7 +34,6 @@ const LocalStorage = ({ navigation }) => {
 
   return (
     <SafeAreaView className="bg-gray-100 flex-1">
-      <Header title="Local storage" navigation={navigation} backArrow />
       <ScrollView className="bg-white">
         {values.map(([key, value]) => {
           return (

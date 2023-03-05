@@ -19,7 +19,6 @@ import Header from "../../components/Header";
 const Settings = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.safe} className="bg-gray-100 flex-1">
-      <Header title="Outils développeur" navigation={navigation} backArrow />
       <ScrollView className="bg-white">
         <TouchableOpacity
           className="border-b border-gray-100 px-3 py-5"

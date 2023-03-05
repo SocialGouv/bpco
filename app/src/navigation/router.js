@@ -108,7 +108,13 @@ class Router extends React.Component {
             initialRouteName={this.props.initialRouteName}
             screenOptions={{ headerShown: false }}
           >
-            <Stack.Screen name="tabs" component={Tabs} />
+            <Stack.Screen
+              name="tabs"
+              options={{
+                title: "Accueil",
+              }}
+              component={Tabs}
+            />
             <Stack.Screen name="day-survey" component={DaySurveyScreen} />
             <Stack.Screen
               name="day-survey-result"
