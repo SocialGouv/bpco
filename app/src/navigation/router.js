@@ -3,6 +3,7 @@ import Tabs from "./tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import EnvironmentIndicator from "../services/EnvironmentIndicator";
+import ScreenSizeIndicator from "../services/ScreenSizeIndicator";
 import DaySurveyScreen from "../scenes/survey/daySurvey";
 import { AppState, Linking } from "react-native";
 import Onboarding from "../scenes/onboarding";
@@ -130,7 +131,8 @@ class Router extends React.Component {
             <Stack.Screen name="dev-tools" component={DevTools} />
           </Stack.Navigator>
         </NavigationContainer>
-        <EnvironmentIndicator />
+        {__DEV__ ? <EnvironmentIndicator /> : null}
+        {__DEV__ ? <ScreenSizeIndicator /> : null}
       </>
     );
   }
