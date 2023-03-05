@@ -21,13 +21,13 @@ export const SettingItem = ({
     <TouchableOpacity onPress={handleClick}>
       <View className="p-2">
         <View className="flex flex-row items-center">
-          {icon && <Icon icon={icon} color="#555555" width={20} height={20} />}
+          {icon && <Icon icon={icon} color="#0074d4" width={20} height={20} />}
           <Text className="text-gray-800 text-md tablet:text-xl flex-1 ml-1">
             {title}
           </Text>
           {navigation && (
             <View className="w-11 h-11 items-center justify-center">
-              <ArrowRightSvg color="#555555" />
+              <ArrowRightSvg color="#0074d4" />
             </View>
           )}
         </View>
