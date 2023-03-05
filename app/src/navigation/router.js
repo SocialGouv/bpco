@@ -12,7 +12,6 @@ import CGU from "../scenes/legal/cgu-screen";
 import Privacy from "../scenes/legal/privacy-screen";
 import LegalMentions from "../scenes/legal/legal-mentions-screen";
 import logEvents from "../services/logEvents";
-import Contact from "../scenes/contact";
 import PrivacyLight from "../scenes/privacy-light";
 import DevTools from "../scenes/dev-tools";
 // TODO
@@ -126,7 +125,6 @@ class Router extends React.Component {
             <Stack.Screen name="cgu" component={CGU} />
             <Stack.Screen name="privacy" component={Privacy} />
             <Stack.Screen name="legal-mentions" component={LegalMentions} />
-            <Stack.Screen name="contact" component={Contact} />
             <Stack.Screen name="privacy-light" component={PrivacyLight} />
             <Stack.Screen name="dev-tools" component={DevTools} />
           </Stack.Navigator>

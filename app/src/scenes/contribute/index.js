@@ -34,7 +34,7 @@ const Contribute = async ({ navigation }) => {
     logEvents.logNPSSend(useful, reco);
     const userId = Matomo.userId;
     sendMail({
-      subject: "BPCO - NPS",
+      subject: "BPCO'Mieux - NPS",
       text: formatText(useful, reco, feedback, email, userId),
     });
     this.npsSent = true;
@@ -50,7 +50,7 @@ const Contribute = async ({ navigation }) => {
       >
         <BackButton />
         <View style={styles.header}>
-          <Text style={styles.title}>BPCO</Text>
+          <Text style={styles.title}>BPCO'Mieux</Text>
           <Text style={styles.title}>Nous vous écoutons :</Text>
         </View>
         <View style={styles.textArea}>

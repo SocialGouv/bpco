@@ -54,7 +54,7 @@ const Settings = ({ navigation }) => {
         />
         <Separator />
         <SettingItem
-          title="Recommander BPCO"
+          title="Recommander BPCO'Mieux"
           onClick={recommendApp}
           icon="ShareSvg"
         />

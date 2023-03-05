@@ -34,7 +34,7 @@ export default ({ navigation }) => {
         <View style={styles.paragraph}>
           <Text style={styles.standardText}>
             Les <Text style={styles.lightblue}>informations personnelles</Text>{" "}
-            que je saisis dans BPCO ne sont{" "}
+            que je saisis dans BPCO'Mieux ne sont{" "}
             <Text style={styles.lightblue}>pas accessibles</Text> et ne peuvent{" "}
             <Text style={styles.lightblue}>pas être lues</Text> ou{" "}
             <Text style={styles.lightblue}>utilisées</Text>.

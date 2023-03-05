@@ -32,7 +32,7 @@ export default ({ navigation, searchedValue }) => {
     logEvents.logProNPSSend();
     const userId = Matomo.userId;
     await sendMail({
-      subject: "BPCO - NPS",
+      subject: "BPCO'Mieux - NPS",
       text: formatText({ value, userId }),
     });
     setNpsSent(true);

@@ -10,7 +10,7 @@ export const recommendApp = async () => {
     const result = await Share.share({
       message:
         `Bonjour,
-Je te recommande l’application gratuite et totalement anonyme “BPCO”, qui est super pour suivre son état de bien-être mental et comprendre ce qui influe dessus.
+Je te recommande l’application gratuite et totalement anonyme “BPCO'Mieux”, qui est super pour suivre son état de bien-être mental et comprendre ce qui influe dessus.
 
 Bonne découverte et à bientôt !` +
         (Platform.OS === "android" ? "\n" + url : ""),

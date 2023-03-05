@@ -123,7 +123,7 @@ const scheduleDailyReminer = async (hour, minute) => {
   const identifier = await Notifications.scheduleNotificationAsync({
     content: {
       title: "⏰ C'est l'heure de votre suivi !",
-      body: "N'oubliez pas de remplir votre suivi quotidien sur BPCO'MIEUX",
+      body: "N'oubliez pas de remplir votre suivi quotidien sur BPCO'Mieux",
       // data: { data: "goes here" },
     },
     trigger: { hour, minute, repeats: true },

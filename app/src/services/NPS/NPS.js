@@ -179,7 +179,7 @@ class NPS extends React.Component {
     const userType = await localStorage.getUserType();
     const startDate = await AsyncStorage.getItem("@SURVEY_DATE");
     sendMail({
-      subject: "BPCO - NPS",
+      subject: "BPCO'Mieux - NPS",
       text: formatText({
         useful,
         feedback,

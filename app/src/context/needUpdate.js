@@ -15,12 +15,13 @@ export const NeedUpdateContextProvider = ({ children }) => {
       if (response?.ok && BUILD_NUMBER < response.data.MOBILE_BUILD_NUMBER) {
         setNeedUpdate(true);
         Alert.alert(
-          `Une nouvelle version de BPCO est disponible !`,
+          `Une nouvelle version de BPCO'Mieux est disponible !`,
           ` ${response.data.MOBILE_VERSION}.${response.data.MOBILE_BUILD_NUMBER}`,
           [
             {
               text: "Télécharger",
               onPress: () =>
+                // TODO : changer urls
                 Linking.openURL(
                   Platform.select({
                     ios: "https://apps.apple.com/fr/app/mon-suivi-psy/id1540061393",
