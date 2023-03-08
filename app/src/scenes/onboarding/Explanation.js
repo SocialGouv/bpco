@@ -33,22 +33,24 @@ const Explanation = ({ navigation }) => {
         contentContainerStyle={onboardingStyles.scrollContentContainer}
       >
         <View style={styles.header}>
-          <Text className="text-BLUE text-xl tablet:text-4xl font-[Karla-Bold] text-center">
+          <Text className="text-primary text-xl tablet:text-4xl font-[Karla-Bold] text-center">
             Comprendre les niveaux d’alerte et réagir immédiatement
           </Text>
         </View>
 
         <View style={onboardingStyles.container}>
-          <Text className="text-BLUE text-xl tablet:text-3xl max-w-2xl tablet:mb-5 mx-auto text-center">
+          <Text className="text-gray-800 text-xl tablet:text-3xl max-w-2xl tablet:mb-5 mx-auto text-center">
             Il existe{" "}
-            <Text style={onboardingStyles.bold}>trois niveaux d’alerte</Text> en
-            fonction de votre état de santé respiratoire.
+            <Text className="text-gray-800 font-[Karla-Bold]">
+              trois niveaux d’alerte
+            </Text>{" "}
+            en fonction de votre état de santé respiratoire.
           </Text>
-          <View style={styles.spacer} />
+          <View className="my-2" />
           <AlertComponent alert={"green"} />
-          <View style={styles.spacerSmall} />
+          <View className="my-2" />
           <AlertComponent alert={"orange"} />
-          <View style={styles.spacerSmall} />
+          <View className="my-2" />
           <AlertComponent alert={"red"} />
         </View>
       </ScrollView>

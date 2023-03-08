@@ -53,7 +53,7 @@ const SetWarnFamily = ({ navigation, route }) => {
         contentContainerStyle={onboardingStyles.scrollContentContainer}
       >
         <View style={onboardingStyles.containerCentered}>
-          <Text className="text-BLUE text-2xl tablet:text-4xl font-[Karla-Bold] text-center">
+          <Text className="text-primary text-2xl tablet:text-4xl font-[Karla-Bold] text-center">
             En cas de seuil d’alerte
           </Text>
           {/* <View style={onboardingStyles.imageContainer}> */}
@@ -61,19 +61,19 @@ const SetWarnFamily = ({ navigation, route }) => {
             <AlertSVG width={iconSize} height={iconSize} />
           </View>
 
-          <Text className="text-BLUE text-xl tablet:text-3xl max-w-xl mx-auto text-center">
+          <Text className="text-gray-800 text-xl tablet:text-3xl max-w-xl mx-auto text-center">
             vous avez la possibilité de prévenir un proche directement depuis
             l’application afin qu’il reçoive un SMS.
           </Text>
 
           <Text
             // style={[onboardingStyles.presentationText, onboardingStyles.center]}
-            className="mt-14 mb-5 text-DARK_BLUE mx-auto text-lg tablet:text-2xl"
+            className="mt-14 mb-5 text-gray-800 mx-auto text-lg tablet:text-2xl"
           >
             Indiquer un numéro de téléphone
           </Text>
           <TextInput
-            className="border-4 rounded-3xl w-5/6 max-w-xl mx-auto"
+            className="border-2 border-gray-700 rounded-3xl w-5/6 max-w-xl mx-auto text-primary font-[Karla-Bold] text-3xl tablet:text-4xl text-center py-2"
             onChangeText={(e) => {
               setPhoneNumber(e);
             }}
@@ -82,7 +82,6 @@ const SetWarnFamily = ({ navigation, route }) => {
             placeholderTextColor="lightgrey"
             inputMode="tel"
             keyboardType="phone-pad"
-            style={styles.phoneText}
           />
         </View>
       </ScrollView>

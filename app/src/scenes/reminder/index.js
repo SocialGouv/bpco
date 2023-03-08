@@ -76,7 +76,7 @@ const Reminder = ({ navigation, route }) => {
             <SvgCalendar />
           </View>
 
-          <Text className="text-BLUE tablet:pb-4 text-2xl tablet:text-4xl font-[Karla-Bold] text-center">
+          <Text className="text-primary tablet:pb-4 text-2xl tablet:text-4xl font-[Karla-Bold] text-center">
             Programmez vos rappels
           </Text>
           <Text className="text-xl tablet:text-2xl max-w-xl mx-auto text-center my-4">
@@ -84,10 +84,12 @@ const Reminder = ({ navigation, route }) => {
             votre état de santé respiratoire.
           </Text>
           <TouchableOpacity
-            className="border-4 rounded-3xl w-2/3 mx-auto my-10"
+            className="border-2 border-primary rounded-3xl w-2/3 mx-auto my-10"
             onPress={() => setReminderSetupVisible(true)}
           >
-            <Text style={styles.timeText}>{reminder.format("HH[h]mm")}</Text>
+            <Text className="text-primary text-3xl text-center py-2">
+              {reminder.format("HH[h]mm")}
+            </Text>
           </TouchableOpacity>
         </View>
       </ScrollView>

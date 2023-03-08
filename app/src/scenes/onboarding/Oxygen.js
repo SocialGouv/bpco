@@ -57,15 +57,15 @@ const Explanation = ({ navigation }) => {
       >
         <View style={onboardingStyles.container}>
           <View style={styles.header}>
-            <Text className="text-BLUE pb-4 tablet:pb-6 text-2xl tablet:text-4xl font-[Karla-Bold]">
+            <Text className="text-primary pb-4 tablet:pb-6 text-2xl tablet:text-4xl font-[Karla-Bold]">
               Faisons connaissance
             </Text>
           </View>
           <View style={onboardingStyles.imageContainer}>
             <OxygenBottle />
           </View>
-          <Text style={onboardingStyles.centeredBoldText}>
-            Avez-vous au quotidien besoin d’oxygène
+          <Text className="text-center text-xl text-gray-900">
+            Avez-vous au quotidien besoin d’oxygène ?
           </Text>
           <BooleanInput
             center
@@ -75,7 +75,7 @@ const Explanation = ({ navigation }) => {
           <View style={onboardingStyles.imageContainer}>
             <VentilationDevice />
           </View>
-          <Text style={onboardingStyles.centeredBoldText}>
+          <Text className="text-center text-xl text-gray-900">
             Avez-vous un appareil de ventilation ?
           </Text>
           <BooleanInput
