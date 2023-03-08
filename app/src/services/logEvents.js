@@ -79,6 +79,7 @@ const CATEGORIES = {
   NPS: "NPS",
   PAGE_VIEW: "PAGE_VIEW",
   RECOMMEND: "RECOMMEND",
+  PROFILE: "PROFILE",
 };
 const ACTIONS = {
   APP_OPEN: "APP_OPEN",
@@ -98,6 +99,10 @@ const ACTIONS = {
   RECOMMEND_SENT: "RECOMMEND_SENT",
   RECOMMEND_DISMISSED: "RECOMMEND_DISMISSED",
   RECOMMEND_ERROR: "RECOMMEND_ERROR",
+  PROFILE_VALIDATE_CLICK: "PROFILE_VALIDATE_CLICK",
+  PROFILE_SEX_SELECT: "PROFILE_SEX_SELECT",
+  PROFILE_BIRTHYEAR_SELECT: "PROFILE_BIRTHYEAR_SELECT",
+  PROFILE_WEIGHT_SELECT: "PROFILE_WEIGHT_SELECT",
 };
 
 const logAppVisit = async () => {
@@ -230,6 +235,35 @@ const logUserVentilationDeviceClick = async (ventilationDevice) => {
   });
 };
 
+const logValidateProfile = async () => {
+  await logEvent({
+    category: CATEGORIES.PROFILE,
+    action: ACTIONS.PROFILE_VALIDATE_CLICK,
+  });
+};
+
+const logSetSexProfile = async (sex) => {
+  await logEvent({
+    category: CATEGORIES.PROFILE,
+    action: ACTIONS.PROFILE_SEX_SELECT,
+    name: sex,
+  });
+};
+const logSetBirthyearProfile = async (birthyear) => {
+  await logEvent({
+    category: CATEGORIES.PROFILE,
+    action: ACTIONS.PROFILE_BIRTHYEAR_SELECT,
+    name: birthyear,
+  });
+};
+const logSetWeightProfile = async (weight) => {
+  await logEvent({
+    category: CATEGORIES.PROFILE,
+    action: ACTIONS.PROFILE_WEIGHT_SELECT,
+    name: weight,
+  });
+};
+
 // besoin ?
 const logEditNoteDiary = async () => {
   await logEvent({
@@ -327,4 +361,8 @@ export default {
   logPushNotifTokenRegisterSuccess,
   logPushNotifTokenRegisterError,
   logPushNotifReceiveClicked,
+  logValidateProfile,
+  logSetSexProfile,
+  logSetBirthyearProfile,
+  logSetWeightProfile,
 };

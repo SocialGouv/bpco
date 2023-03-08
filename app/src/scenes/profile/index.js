@@ -15,6 +15,7 @@ import ArrowUpSvg from "../../../assets/ArrowUp";
 import dayjs from "dayjs";
 import BackButton from "../../components/BackButton";
 import Header from "../../components/Header";
+import logEvents from "../../services/logEvents";
 
 const Profile = ({ navigation }) => {
   const [answerOxygen, setAnswerOxygen] = useState(null);
@@ -42,13 +43,23 @@ const Profile = ({ navigation }) => {
     })();
   }, []);
 
-  const handlePress = async () => {
+  const handleValidate = async () => {
+    logEvents.logValidateProfile();
     localStorage.setOxygen(answerOxygen);
     localStorage.setVentilationDevice(answerVentilationDevice);
-    if (!validate(birthyear, weight)) return;
-    if (sex) localStorage.setSex(sex);
-    if (birthyear) localStorage.setBirthyear(birthyear);
-    if (weight) localStorage.setWeight(weight);
+
+    if (sex) {
+      localStorage.setSex(sex);
+      logEvents.logSetSexProfile(sex);
+    }
+    if (birthyear && validateBirthyear(birthyear)) {
+      localStorage.setBirthyear(birthyear);
+      logEvents.logSetBirthyearProfile(birthyear);
+    }
+    if (weight && validateWeight(weight)) {
+      localStorage.setWeight(weight);
+      logEvents.logSetWeightProfile(weight);
+    }
     navigation.goBack();
   };
 
@@ -98,8 +109,8 @@ const Profile = ({ navigation }) => {
       </ScrollView>
       <StickyButtonContainer>
         <Button
-          title={`Je valide`}
-          onPress={handlePress}
+          title="Je valide"
+          onPress={handleValidate}
           buttonStyle={{ minWidth: 0 }}
         />
       </StickyButtonContainer>
@@ -223,9 +234,9 @@ const styles = StyleSheet.create({
   },
 });
 
-const validate = (birthyear, weight) => {
+const validateBirthyear = (birthyear) => {
+  if (!birthyear) return false;
   if (
-    birthyear &&
     !(
       birthyear.length === 4 &&
       birthyear > 1900 &&
@@ -235,8 +246,12 @@ const validate = (birthyear, weight) => {
     Alert.alert("Erreur", "Veuillez entrer une année de naissance valide");
     return false;
   }
-  console.log("weight :", weight);
-  if (weight && !(weight > 15 && weight < 200)) {
+  return true;
+};
+
+const validateWeight = (weight) => {
+  if (!weight) return false;
+  if (!(weight > 15 && weight < 300)) {
     Alert.alert("Erreur", "Veuillez entrer un poids valide");
     return false;
   }
