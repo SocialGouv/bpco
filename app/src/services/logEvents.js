@@ -4,6 +4,7 @@ import { Platform } from "react-native";
 import Matomo from "./matomo";
 import { MATOMO_DIMENSION, STORAGE_KEY_USER_TYPE } from "../utils/constants";
 import api from "./api";
+import app from "../../app.json";
 
 const CONSTANTS = {
   STORE_KEY_USER_ID: "STORE_KEY_USER_ID",
@@ -36,9 +37,9 @@ const initMatomo = async () => {
   let userType = await AsyncStorage.getItem(STORAGE_KEY_USER_TYPE);
 
   Matomo.setDimensions({
-    [MATOMO_DIMENSION.VERSION]: "0.0.0",
+    [MATOMO_DIMENSION.VERSION]: app.expo.version,
     [MATOMO_DIMENSION.SYSTEM]: Platform.OS,
-    [MATOMO_DIMENSION.USER_TYPE]: userType ? userType : "",
+    [MATOMO_DIMENSION.USER_TYPE]: userType ? JSON.parse(userType) : "",
   });
 };
 
