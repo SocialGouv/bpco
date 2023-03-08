@@ -18,6 +18,8 @@ import Bubble from "../../components/bubble";
 import ContributeCard from "../contribute/contributeCard";
 import { DiaryList } from "./DiaryList";
 import { Card } from "../../components/Card";
+import Text from "../../components/MyText";
+import Icon from "../../components/Icon";
 import dayjs from "dayjs";
 import { computeNewSurveyAvailable } from "../../utils";
 
@@ -72,7 +74,6 @@ const Status = ({ navigation }) => {
     return (
       <>
         <Bubble diaryData={diaryData} />
-        <ContributeCard onPress={() => setNPSvisible(true)} />
       </>
     );
   }, [diaryData]);
@@ -85,14 +86,19 @@ const Status = ({ navigation }) => {
       {/* TODO: this card is outsine the animated flatlist of DiaryList. Not nice for UX */}
       {!computeNewSurveyAvailable(diaryData) && (
         <View className="bg-white px-4 pt-6 pb-2">
-          <Card
-            preset="grey"
-            title="Vous avez déjà rempli votre suivi aujourd'hui"
-            text={`Revenez demain, le ${dayjs()
-              .locale("fr")
-              .add("1", "day")
-              .format("DD MMMM")}, pour remplir votre suivi du jour.`}
-          />
+          <View className="bg-white border shadow-sm border-gray-300 rounded-xl p-3 mb-5">
+            <View className="flex flex-row items-center">
+              <Icon width={20} height={20} color="#4ADE80" icon="CheckSvg" />
+              <Text className="font-bold text-primary text-base flex-1">
+                Vous avez déjà rempli votre suivi aujourd'hui
+              </Text>
+            </View>
+            <Text className="text-black text-sm mt-2">
+              Revenez demain, le{" "}
+              {dayjs().locale("fr").add("1", "day").format("DD MMMM")}, pour
+              remplir votre suivi du jour.
+            </Text>
+          </View>
         </View>
       )}
       <DiaryList ListFooterComponent={renderFooter} />
