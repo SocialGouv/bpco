@@ -65,7 +65,6 @@ app.use(helmet());
 // Routes
 
 app.use("/event", require("./controllers/event"));
-app.use("/reminder", require("./controllers/reminder").router);
 app.use("/mail", require("./controllers/mail").router);
 
 app.use(errors.sendError);
