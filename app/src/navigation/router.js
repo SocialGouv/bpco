@@ -105,7 +105,7 @@ class Router extends React.Component {
           linking={linking}
         >
           <Stack.Navigator
-            initialRouteName={this.props.initialRouteName}
+            initialRouteName={"day-survey"}
             screenOptions={{ headerShown: false }}
           >
             <Stack.Screen

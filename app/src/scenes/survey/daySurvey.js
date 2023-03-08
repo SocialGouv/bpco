@@ -14,6 +14,7 @@ import "dayjs/locale/fr";
 import { questions } from "../../utils/constants";
 import { computeHasOxygen } from "../../utils";
 import { computeResult } from "./utils";
+import logEvents from "../../services/logEvents";
 
 const DaySurvey = ({ navigation, route }) => {
   const initSurvey = route?.params?.currentSurvey ?? {
@@ -81,6 +82,9 @@ const DaySurvey = ({ navigation, route }) => {
       answers: { ...prevCurrentSurvey.answers, ...answersAndResult },
     };
     setDiaryData(currentSurvey);
+    logEvents.logSurveyValidate();
+    logEvents.logSurveyScore(score);
+    logEvents.logSurveyAlert(alert);
     return navigation.push("day-survey-result", { alert });
   };
 
@@ -93,15 +97,15 @@ const DaySurvey = ({ navigation, route }) => {
     );
   };
 
-  if (
-    Object.entries(answers).length === 0 &&
-    !computeNewSurveyAvailable(diaryData)
-  ) {
-    // should not happen
-    // TODO : came to this screen but survey is not available (was already done today)
-    console.log("ERROR - survey already done");
-    navigation.navigate("tabs");
-  }
+  // if (
+  //   Object.entries(answers).length === 0 &&
+  //   !computeNewSurveyAvailable(diaryData)
+  // ) {
+  //   // should not happen
+  //   // TODO : came to this screen but survey is not available (was already done today)
+  //   console.log("ERROR - survey already done");
+  //   navigation.navigate("tabs");
+  // }
 
   return (
     <Screen
@@ -139,9 +143,13 @@ const DaySurvey = ({ navigation, route }) => {
                 key={question?.uuid}
                 question={question}
                 value={answers?.[question?.uuid]}
-                onValueChanged={({ question, value }) =>
-                  toggleAnswer({ key: question?.uuid, value })
-                }
+                onValueChanged={({ question, value }) => {
+                  toggleAnswer({ key: question?.uuid, value });
+                  logEvents.logSurveyItemClick({
+                    questionLabel: question.name,
+                    value,
+                  });
+                }}
               />
             ))}
           <Text style={styles.title}>Par rapport à hier, utilisez-vous...</Text>
@@ -155,9 +163,15 @@ const DaySurvey = ({ navigation, route }) => {
                 key={question?.uuid}
                 question={question}
                 value={answers?.[question?.uuid]}
-                onValueChanged={({ question, value }) =>
-                  toggleAnswer({ key: question?.uuid, value })
-                }
+                onValueChanged={({ question, value }) => {
+                  {
+                    toggleAnswer({ key: question?.uuid, value });
+                    logEvents.logSurveyItemClick({
+                      questionLabel: question.name,
+                      value,
+                    });
+                  }
+                }}
               />
             ))}
           <Text style={styles.title}>Par rapport à hier,</Text>
@@ -168,9 +182,13 @@ const DaySurvey = ({ navigation, route }) => {
                 key={question?.uuid}
                 question={question}
                 value={answers?.[question?.uuid]}
-                onValueChanged={({ question, value }) =>
-                  toggleAnswer({ key: question?.uuid, value })
-                }
+                onValueChanged={({ question, value }) => {
+                  toggleAnswer({ key: question?.uuid, value });
+                  logEvents.logSurveyItemClick({
+                    questionLabel: question.name,
+                    value,
+                  });
+                }}
               />
             ))}
         </View>

@@ -94,6 +94,7 @@ const CATEGORIES = {
   PAGE_VIEW: "PAGE_VIEW",
   RECOMMEND: "RECOMMEND",
   PROFILE: "PROFILE",
+  SURVEY: "SURVEY",
 };
 const ACTIONS = {
   APP_OPEN: "APP_OPEN",
@@ -117,6 +118,10 @@ const ACTIONS = {
   PROFILE_SEX_SELECT: "PROFILE_SEX_SELECT",
   PROFILE_BIRTHYEAR_SELECT: "PROFILE_BIRTHYEAR_SELECT",
   PROFILE_WEIGHT_SELECT: "PROFILE_WEIGHT_SELECT",
+  SURVEY_VALIDATE: "SURVEY_VALIDATE",
+  SURVEY_SCORE: "SURVEY_SCORE",
+  SURVEY_ALERT: "SURVEY_ALERT",
+  SURVEY_ITEM_CLICK: "SURVEY_ITEM_CLICK",
 };
 
 const logAppVisit = async () => {
@@ -139,6 +144,39 @@ const logOnboardingSwipe = async (page) => {
     action: ACTIONS.ONBOARDING_NEXT_CLICK,
     name: "page",
     value: page,
+  });
+};
+
+const logSurveyValidate = async () => {
+  await logEvent({
+    category: CATEGORIES.SURVEY,
+    action: ACTIONS.SURVEY_VALIDATE,
+  });
+};
+
+const logSurveyScore = async (score) => {
+  await logEvent({
+    category: CATEGORIES.SURVEY,
+    action: ACTIONS.SURVEY_SCORE,
+    name: "score",
+    value: score,
+  });
+};
+
+const logSurveyAlert = async (alert) => {
+  await logEvent({
+    category: CATEGORIES.SURVEY,
+    action: ACTIONS.SURVEY_ALERT,
+    name: alert,
+  });
+};
+
+const logSurveyItemClick = async ({ questionLabel, value }) => {
+  await logEvent({
+    category: CATEGORIES.SURVEY,
+    action: ACTIONS.SURVEY_ITEM_CLICK,
+    name: questionLabel,
+    value,
   });
 };
 
@@ -379,4 +417,8 @@ export default {
   logSetSexProfile,
   logSetBirthyearProfile,
   logSetWeightProfile,
+  logSurveyValidate,
+  logSurveyScore,
+  logSurveyAlert,
+  logSurveyItemClick,
 };
