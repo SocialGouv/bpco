@@ -19,9 +19,9 @@ import {
   STORAGE_KEY_BECK_EMOTION_LIST,
   STORAGE_KEY_ONBOARDING_STEP,
   STORAGE_KEY_ONBOARDING_DONE,
-  STORAGE_KEY_WEIGHT,
-  STORAGE_KEY_AGE,
-  STORAGE_KEY_SEX,
+  STORAGE_KEY_USER_WEIGHT,
+  STORAGE_KEY_USER_BIRTHYEAR,
+  STORAGE_KEY_USER_SEX,
   STORAGE_KEY_FAMILY_PHONE_NUMBER,
   STORAGE_KEY_REMINDER,
   STORAGE_KEY_VENTILATION_DEVICE,
@@ -132,9 +132,9 @@ export const wipeData = async () => {
   await AsyncStorage.removeItem(STORAGE_KEY_BECK_EMOTION_LIST);
   await AsyncStorage.removeItem(STORAGE_KEY_ONBOARDING_STEP);
   await AsyncStorage.removeItem(STORAGE_KEY_ONBOARDING_DONE);
-  await AsyncStorage.removeItem(STORAGE_KEY_WEIGHT);
-  await AsyncStorage.removeItem(STORAGE_KEY_AGE);
-  await AsyncStorage.removeItem(STORAGE_KEY_SEX);
+  await AsyncStorage.removeItem(STORAGE_KEY_USER_WEIGHT);
+  await AsyncStorage.removeItem(STORAGE_KEY_USER_BIRTHYEAR);
+  await AsyncStorage.removeItem(STORAGE_KEY_USER_SEX);
   await AsyncStorage.removeItem(STORAGE_KEY_FAMILY_PHONE_NUMBER);
   await AsyncStorage.removeItem(STORAGE_KEY_REMINDER);
   await AsyncStorage.removeItem(STORAGE_KEY_VENTILATION_DEVICE);

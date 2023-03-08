@@ -2,7 +2,13 @@ import NetInfo from "@react-native-community/netinfo";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Platform } from "react-native";
 import Matomo from "./matomo";
-import { MATOMO_DIMENSION, STORAGE_KEY_USER_TYPE } from "../utils/constants";
+import {
+  MATOMO_DIMENSION,
+  STORAGE_KEY_USER_TYPE,
+  STORAGE_KEY_USER_SEX,
+  STORAGE_KEY_USER_WEIGHT,
+  STORAGE_KEY_USER_BIRTHYEAR,
+} from "../utils/constants";
 import api from "./api";
 import app from "../../app.json";
 
@@ -35,11 +41,19 @@ const initMatomo = async () => {
   });
 
   let userType = await AsyncStorage.getItem(STORAGE_KEY_USER_TYPE);
+  let userSex = await AsyncStorage.getItem(STORAGE_KEY_USER_SEX);
+  let userBirthyear = await AsyncStorage.getItem(STORAGE_KEY_USER_BIRTHYEAR);
+  let userWeight = await AsyncStorage.getItem(STORAGE_KEY_USER_WEIGHT);
 
   Matomo.setDimensions({
     [MATOMO_DIMENSION.VERSION]: app.expo.version,
     [MATOMO_DIMENSION.SYSTEM]: Platform.OS,
     [MATOMO_DIMENSION.USER_TYPE]: userType ? JSON.parse(userType) : "",
+    [MATOMO_DIMENSION.USER_SEX]: userSex ? JSON.parse(userSex) : "",
+    [MATOMO_DIMENSION.USER_BIRTHYEAR]: userBirthyear
+      ? JSON.parse(userBirthyear)
+      : "",
+    [MATOMO_DIMENSION.USER_WEIGHT]: userWeight ? JSON.parse(userWeight) : "",
   });
 };
 

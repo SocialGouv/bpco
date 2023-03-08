@@ -16,9 +16,9 @@ import {
   STORAGE_KEY_VENTILATION_DEVICE,
   STORAGE_KEY_REMINDER,
   STORAGE_KEY_FAMILY_PHONE_NUMBER,
-  STORAGE_KEY_SEX,
-  STORAGE_KEY_AGE,
-  STORAGE_KEY_WEIGHT,
+  STORAGE_KEY_USER_SEX,
+  STORAGE_KEY_USER_BIRTHYEAR,
+  STORAGE_KEY_USER_WEIGHT,
 } from "../constants";
 import { updateSymptomsFormatIfNeeded } from "./utils";
 
@@ -237,40 +237,40 @@ const setFamilyPhoneNumber = async (phone) =>
     JSON.stringify(phone)
   );
 
-const getSex = async () => {
-  const sex = await AsyncStorage.getItem(STORAGE_KEY_SEX);
+const getUserSex = async () => {
+  const sex = await AsyncStorage.getItem(STORAGE_KEY_USER_SEX);
   if (sex) {
     return JSON.parse(sex);
   }
 };
-const setSex = async (sex) =>
-  await AsyncStorage.setItem(STORAGE_KEY_SEX, JSON.stringify(sex));
+const setUserSex = async (sex) =>
+  await AsyncStorage.setItem(STORAGE_KEY_USER_SEX, JSON.stringify(sex));
 
 const getBirthyear = async () => {
-  const age = await AsyncStorage.getItem(STORAGE_KEY_AGE);
+  const age = await AsyncStorage.getItem(STORAGE_KEY_USER_BIRTHYEAR);
   if (age) {
     return JSON.parse(age);
   }
 };
 const setBirthyear = async (age) =>
-  await AsyncStorage.setItem(STORAGE_KEY_AGE, JSON.stringify(age));
+  await AsyncStorage.setItem(STORAGE_KEY_USER_BIRTHYEAR, JSON.stringify(age));
 
-const getWeight = async () => {
-  const weight = await AsyncStorage.getItem(STORAGE_KEY_WEIGHT);
+const getUserWeight = async () => {
+  const weight = await AsyncStorage.getItem(STORAGE_KEY_USER_WEIGHT);
   if (weight) {
     return JSON.parse(weight);
   }
 };
-const setWeight = async (weight) =>
-  await AsyncStorage.setItem(STORAGE_KEY_WEIGHT, JSON.stringify(weight));
+const setUserWeight = async (weight) =>
+  await AsyncStorage.setItem(STORAGE_KEY_USER_WEIGHT, JSON.stringify(weight));
 
 export default {
   getBirthyear,
   setBirthyear,
-  getWeight,
-  setWeight,
-  getSex,
-  setSex,
+  getUserWeight,
+  setUserWeight,
+  getUserSex,
+  setUserSex,
   getFamilyPhoneNumber,
   setFamilyPhoneNumber,
   getReminder,

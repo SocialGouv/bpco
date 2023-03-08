@@ -33,9 +33,9 @@ const Profile = ({ navigation }) => {
       if (ventilationDevice !== undefined)
         setAnswerVentilationDevice(ventilationDevice);
 
-      const sexStorage = await localStorage.getSex();
+      const sexStorage = await localStorage.getUserSex();
       const ageStorage = await localStorage.getBirthyear();
-      const weightStorage = await localStorage.getWeight();
+      const weightStorage = await localStorage.getUserWeight();
       if (sexStorage) setSex(sexStorage);
       if (ageStorage) setBirthyear(ageStorage);
       if (weightStorage) setWeight(weightStorage);
@@ -49,7 +49,7 @@ const Profile = ({ navigation }) => {
     localStorage.setVentilationDevice(answerVentilationDevice);
 
     if (sex) {
-      localStorage.setSex(sex);
+      localStorage.setUserSex(sex);
       logEvents.logSetSexProfile(sex);
     }
     if (birthyear && validateBirthyear(birthyear)) {
@@ -57,7 +57,7 @@ const Profile = ({ navigation }) => {
       logEvents.logSetBirthyearProfile(birthyear);
     }
     if (weight && validateWeight(weight)) {
-      localStorage.setWeight(weight);
+      localStorage.setUserWeight(weight);
       logEvents.logSetWeightProfile(weight);
     }
     navigation.goBack();
