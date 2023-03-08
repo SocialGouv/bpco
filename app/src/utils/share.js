@@ -2,7 +2,7 @@ import { Share, Platform } from "react-native";
 import logEvents from "../services/logEvents";
 
 export const recommendApp = async () => {
-  const url = "https://bpcomieux.fabrique.social.gouv.fr/";
+  const url = "https://bpco-site.fabrique.social.gouv.fr/";
   try {
     logEvents.logRecommendAppShow();
     const result = await Share.share({
