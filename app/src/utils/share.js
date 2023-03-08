@@ -1,16 +1,14 @@
 import { Share, Platform } from "react-native";
 import logEvents from "../services/logEvents";
 
-// TODO : change url + change texte
-
 export const recommendApp = async () => {
-  const url = "https://jardinmental.fabrique.social.gouv.fr/";
+  const url = "https://bpcomieux.fabrique.social.gouv.fr/";
   try {
     logEvents.logRecommendAppShow();
     const result = await Share.share({
       message:
         `Bonjour,
-Je te recommande l’application gratuite et totalement anonyme “BPCO'Mieux”, qui est super pour suivre son état de bien-être mental et comprendre ce qui influe dessus.
+Je te recommande l’application gratuite et totalement anonyme “BPCO'Mieux”, qui est super pour suivre ses signes cliniques respiratoires.
 
 Bonne découverte et à bientôt !` +
         (Platform.OS === "android" ? "\n" + url : ""),
