@@ -68,11 +68,7 @@ export const Screen1 = () => (
     </View>
   </View>
 );
-export const Screen2 = ({ navigation, isCguChecked, setIsCguChecked }) => {
-  const onCguClick = () => navigation.navigate("cgu");
-  const onLegalMentionsClick = () => navigation.navigate("legal-mentions");
-  const onPrivacyClick = () => navigation.navigate("privacy");
-
+export const Screen2 = () => {
   return (
     <>
       <View style={styles.container}>
@@ -91,32 +87,6 @@ export const Screen2 = ({ navigation, isCguChecked, setIsCguChecked }) => {
               <Text style={styles.bold}>aucun partage</Text> de vos données
               personnelles
             </Text>
-            <View className="flex flex-row items-center h-fit max-w-xl mx-auto pl-6 pr-3 tablet:px-0">
-              <Checkbox
-                animationDuration={0.2}
-                tintColor="#0074d4"
-                tintColors={{ true: "#0074d4", false: "grey" }}
-                boxType="square"
-                // style={styles.checkbox}
-                className="mr-5 w-8 h-8 tablet:w-12 tablet:h-12 tablet:mr-10"
-                value={isCguChecked}
-                onValueChange={(newValue) => setIsCguChecked(newValue)}
-              />
-              <Text className="font-[Karla] text-[17px] text-BLUE tablet:text-2xl flex-1">
-                En cochant cette case, vous acceptez nos{" "}
-                <Text onPress={onCguClick} style={styles.underlined}>
-                  Conditions Générales d’Utilisation
-                </Text>
-                , notre{" "}
-                <Text onPress={onPrivacyClick} style={styles.underlined}>
-                  Politique de Confidentialité
-                </Text>{" "}
-                et nos{" "}
-                <Text onPress={onLegalMentionsClick} style={styles.underlined}>
-                  Mentions Légales
-                </Text>
-              </Text>
-            </View>
           </View>
         </View>
       </View>

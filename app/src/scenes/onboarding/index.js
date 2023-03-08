@@ -37,11 +37,11 @@ const Onboarding = () => {
 
   return (
     <Stack.Navigator
-      initialRouteName={ONBOARDING_STEPS.PRESENTATION}
+      initialRouteName={ONBOARDING_STEPS.STEP_PRESENTATION}
       screenOptions={{ headerShown: false }}
     >
       <Stack.Screen
-        name={ONBOARDING_STEPS.PRESENTATION}
+        name={ONBOARDING_STEPS.STEP_PRESENTATION}
         component={OnboardingPresentation}
       />
 

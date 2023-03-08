@@ -17,11 +17,10 @@ import logEvents from "../../../services/logEvents";
 import Button from "../../../components/Button";
 import ActiveDot from "../components/ActiveDot";
 import BackButton from "../../../components/BackButton";
-import { Screen0, Screen1, Screen2, Screen3 } from "./screens";
+import { Screen0, Screen1, Screen2 } from "./screens";
 import { ONBOARDING_STEPS } from "../../../utils/constants";
 
 const Onboarding = ({ navigation }) => {
-  const [isCguChecked, setIsCguChecked] = useState(false);
   const [firstTime, setFirstTime] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
   const swiperRef = useRef();
@@ -49,7 +48,6 @@ const Onboarding = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.safe}>
       {!firstTime ? <BackButton onPress={navigation.goBack} /> : null}
-      {/* <Text style={styles.title}>BPCO m'accompagne entre mes consultations</Text> */}
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <Swiper
           onIndexChanged={(page) => {
@@ -62,16 +60,11 @@ const Onboarding = ({ navigation }) => {
           }}
           loop={false}
           ref={swiperRef}
-          // showsButtons
           activeDot={<ActiveDot />}
         >
           <Screen0 />
           <Screen1 />
-          <Screen2
-            isCguChecked={isCguChecked}
-            setIsCguChecked={setIsCguChecked}
-            navigation={navigation}
-          />
+          <Screen2 />
         </Swiper>
       </ScrollView>
       <View style={styles.CTAButtonContainer}>
@@ -82,8 +75,7 @@ const Onboarding = ({ navigation }) => {
                 <Button
                   buttonStyle={styles.buttonStyle}
                   onPress={validateOnboarding}
-                  title="C'est parti !"
-                  disabled={!isCguChecked && firstTime}
+                  title="Suivant"
                 />
               </View>
             </>
