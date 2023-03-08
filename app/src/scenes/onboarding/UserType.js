@@ -54,10 +54,10 @@ const UserType = ({ navigation }) => {
       >
         <View style={onboardingStyles.container}>
           <View style={styles.header}>
-            <Text className="text-BLUE pb-4 tablet:pb-6 text-2xl tablet:text-4xl font-[Karla-Bold]">
+            <Text className="text-primary pb-4 tablet:pb-6 text-2xl tablet:text-4xl font-[Karla-Bold]">
               Faisons connaissance
             </Text>
-            <Text className="text-DARK_BLUE pb-4 tablet:pb-6 text-xl tablet:text-3xl">
+            <Text className="text-primary-900 pb-4 tablet:pb-6 text-xl tablet:text-3xl">
               Vous êtes actuellement :
             </Text>
           </View>
@@ -106,22 +106,14 @@ const UserType = ({ navigation }) => {
 const Card = ({ title, handleClick }) => {
   return (
     <TouchableOpacity onPress={handleClick}>
-      <View style={styles.card}>
-        <Text style={styles.cardTitle}>{title}</Text>
+      <View className="bg-white border border-gray-300 mb-5 rounded-2xl p-5 flex items-center justify-center">
+        <Text className="text-gray-800 text-xl text-center font-[Karla-Bold]">
+          {title}
+        </Text>
       </View>
     </TouchableOpacity>
   );
 };
-const DarkCard = ({ title, handleClick }) => {
-  return (
-    <TouchableOpacity onPress={handleClick}>
-      <View style={styles.darkCard}>
-        <Text style={styles.darkCardTitle}>{title}</Text>
-      </View>
-    </TouchableOpacity>
-  );
-};
-
 const styles = StyleSheet.create({
   buttonsContainer: {
     display: "flex",
