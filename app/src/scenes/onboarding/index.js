@@ -3,11 +3,11 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 const Stack = createStackNavigator();
 
-import OnboardingPresentation from "./IntroductionSwiper";
+import OnboardingPresentation from "./OnboardingPresentation";
 import UserType from "./UserType";
 import Reminder from "../reminder";
 import { ONBOARDING_STEPS } from "../../utils/constants";
-import OnboardingExplanationScreen1 from "./Oxygen";
+import Oxygen from "./Oxygen";
 import OnboardingFelicitation from "./Felicitation";
 import {
   progressHeaderOptions,
@@ -37,11 +37,11 @@ const Onboarding = () => {
 
   return (
     <Stack.Navigator
-      initialRouteName={ONBOARDING_STEPS.STEP_CGU}
+      initialRouteName={ONBOARDING_STEPS.PRESENTATION}
       screenOptions={{ headerShown: false }}
     >
       <Stack.Screen
-        name={ONBOARDING_STEPS.STEP_CGU}
+        name={ONBOARDING_STEPS.PRESENTATION}
         component={OnboardingPresentation}
       />
 
@@ -58,7 +58,7 @@ const Onboarding = () => {
         options={headerOptions}
         component={ProgressScreen({
           slideIndex: 2,
-          Component: OnboardingExplanationScreen1,
+          Component: Oxygen,
         })}
       />
       <Stack.Screen
