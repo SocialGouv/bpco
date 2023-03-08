@@ -7,6 +7,7 @@ import ArrowRightSvg from "../../../assets/arrow-right.js";
 
 export const SettingItem = ({
   title,
+  subtitle,
   navigation,
   path = "tabs",
   icon,
@@ -22,9 +23,16 @@ export const SettingItem = ({
       <View className="p-2">
         <View className="flex flex-row items-center">
           {icon && <Icon icon={icon} color="#0074d4" width={20} height={20} />}
-          <Text className="text-gray-800 text-md tablet:text-xl flex-1 ml-1">
-            {title}
-          </Text>
+          <View className="flex justify-center flex-1 ml-1">
+            <Text className="text-gray-800 text-md tablet:text-xl">
+              {title}
+            </Text>
+            {subtitle ? (
+              <Text className="text-gray-500 text-sm tablet:text-md">
+                {subtitle}
+              </Text>
+            ) : null}
+          </View>
           {navigation && (
             <View className="w-11 h-11 items-center justify-center">
               <ArrowRightSvg color="#0074d4" />

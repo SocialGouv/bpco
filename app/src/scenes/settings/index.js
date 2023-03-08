@@ -7,6 +7,7 @@ import {
   Text,
   Platform,
   StatusBar,
+  TouchableOpacity,
 } from "react-native";
 import Header from "../../components/Header";
 import NPS from "../../services/NPS/NPS";
@@ -20,9 +21,11 @@ import { ScrollView } from "react-native";
 
 const Settings = ({ navigation }) => {
   const [devModeCount, setDevModeCount] = useState(1);
+  const [NPSvisible, setNPSvisible] = useState(false);
+
   return (
-    <SafeAreaView style={styles.safe} className="bg-gray-100 flex-1">
-      {/* <NPS forceView={NPSvisible} close={() => setNPSvisible(false)} /> */}
+    <SafeAreaView style={styles.safe} className="bg-primary flex-1">
+      <NPS forceView={NPSvisible} close={() => setNPSvisible(false)} />
       <Header title="Mes paramètres" navigation={navigation} />
       <ScrollView className="bg-white flex-1">
         <SettingItem
@@ -59,6 +62,13 @@ const Settings = ({ navigation }) => {
           icon="ShareSvg"
         />
         <Separator />
+        <SettingItem
+          title="Contribuer à BPCO'Mieux"
+          subtitle="Dites-nous comment améliorer l'application"
+          onClick={() => setNPSvisible(true)}
+          icon="LightBulbSvg"
+        />
+        <Separator />
         {__DEV__ || devModeCount >= 10 ? (
           <>
             <SettingItem
@@ -71,11 +81,6 @@ const Settings = ({ navigation }) => {
           </>
         ) : null}
         <View className="my-2" />
-        <LegalItem
-          title="Conditions générales d'utilisation"
-          path="cgu"
-          navigation={navigation}
-        />
         <LegalItem
           title="Politique de confidentialité"
           path="privacy"

@@ -78,7 +78,7 @@ const Status = ({ navigation }) => {
   }, [diaryData]);
 
   return (
-    <SafeAreaView style={[styles.safe]} className="bg-gray-100 flex-1">
+    <SafeAreaView style={[styles.safe]} className="bg-primary flex-1">
       <NPS forceView={NPSvisible} close={() => setNPSvisible(false)} />
       <Header title="Mon suivi" navigation={navigation} />
 
