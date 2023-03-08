@@ -97,15 +97,16 @@ const DaySurvey = ({ navigation, route }) => {
     );
   };
 
-  // if (
-  //   Object.entries(answers).length === 0 &&
-  //   !computeNewSurveyAvailable(diaryData)
-  // ) {
-  //   // should not happen
-  //   // TODO : came to this screen but survey is not available (was already done today)
-  //   console.log("ERROR - survey already done");
-  //   navigation.navigate("tabs");
-  // }
+  // TODO : make it better
+  if (
+    Object.entries(answers).length === 0 &&
+    !computeNewSurveyAvailable(diaryData)
+  ) {
+    // should not happen
+    // TODO : came to this screen but survey is not available (was already done today)
+    console.log("ERROR - survey already done");
+    navigation.navigate("tabs");
+  }
 
   return (
     <Screen
