@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   StyleSheet,
@@ -7,7 +7,7 @@ import {
   Text,
   Platform,
   StatusBar,
-  TouchableOpacity,
+  Alert,
 } from "react-native";
 import Header from "../../components/Header";
 import NPS from "../../services/NPS/NPS";
@@ -21,7 +21,30 @@ import { ScrollView } from "react-native";
 
 const Settings = ({ navigation }) => {
   const [devModeCount, setDevModeCount] = useState(1);
+  const [devModeActive, setDevModeActive] = useState(false);
   const [NPSvisible, setNPSvisible] = useState(false);
+
+  useEffect(() => {
+    if (devModeCount > 15) {
+      setDevModeCount(0);
+      Alert.alert(
+        `Voulez-vous activer le mode développeur ?`,
+        "Il vous permettra d'accéder à des outils de débogage.",
+        [
+          {
+            text: "Oui",
+            onPress: () => setDevModeActive(true),
+          },
+          {
+            text: "Non",
+            style: "cancel",
+            onPress: () => setDevModeActive(false),
+          },
+        ],
+        { cancelable: true }
+      );
+    }
+  }, [devModeCount]);
 
   return (
     <SafeAreaView style={styles.safe} className="bg-primary flex-1">
@@ -69,7 +92,7 @@ const Settings = ({ navigation }) => {
           icon="LightBulbSvg"
         />
         <Separator />
-        {__DEV__ || devModeCount >= 10 ? (
+        {devModeActive ? (
           <>
             <SettingItem
               title="Outils développeurs"
