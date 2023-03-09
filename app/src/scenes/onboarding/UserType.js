@@ -86,8 +86,7 @@ const UserType = ({ navigation }) => {
             color="#F4FCFD"
             handleClick={() => handleClick(USER_TYPES.autres)}
           />
-
-          <View style={styles.hintContainer}>
+          <View className="border border-green-400 flex flex-row justify-center items-center m-5 p-2 rounded-2xl">
             <Image
               source={require("../../../assets/imgs/onboarding/professionnel-sante.png")}
               style={styles.hintImage}
@@ -106,8 +105,8 @@ const UserType = ({ navigation }) => {
 const Card = ({ title, handleClick }) => {
   return (
     <TouchableOpacity onPress={handleClick}>
-      <View className="bg-white border border-gray-300 mb-5 rounded-2xl p-5 flex items-center justify-center">
-        <Text className="text-gray-800 text-xl text-center font-[Karla-Bold]">
+      <View className="bg-white border-2 border-primary mb-5 rounded-2xl p-5 flex items-center justify-center">
+        <Text className="text-gray-700 text-xl text-center font-[Karla-Bold]">
           {title}
         </Text>
       </View>
