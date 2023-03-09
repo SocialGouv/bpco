@@ -17,6 +17,7 @@ import { SafeAreaViewWithOptionalHeader } from "../onboarding/ProgressHeader";
 import { OnboardingBackButton } from "../onboarding/components/BackButton";
 import AlertSVG from "../../../assets/onboarding/Alert";
 import { colors } from "../../utils/colors";
+import logEvents from "../../services/logEvents";
 
 const SetWarnFamily = ({ navigation, route }) => {
   const inOnboarding = route.params?.inOnboarding === true;
@@ -36,6 +37,14 @@ const SetWarnFamily = ({ navigation, route }) => {
   const handlePress = async () => {
     // TODO: save phoneNumber
     await localStorage.setFamilyPhoneNumber(phoneNumber);
+    if (inOnboarding) logEvents.logOnboardingFamilyPhoneNumberValidate();
+    else logEvents.logFamilyPhoneNumberValidate();
+    navigation.navigate(
+      inOnboarding ? ONBOARDING_STEPS.STEP_FELICITATIONS : "tabs"
+    );
+  };
+  const handlePressLater = async () => {
+    logEvents.logOnboardingFamilyPhoneNumberLater();
     navigation.navigate(
       inOnboarding ? ONBOARDING_STEPS.STEP_FELICITATIONS : "tabs"
     );
@@ -93,7 +102,7 @@ const SetWarnFamily = ({ navigation, route }) => {
           disabled={phoneNumber.length < 10}
         />
         {inOnboarding && (
-          <TouchableOpacity style={styles.button} onPress={handlePress}>
+          <TouchableOpacity style={styles.button} onPress={handlePressLater}>
             <Text className="text-lg text-[#1f2937] tablet:text-2xl">
               Je le ferai plus tard
             </Text>

@@ -110,6 +110,9 @@ const ACTIONS = {
     "ONBOARDING_USER_VENTILATION_DEVICE_SELECT",
   ONBOARDING_USER_VENTILATION_DEVICE_CLICK:
     "ONBOARDING_USER_VENTILATION_DEVICE_CLICK",
+  ONBOARDING_FAMILY_PHONE_NUMBER_VALIDATE:
+    "ONBOARDING_FAMILY_PHONE_NUMBER_VALIDATE",
+  ONBOARDING_FAMILY_PHONE_NUMBER_LATER: "ONBOARDING_FAMILY_PHONE_NUMBER_LATER",
   RECOMMEND_SHOW_MODAL: "RECOMMEND_SHOW_MODAL",
   RECOMMEND_SENT: "RECOMMEND_SENT",
   RECOMMEND_DISMISSED: "RECOMMEND_DISMISSED",
@@ -118,6 +121,7 @@ const ACTIONS = {
   PROFILE_SEX_SELECT: "PROFILE_SEX_SELECT",
   PROFILE_BIRTHYEAR_SELECT: "PROFILE_BIRTHYEAR_SELECT",
   PROFILE_WEIGHT_SELECT: "PROFILE_WEIGHT_SELECT",
+  PROFILE_FAMILY_PHONE_NUMBER_VALIDATE: "PROFILE_FAMILY_PHONE_NUMBER_VALIDATE",
   SURVEY_VALIDATE: "SURVEY_VALIDATE",
   SURVEY_SCORE: "SURVEY_SCORE",
   SURVEY_ALERT: "SURVEY_ALERT",
@@ -287,6 +291,25 @@ const logUserVentilationDeviceClick = async (ventilationDevice) => {
   });
 };
 
+const logOnboardingFamilyPhoneNumberValidate = async () => {
+  await logEvent({
+    category: CATEGORIES.ONBOARDING,
+    action: ACTIONS.ONBOARDING_FAMILY_PHONE_NUMBER_VALIDATE,
+  });
+};
+const logOnboardingFamilyPhoneNumberLater = async () => {
+  await logEvent({
+    category: CATEGORIES.ONBOARDING,
+    action: ACTIONS.ONBOARDING_FAMILY_PHONE_NUMBER_LATER,
+  });
+};
+const logFamilyPhoneNumberValidate = async () => {
+  await logEvent({
+    category: CATEGORIES.PROFILE,
+    action: ACTIONS.PROFILE_FAMILY_PHONE_NUMBER_VALIDATE,
+  });
+};
+
 const logValidateProfile = async () => {
   await logEvent({
     category: CATEGORIES.PROFILE,
@@ -421,4 +444,7 @@ export default {
   logSurveyScore,
   logSurveyAlert,
   logSurveyItemClick,
+  logOnboardingFamilyPhoneNumberValidate,
+  logOnboardingFamilyPhoneNumberLater,
+  logFamilyPhoneNumberValidate,
 };
