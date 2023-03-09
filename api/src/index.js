@@ -38,7 +38,7 @@ app.get("/config", async (req, res) => {
 
 // hello world
 app.get("/", async (req, res) => {
-  res.send("Welcome to the BPCO api !");
+  res.send("Welcome to the BPCO'Mieux api !");
 });
 
 // Add header with API version to compare with client.

@@ -13,8 +13,7 @@ router.post(
     if (!subject || (!text && !html)) return res.status(400).json({ ok: false, error: "wrong parameters" });
 
     if (!to) {
-      // TODO : remove this when we will have a real email
-      to = ENVIRONMENT === "development" ? "tangi.mendes@selego.co" : "";
+      to = ENVIRONMENT === "development" ? "tangi.mendes@selego.co" : "bpcomieux@fabrique.social.gouv.fr";
     }
 
     if (!replyTo) {
@@ -23,7 +22,7 @@ router.post(
     }
 
     const from = "no_reply@bpco.fr";
-    const fromName = "BPCO - Application";
+    const fromName = "BPCO'Mieux - Application";
 
     const apiRes = await fetch("https://api.tipimail.com/v1/messages/send", {
       method: "POST",
