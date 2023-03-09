@@ -9,65 +9,58 @@ const LegalMentions = ({ navigation }) => {
     <View>
       <Text style={styles.h1}>Editeur de l'application</Text>
       <Text style={styles.default}>
-        L'application BPCO est éditée par la Direction Générale de la Santé au
-        sein de la Fabrique numérique des Ministères sociaux située&nbsp;:
+        L'application BPCO'Mieux est éditée par L’Agence régionale de santé
+        Île-de-France:
       </Text>
       <Text style={styles.default}>
-        Tour Mirabeau{"\n"}
-        39-43 Quai André Citroën{"\n"}
-        75015 PARIS{"\n"}
-        Tél. : 01 40 56 60 00
+        Immeuble « Le Curve »{"\n"}
+        13 rue du Landy{"\n"}
+        93200 Saint-Denis{"\n"}
+        France{"\n"}
+        Tél. : 01 44 02 00 00
       </Text>
       <Text style={styles.h1}>Directeur de la publication</Text>
       <Text style={styles.default}>
-        Monsieur Jérôme SALOMON, Directeur général de la Santé
+        La directrice de publication est Madame Amélie Verdier, directrice
+        générale de l’Agence régionale de santé (ARS) Île-de-France.
       </Text>
       <Text style={styles.h1}>Hébergement de l'application</Text>
       <Text style={styles.default}>
-        Ce site est hébergé par Microsoft Azure France (région France centre) :
+        Cette application est hébergée par Microsoft Azure France (région France
+        centre) :
       </Text>
       <Text style={styles.default}>
         Microsoft France{"\n"}
-        37 Quai du Président Roosevelt{"\n"}
-        92130 ISSY-LES-MOULINEAUX
+        39 Quai du Président Roosevelt{"\n"}
+        92130 ISSY-LES-MOULINEAUX{"\n"}
+        France
       </Text>
       <Text style={styles.h1}>Accessibilité</Text>
       <Text style={styles.default}>
-        La conformité aux normes d'accessibilité numérique est un objectif
-        ultérieur mais nous tâchons de rendre cette application accessible à
-        toutes et à tous.
+        La conformité aux normes d’accessibilité numérique est un objectif
+        ultérieur mais nous tâchons de rendre cette application mobile
+        accessible à toutes et à tous.
       </Text>
       <Text style={styles.h1}>Signaler un dysfonctionnement</Text>
       <Text style={styles.default}>
-        Si vous rencontrez un défaut d'accessibilité vous empêchant d'accéder à
-        un contenu ou une fonctionnalité de l'application, merci de nous en
-        faire part. Si vous n'obtenez pas de réponse rapide de notre part, vous
+        Si vous rencontrez un défaut d’accessibilité vous empêchant d’accéder à
+        un contenu ou une fonctionnalité de l’application, merci de nous en
+        faire part. Si vous n’obtenez pas de réponse rapide de notre part, vous
         êtes en droit de faire parvenir vos doléances ou une demande de saisine
-        au Défenseur des droits.
-      </Text>
-      <Text style={styles.h1}>En savoir plus</Text>
-      <Text style={styles.default}>
-        Pour en savoir plus sur la politique d'accessibilité numérique de l'État
+        au Défenseur des droits.{"\n"}
+        Pour le joindre, vous pouvez :{"\n"}- Utiliser le{"\n"}
         <TouchableOpacity
           onPress={() =>
             Linking.openURL(
-              "http://references.modernisation.gouv.fr/accessibilite-numerique"
+              "https://formulaire.defenseurdesdroits.fr/code/afficher.php?ETAPE=accueil_2016"
             )
           }
         >
-          <Text style={styles.link}>
-            http://references.modernisation.gouv.fr/accessibilite-numerique
-          </Text>
+          <Text style={styles.link}>formulaire de contact en ligne ici</Text>
         </TouchableOpacity>
-      </Text>
-      <Text style={styles.h1}>Sécurité</Text>
-      <Text style={styles.default}>
-        L'application est protégé par un certificat électronique, matérialisé
-        pour la grande majorité des navigateurs par un cadenas. Cette protection
-        participe à la confidentialité des échanges.
-        {"\n\n"}En aucun cas les services associés à la plateforme ne seront à
-        l'origine d'envoi de courriels pour demander la saisie d'informations
-        personnelles.
+        {"\n"}- Composer le 09 69 39 00 00 (du lundi au vendredi de 8h à 20h)
+        {"\n"}-Envoyer un courrier (sans timbre) à l’adresse suivante :
+        Défenseur des droits, Libre réponse 71120, 75342 Paris CEDEX 07.
       </Text>
     </View>
   );
