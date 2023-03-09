@@ -37,6 +37,7 @@
     "owner": "bpco",
     "plugins": [
       "expo-build-properties",
+      "sentry-expo",
       [
         "expo-build-properties",
         {

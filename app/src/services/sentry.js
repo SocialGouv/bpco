@@ -4,7 +4,7 @@
 // https://docs.expo.dev/guides/using-sentry/
 
 export const capture = (err, context = {}) => {
-  // console.log("capture", err, JSON.stringify(context, null, 2));
+  console.log("capture", err, JSON.stringify(context, null, 2));
 
   if (typeof context === "string") {
     context = JSON.parse(context);
