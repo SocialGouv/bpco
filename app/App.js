@@ -27,15 +27,17 @@ Notifications.setNotificationHandler({
 
 SplashScreen.preventAutoHideAsync();
 
-Sentry.init({
-  dsn: SENTRY_DSN,
-  enableInExpoDevelopment: false,
-  environment: "app",
-  setCommits: true,
-  enableNative: true, // Set to true to enable Sentry for EAS builds.
-  logLevel: 3,
-  debug: false,
-});
+if (!__DEV__) {
+  Sentry.init({
+    dsn: SENTRY_DSN,
+    enableInExpoDevelopment: false,
+    environment: "app",
+    setCommits: true,
+    enableNative: true, // Set to true to enable Sentry for EAS builds.
+    logLevel: 3,
+    debug: false,
+  });
+}
 
 export default function App() {
   const [initialRouteName, setInitialRouteName] = useState("tabs");
