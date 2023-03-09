@@ -82,8 +82,8 @@ const Settings = ({ navigation }) => {
         ) : null}
         <View className="my-2" />
         <LegalItem
-          title="Politique de confidentialité"
-          path="privacy"
+          title="Mention d'information sur les données"
+          path="legal-mention-data"
           navigation={navigation}
         />
         <LegalItem
