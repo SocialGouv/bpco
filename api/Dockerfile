@@ -1,19 +1,17 @@
 FROM node:16-alpine3.16
-
+WORKDIR /api
 ARG PRODUCTION
 
-WORKDIR /app
+COPY package.json yarn.lock ./
+RUN yarn install --production --frozen-lockfile
 
-RUN chown node:node /app
+COPY src ./src
 
-COPY . .
+COPY .env.staging .env.production ./
+RUN if [ -z "$PRODUCTION" ]; then mv .env.staging .env && rm .env.production; else mv .env.production .env && rm .env.staging; fi
 
-RUN if [ -z "$PRODUCTION" ]; then echo "Copy staging values"; cp .env.staging .env; else cp .env.production .env; fi
-
-RUN yarn --production --frozen-lockfile
-
+RUN chown -R node:node /api
 USER 1000
 
 ENV NODE_ENV=production
-
-ENTRYPOINT ["yarn", "start"]
+CMD ["yarn", "start"]
