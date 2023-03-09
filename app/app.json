@@ -37,7 +37,6 @@
     "owner": "bpco",
     "plugins": [
       "expo-build-properties",
-      "sentry-expo",
       [
         "expo-build-properties",
         {
@@ -51,19 +50,7 @@
           // }
         }
       ]
-    ],
-    "hooks": {
-      "postPublish": [
-        {
-          "file": "sentry-expo/upload-sourcemaps",
-          "config": {
-            "organization": "incubateur",
-            "project": "bpco",
-            "authToken": "7800b582d9934f20825be8d656c198dc2ffc97e3f3014f9f9e455d5883571457" // https://sentry.fabrique.social.gouv.fr/settings/account/api/auth-tokens/
-          }
-        }
-      ]
-    }
+    ]
   },
   "android": {
     "googleServicesFile": "./google-services.json"
