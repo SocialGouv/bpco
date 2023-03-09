@@ -28,5 +28,5 @@ jobs:
   kontinuous:
     name: "Deploy on Kubernetes 🐳"
     needs: [build-api]
-    uses: socialgouv/workflows/.github/workflows/use-ks-gh-review.yaml@v1
+    uses: socialgouv/workflows/.github/workflows/use-ks-gh-production.yaml@v1
     secrets: inherit
