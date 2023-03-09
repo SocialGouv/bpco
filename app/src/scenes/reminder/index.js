@@ -110,16 +110,6 @@ const Reminder = ({ navigation, route }) => {
 
 export default Reminder;
 
-const styles = StyleSheet.create({
-  timeText: {
-    color: colors.DARK_BLUE,
-    fontFamily: "Karla-Bold",
-    fontSize: 35,
-    textAlign: "center",
-    paddingVertical: 10,
-  },
-});
-
 const scheduleDailyReminer = async (hour, minute) => {
   await Notifications.cancelAllScheduledNotificationsAsync();
   const identifier = await Notifications.scheduleNotificationAsync({
