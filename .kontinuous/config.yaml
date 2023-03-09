@@ -1,0 +1,7 @@
+projectName: bpco-mieux
+ciNamespace: ci-bpco-mieux
+dependencies:
+  fabrique:
+    import: socialgouv/kontinuous/plugins/fabrique
+    options:
+      registry: ghcr.io

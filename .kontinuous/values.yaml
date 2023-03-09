@@ -1,0 +1,5 @@
+api:
+  ~chart: app
+  imagePackage: api
+  containerPort: 3000
+  probesPath: "/healthz"
