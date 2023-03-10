@@ -35,15 +35,16 @@ const Reminder = ({ navigation, route }) => {
     (async () => {
       const existingReminder = await localStorage.getReminder();
       if (existingReminder) setReminder(dayjs(existingReminder));
-      if (!existingReminder) {
-        setReminderRequest(DEFAULT_REMINDER);
-      }
       if (inOnboarding)
         await localStorage.setOnboardingStep(ONBOARDING_STEPS.STEP_REMINDER);
     })();
   }, []);
 
-  const handlePress = () => {
+  const submit = async () => {
+    const existingReminder = await localStorage.getReminder();
+    if (!existingReminder) {
+      setReminderRequest(DEFAULT_REMINDER);
+    }
     navigation.navigate(
       inOnboarding ? ONBOARDING_STEPS.STEP_EXPLANATION : "tabs"
     );
@@ -100,7 +101,7 @@ const Reminder = ({ navigation, route }) => {
       <StickyButtonContainer>
         <Button
           title={`Je valide`}
-          onPress={handlePress}
+          onPress={submit}
           buttonStyle={{ minWidth: 0 }}
         />
       </StickyButtonContainer>
