@@ -1,13 +1,13 @@
 {
   "expo": {
-    "name": "bpco",
-    "slug": "bpco",
+    "name": "BPCO'Mieux",
+    "slug": "bpcomieux",
     "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/imgs/logo.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/imgs/logo.png",
+      "image": "./assets/imgs/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -21,7 +21,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/imgs/logo.png",
+        "foregroundImage": "./assets/imgs/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.bpcosuiviquotidien"

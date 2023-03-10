@@ -10,7 +10,7 @@ export const NeedUpdateContextProvider = ({ children }) => {
 
   useEffect(() => {
     (async () => {
-      //FIX ME : make it platform independent (ios / android)
+      console.log("✍️  BUILD_NUMBER:", BUILD_NUMBER);
       const response = await API.get({ path: "/version" });
       if (response?.ok && BUILD_NUMBER < response.data.MOBILE_BUILD_NUMBER) {
         setNeedUpdate(true);
@@ -21,12 +21,11 @@ export const NeedUpdateContextProvider = ({ children }) => {
             {
               text: "Télécharger",
               onPress: () =>
-                // TODO : changer urls
                 Linking.openURL(
                   Platform.select({
-                    ios: "https://apps.apple.com/fr/app/mon-suivi-psy/id1540061393",
+                    ios: "https://apps.apple.com/us/app/bpcomieux/id1670657282",
                     android:
-                      "https://play.google.com/store/apps/details?id=com.monsuivipsy",
+                      "https://play.google.com/store/apps/details?id=com.bpcosuiviquotidien",
                   })
                 ),
             },
