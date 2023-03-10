@@ -17,39 +17,9 @@ import { computeResult } from "./utils";
 import logEvents from "../../services/logEvents";
 
 const DaySurvey = ({ navigation, route }) => {
-  const initSurvey = route?.params?.currentSurvey ?? {
-    date: formatDay(beforeToday(0)),
-    answers: {},
-  };
-
   const [diaryData, setDiaryData] = useContext(DiaryDataContext);
   const [hasOxygen, setHasOxygen] = useState(true);
   const [answers, setAnswers] = useState({});
-
-  // useEffect(() => {
-  //   (async () => {
-  //     const onboardingStep = await localStorage.getOnboardingStep();
-  //     const onboardingIsDone = await localStorage.getOnboardingDone();
-
-  //     //if ONBOARDING_DONE is true, do nothing
-
-  //     if (onboardingIsDone) {
-  //       return;
-  //     } else {
-  //       const isFirstAppLaunch = await localStorage.getIsFirstAppLaunch();
-  //       if (isFirstAppLaunch !== "false") {
-  //         navigation.reset({
-  //           routes: [
-  //             {
-  //               name: "onboarding",
-  //               params: { screen: onboardingStep || "OnboardingPresentation" },
-  //             },
-  //           ],
-  //         });
-  //       }
-  //     }
-  //   })();
-  // }, [navigation]);
 
   useFocusEffect(
     React.useCallback(() => {
@@ -72,14 +42,15 @@ const DaySurvey = ({ navigation, route }) => {
   const submitDay = async () => {
     const yesterdayDiaryData = diaryData[formatDay(beforeToday(1))];
     const { score, alert } = await computeResult(answers, yesterdayDiaryData);
-    const answersAndResult = {
-      ...answers,
-      ...{ score, alert },
-    };
-    const prevCurrentSurvey = initSurvey;
     const currentSurvey = {
-      date: prevCurrentSurvey?.date,
-      answers: { ...prevCurrentSurvey.answers, ...answersAndResult },
+      date: formatDay(beforeToday(0)),
+      data: {
+        _version: 1,
+        created_at: new Date(),
+        survey_answers: answers,
+        survey_score: score,
+        survey_alert: alert,
+      },
     };
     setDiaryData(currentSurvey);
     logEvents.logSurveyValidate();

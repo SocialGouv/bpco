@@ -28,6 +28,7 @@ import { computeNewSurveyAvailable } from "../../utils";
 
 const Status = ({ navigation }) => {
   const [diaryData] = useContext(DiaryDataContext);
+  // console.log("✍️  diaryData:", JSON.stringify(diaryData, null, 2));
   const [NPSvisible, setNPSvisible] = useState(false);
   // const { showLatestChangesModal } = useLatestChangesModal();
 
@@ -70,14 +71,6 @@ const Status = ({ navigation }) => {
     }, [])
   );
 
-  const renderFooter = useCallback(() => {
-    return (
-      <>
-        <Bubble diaryData={diaryData} />
-      </>
-    );
-  }, [diaryData]);
-
   return (
     <SafeAreaView style={[styles.safe]} className="bg-primary flex-1">
       <NPS forceView={NPSvisible} close={() => setNPSvisible(false)} />
@@ -101,7 +94,7 @@ const Status = ({ navigation }) => {
           </View>
         </View>
       )}
-      <DiaryList ListFooterComponent={renderFooter} />
+      <DiaryList ListFooterComponent={<Bubble />} />
     </SafeAreaView>
   );
 };

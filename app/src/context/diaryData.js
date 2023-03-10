@@ -70,15 +70,10 @@ const DiaryDataContext = React.createContext([{}, () => {}]);
 const DiaryDataProvider = ({ children }) => {
   const [diaryData, setDiaryData] = useState({});
 
-  const setDiaryDataRequest = ({ date: isoDate, answers: data }) => {
-    const resData = data?.becks
-      ? // if we add becks, we keep all the previous diaryData
-        { ...diaryData[isoDate], ...data }
-      : // if not, it is a new version of a diary day, we overwrite it except becks data
-        { becks: diaryData[isoDate]?.becks, ...data };
+  const setDiaryDataRequest = ({ date, data }) => {
     const newDiaryData = {
       ...diaryData,
-      [isoDate]: resData,
+      [date]: data,
     };
     setDiaryData(newDiaryData);
     AsyncStorage.setItem(

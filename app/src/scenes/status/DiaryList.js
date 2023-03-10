@@ -37,11 +37,7 @@ export const DiaryList = ({ ...props }) => {
               </TouchableOpacity>
             )}
           </View>
-          <StatusItem
-            date={date}
-            patientState={diaryData[date]}
-            navigation={navigation}
-          />
+          <StatusItem alert={diaryData[date]?.survey_alert} />
         </View>
       );
     },

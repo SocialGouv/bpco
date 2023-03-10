@@ -21,7 +21,7 @@ import { ScrollView } from "react-native";
 
 const Settings = ({ navigation }) => {
   const [devModeCount, setDevModeCount] = useState(1);
-  const [devModeActive, setDevModeActive] = useState(false);
+  const [devModeActive, setDevModeActive] = useState(__DEV__);
   const [NPSvisible, setNPSvisible] = useState(false);
 
   useEffect(() => {
