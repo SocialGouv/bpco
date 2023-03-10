@@ -2,7 +2,7 @@ import envConfig from "react-native-config";
 import { version, buildNumber } from "../package.json";
 
 const SCHEME = __DEV__ ? "http" : "https";
-const HOST = __DEV__ ? "localhost:3000" : "";
+const HOST = __DEV__ ? "localhost:3000" : "api-bpco.fabrique.social.gouv.fr";
 const APP_ENV = __DEV__ ? "local" : "production";
 const VERSION = version;
 const BUILD_NUMBER = buildNumber;
