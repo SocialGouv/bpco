@@ -26,14 +26,18 @@ import * as Device from "expo-device";
 import * as Notifications from "expo-notifications";
 
 const Reminder = ({ navigation, route }) => {
+  const DEFAULT_REMINDER = dayjs().hour(8).minute(0);
   const inOnboarding = route.params?.inOnboarding === true;
-  const [reminder, setReminder] = useState(dayjs().hour(8).minute(0));
+  const [reminder, setReminder] = useState(DEFAULT_REMINDER);
   const [reminderSetupVisible, setReminderSetupVisible] = useState(false);
 
   useEffect(() => {
     (async () => {
       const existingReminder = await localStorage.getReminder();
       if (existingReminder) setReminder(dayjs(existingReminder));
+      if (!existingReminder) {
+        setReminderRequest(DEFAULT_REMINDER);
+      }
       if (inOnboarding)
         await localStorage.setOnboardingStep(ONBOARDING_STEPS.STEP_REMINDER);
     })();
