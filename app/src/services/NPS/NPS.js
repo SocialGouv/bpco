@@ -174,9 +174,6 @@ class NPS extends React.Component {
     }
     const { useful, feedback, contact } = this.state;
     this.setSendButtonText("Merci !");
-    this.setUseful(null);
-    this.setFeedback("");
-    this.setContact("");
     logEvents.logNPSUsefulSend(useful);
     const userId = Matomo.userId;
     const userType = await localStorage.getUserType();
@@ -193,7 +190,13 @@ class NPS extends React.Component {
       }),
     });
     this.npsSent = true;
-    this.setState({ visible: false, useful: null, reco: null });
+    this.setState({
+      visible: false,
+      useful: null,
+      feedBack: "",
+      contact: "",
+      sendButtonText: "Envoyer",
+    });
   };
 
   renderPage() {
@@ -300,6 +303,7 @@ const styles = StyleSheet.create({
     minHeight: "100%",
     paddingVertical: 20,
     paddingHorizontal: 30,
+    marginBottom: 50,
   },
   keyboardAvoidingView: {
     flex: 1,
