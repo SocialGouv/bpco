@@ -8,6 +8,7 @@ const { capture } = require("../third-parties/sentry");
 router.post(
   "/",
   catchErrors(async (req, res) => {
+    console.log("hello from mail.js");
     let { to, replyTo, replyToName, subject, text, html } = req.body || {};
 
     if (!subject || (!text && !html)) return res.status(400).json({ ok: false, error: "wrong parameters" });
