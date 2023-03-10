@@ -42,7 +42,7 @@ const Status = ({ navigation }) => {
       const onboardingIsDone = await localStorage.getOnboardingDone();
 
       //if ONBOARDING_DONE is true, do nothing
-
+      // todo : mieux gérer la redirection si pas de survey fait aujourd'hui
       if (onboardingIsDone) {
         if (computeNewSurveyAvailable(diaryData))
           return navigation.replace("day-survey");

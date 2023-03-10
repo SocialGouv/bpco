@@ -20,7 +20,7 @@ import { colors } from "../../utils/colors";
 import Matomo from "../matomo";
 import logEvents from "../logEvents";
 import localStorage from "../../utils/localStorage";
-import pck from "../../../package.json";
+import app from "../../../app.json";
 
 const formatText = ({
   useful,
@@ -32,7 +32,7 @@ const formatText = ({
 }) =>
   `
 User: ${userId}
-Version: ${pck.version}
+Version: ${app.expo.version}
 OS: ${Platform.OS}
 Date de téléchargement: ${startDate}
 Comment pouvons-nous vous être encore plus utile: ${feedback}
@@ -173,7 +173,10 @@ class NPS extends React.Component {
       return;
     }
     const { useful, feedback, contact } = this.state;
-    this.setSendButton("Merci !");
+    this.setSendButtonText("Merci !");
+    this.setUseful(null);
+    this.setFeedback("");
+    this.setContact("");
     logEvents.logNPSUsefulSend(useful);
     const userId = Matomo.userId;
     const userType = await localStorage.getUserType();
@@ -211,9 +214,9 @@ class NPS extends React.Component {
           nous faire ?
         </Text>
         <TextInput
-          style={styles.feedback}
+          className="w-full h-24 rounded-lg border border-gray-300 bg-gray-100 p-4 mt-4 items-start justify-start"
           onChangeText={this.setFeedback}
-          placeholder=""
+          placeholder="Recommandations..."
           value={feedback}
           multiline
           textAlignVertical="top"
@@ -228,13 +231,12 @@ class NPS extends React.Component {
         /> */}
         <Text style={styles.topSubTitle}>
           Echanger avec vous serait précieux pour améliorer notre service,
-          laissez-nous votre numéro de téléphone ou votre adresse mail si vous
-          le souhaitez.
+          laissez-nous votre adresse mail si vous le souhaitez.
         </Text>
         <TextInput
-          style={styles.contact}
+          className="w-full rounded-lg border border-gray-300 bg-gray-100 p-4 mt-4 items-start justify-start"
           value={contact}
-          placeholder="Numéro de téléphone ou adresse mail (facultatif)"
+          placeholder="adresse@mail.com (facultatif)"
           onChangeText={this.setContact}
           autoCorrect={false}
           autoCapitalize="none"
@@ -242,11 +244,11 @@ class NPS extends React.Component {
           onSubmitEditing={this.sendNPS}
         />
         <TouchableOpacity
-          style={styles.buttonContainer}
+          className="my-5 items-start self-center flex-0 mb-36 bg-primary px-5 py-3 rounded-full disabled:opacity-50"
           disabled={sendButtonText === "Merci !"}
           onPress={this.sendNPS}
         >
-          <Text style={styles.buttonText}>{sendButtonText}</Text>
+          <Text className="text-white">{sendButtonText}</Text>
         </TouchableOpacity>
       </>
     );
@@ -266,9 +268,11 @@ class NPS extends React.Component {
             style={styles.keyboardAvoidingView}
             behavior={Platform.select({ ios: "padding", android: null })}
           >
-            <View style={styles.backContainer}>
+            <View className="py-4 px-7">
               <TouchableOpacity onPress={this.onClose}>
-                <Text style={styles.backText}>Retour</Text>
+                <Text className="underline text-primary font-[Karla-Bold]">
+                  Retour
+                </Text>
               </TouchableOpacity>
             </View>
             <ScrollView
@@ -325,20 +329,6 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "flex-start",
   },
-  buttonContainer: {
-    marginVertical: 20,
-    alignItems: "flex-start",
-    alignSelf: "center",
-    flexGrow: 0,
-    marginBottom: 150,
-    backgroundColor: colors.BLUE,
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    borderRadius: 50,
-  },
-  buttonText: {
-    color: "#dbdbe9",
-  },
   contact: {
     width: "100%",
     height: 50,
@@ -351,24 +341,6 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     justifyContent: "center",
     color: colors.BLUE,
-  },
-  backContainer: {
-    backgroundColor: "#f9f9f9",
-    marginVertical: 15,
-    paddingHorizontal: 30,
-    alignItems: "flex-start",
-  },
-  backText: {
-    fontFamily: "Karla-Bold",
-    textDecorationLine: "underline",
-    color: colors.BLUE,
-  },
-  legalMessage: {
-    fontSize: 12,
-    width: "95%",
-    flexShrink: 0,
-    marginTop: 15,
-    color: "#666",
   },
 });
 
