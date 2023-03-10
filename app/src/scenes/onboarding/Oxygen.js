@@ -29,7 +29,7 @@ const Explanation = ({ navigation }) => {
     })();
   }, []);
 
-  const handlePress = () => {
+  const submit = () => {
     localStorage.setOxygen(answerOxygen);
     localStorage.setVentilationDevice(answerVentilationDevice);
     logEvents.logUserOxygenSelect(answerOxygen);
@@ -88,7 +88,7 @@ const Explanation = ({ navigation }) => {
       <StickyButtonContainer>
         <Button
           title={`Suivant`}
-          onPress={handlePress}
+          onPress={submit}
           buttonStyle={{ minWidth: 0 }}
         />
       </StickyButtonContainer>

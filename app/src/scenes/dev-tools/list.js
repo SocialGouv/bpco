@@ -10,11 +10,9 @@ import {
   Alert,
 } from "react-native";
 import { ScrollView } from "react-native";
-import BackButton from "../../components/BackButton";
 import { HOST, APP_ENV, SENTRY_DSN } from "../../config";
-import { wipeData } from "../../utils";
 import { capture } from "../../services/sentry";
-import Header from "../../components/Header";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Settings = ({ navigation }) => {
   return (
@@ -37,7 +35,7 @@ const Settings = ({ navigation }) => {
               [
                 {
                   text: "Oui, supprimer mes données",
-                  onPress: wipeData,
+                  onPress: AsyncStorage.clear,
                 },
                 { text: "Non", style: "cancel" },
               ],
