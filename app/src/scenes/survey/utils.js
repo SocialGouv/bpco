@@ -38,15 +38,15 @@ export const answers = [
   },
 ];
 
-export const computeResult = async (answers, yesterdayDiaryData) => {
-  const score = await computeScore(answers, yesterdayDiaryData);
+export const computeResult = async ({ todayAnswers, yesterdayAlert }) => {
+  const score = await computeScore({ todayAnswers, yesterdayAlert });
   const alert = await computeAlert(score);
   return { score, alert };
 };
 
-const computeScore = async (answers, yesterdayDiaryData) => {
+const computeScore = async ({ todayAnswers, yesterdayAlert }) => {
   const oxygen = await computeHasOxygen();
-  let score = Object.entries(answers).reduce((acc, answer) => {
+  let score = Object.entries(todayAnswers).reduce((acc, answer) => {
     const questionScore = questionsScores[answer[0]];
     const type = questionScore.type;
     if (type === "boolean") {
@@ -65,9 +65,7 @@ const computeScore = async (answers, yesterdayDiaryData) => {
     return acc;
   }, 0);
   const orangeYesterday =
-    yesterdayDiaryData &&
-    (yesterdayDiaryData?.alert === "orange" ||
-      yesterdayDiaryData?.alert === "red");
+    yesterdayAlert && (yesterdayAlert === "orange" || yesterdayAlert === "red");
   if (orangeYesterday) score += 3;
   return score;
 };

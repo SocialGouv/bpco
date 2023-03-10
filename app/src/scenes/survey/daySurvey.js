@@ -41,7 +41,10 @@ const DaySurvey = ({ navigation, route }) => {
 
   const submitDay = async () => {
     const yesterdayDiaryData = diaryData[formatDay(beforeToday(1))];
-    const { score, alert } = await computeResult(answers, yesterdayDiaryData);
+    const { score, alert } = await computeResult({
+      todayAnswers: answers,
+      yesterdayAlert: yesterdayDiaryData?.survey_alert,
+    });
     const currentSurvey = {
       date: formatDay(beforeToday(0)),
       data: {

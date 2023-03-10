@@ -9,8 +9,14 @@ const fakeDaySurvey = () => {
   const MOOD_hasComment = Math.random() > 0.5;
   const ANXIETY_hasComment = Math.random() > 0.5;
   return {
-    MOOD: { value: Math.ceil(Math.random() * 5), userComment: MOOD_hasComment ? "comment" : "" },
-    ANXIETY: { value: Math.ceil(Math.random() * 5), userComment: ANXIETY_hasComment ? "comment" : "" },
+    MOOD: {
+      value: Math.ceil(Math.random() * 5),
+      userComment: MOOD_hasComment ? "comment" : "",
+    },
+    ANXIETY: {
+      value: Math.ceil(Math.random() * 5),
+      userComment: ANXIETY_hasComment ? "comment" : "",
+    },
   };
 };
 
@@ -251,5 +257,65 @@ export const fakeDiaryData = {
     SENSATIONS_INTENSITY: categoryStates.GOOD,
     SLEEP: categoryStates.MIDDLE,
     NOTES: { notesEvents: "ceci est une note d'event" },
+  },
+};
+
+export const fake3 = {
+  "2023-03-09": {
+    _version: 1,
+    created_at: "2023-03-10T00:13:07.645Z",
+    survey_answers: {
+      "fe53d77d-f434-405d-96ae-d664cf92113a": false,
+      "ecb26c1a-8d4a-4b19-84eb-1ff3eefb0619": true,
+      "aaa71e2b-9308-4240-bac4-d0cda013017d": true,
+      "4734d5a4-aa44-4b3e-a292-88a08fd16923": false,
+      "df328401-e88b-4226-95ea-2a6780940afb": false,
+      "f5f58308-f78b-4ba6-a933-02979cbaf864": false,
+      "03e034f7-b7fa-41cb-9f07-4415ef7354ca": false,
+      "0c1eb277-3f09-406a-9c23-bd77acf978ba": false,
+      "45e77c87-8909-454f-b31f-2957e1921d8c": false,
+      "071ce2c0-4bf6-4b85-9931-1b0668a01646": 2,
+      "8032ca3d-8a74-4630-b532-d8699d35a45a": 2,
+    },
+    survey_score: 7,
+    survey_alert: "orange",
+  },
+  // "2023-03-10": {
+  //   _version: 1,
+  //   created_at: "2023-03-10T00:13:07.645Z",
+  //   survey_answers: {
+  //     "fe53d77d-f434-405d-96ae-d664cf92113a": false,
+  //     "ecb26c1a-8d4a-4b19-84eb-1ff3eefb0619": true,
+  //     "aaa71e2b-9308-4240-bac4-d0cda013017d": true,
+  //     "4734d5a4-aa44-4b3e-a292-88a08fd16923": false,
+  //     "df328401-e88b-4226-95ea-2a6780940afb": false,
+  //     "f5f58308-f78b-4ba6-a933-02979cbaf864": false,
+  //     "03e034f7-b7fa-41cb-9f07-4415ef7354ca": false,
+  //     "0c1eb277-3f09-406a-9c23-bd77acf978ba": false,
+  //     "45e77c87-8909-454f-b31f-2957e1921d8c": false,
+  //     "071ce2c0-4bf6-4b85-9931-1b0668a01646": 2,
+  //     "8032ca3d-8a74-4630-b532-d8699d35a45a": 2,
+  //   },
+  //   survey_score: 4,
+  //   survey_alert: "green",
+  // },
+  "2023-03-05": {
+    _version: 1,
+    created_at: "2023-03-10T00:13:07.645Z",
+    survey_answers: {
+      "fe53d77d-f434-405d-96ae-d664cf92113a": false,
+      "ecb26c1a-8d4a-4b19-84eb-1ff3eefb0619": true,
+      "aaa71e2b-9308-4240-bac4-d0cda013017d": true,
+      "4734d5a4-aa44-4b3e-a292-88a08fd16923": false,
+      "df328401-e88b-4226-95ea-2a6780940afb": true,
+      "f5f58308-f78b-4ba6-a933-02979cbaf864": false,
+      "03e034f7-b7fa-41cb-9f07-4415ef7354ca": false,
+      "0c1eb277-3f09-406a-9c23-bd77acf978ba": true,
+      "45e77c87-8909-454f-b31f-2957e1921d8c": false,
+      "071ce2c0-4bf6-4b85-9931-1b0668a01646": 2,
+      "8032ca3d-8a74-4630-b532-d8699d35a45a": 2,
+    },
+    survey_score: 12,
+    survey_alert: "red",
   },
 };

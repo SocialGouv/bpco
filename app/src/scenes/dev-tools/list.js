@@ -13,6 +13,7 @@ import { ScrollView } from "react-native";
 import { HOST, APP_ENV, SENTRY_DSN } from "../../config";
 import { capture } from "../../services/sentry";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { setupFakeData } from "../../context/diaryData";
 
 const Settings = ({ navigation }) => {
   return (
@@ -47,7 +48,23 @@ const Settings = ({ navigation }) => {
             <Text>Supprimer toutes les données</Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity className="border-b border-gray-100 px-3 py-5">
+        <TouchableOpacity
+          className="border-b border-gray-100 px-3 py-5"
+          onPress={() =>
+            Alert.alert(
+              `Êtes-vous sûr de vouloir générer des données ?`,
+              `Cette action est irreversible.`,
+              [
+                {
+                  text: "Oui, générer des données",
+                  onPress: setupFakeData,
+                },
+                { text: "Non", style: "cancel" },
+              ],
+              { cancelable: true }
+            )
+          }
+        >
           <View className="">
             <Text>Générer des données de tests</Text>
           </View>
