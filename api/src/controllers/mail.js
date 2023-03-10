@@ -63,7 +63,7 @@ router.post(
       return res.status(200).json({ ok: true });
     }
 
-    return res.status(500).json({ ok: false, error: "error while sending email" });
+    return res.status(500).json({ ok: false, error: "error while sending email", apiRes });
   })
 );
 
