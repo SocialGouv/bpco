@@ -52,8 +52,12 @@ router.post(
           html,
         },
       }),
-    }).catch((err) => capture(err, { extra: { route: "POST /mail", body: req.body } }));
+    }).catch((err) => {
+      console.log("✍️  catch error:", err);
+      capture(err, { extra: { route: "POST /mail", body: req.body } });
+    });
 
+    console.log("✍️  response tipimail:", apiRes);
     if (apiRes?.ok) {
       return res.status(200).json({ ok: true });
     }
