@@ -52,13 +52,6 @@ const Settings = ({ navigation }) => {
       <Header title="Mes paramètres" navigation={navigation} />
       <ScrollView className="bg-white flex-1">
         <SettingItem
-          title="Présentation"
-          path="onboarding"
-          navigation={navigation}
-          icon="PresentationSvg"
-        />
-        <Separator />
-        <SettingItem
           title="Définir ou modifier un rappel"
           path="reminder"
           navigation={navigation}

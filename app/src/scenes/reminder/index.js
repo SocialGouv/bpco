@@ -82,7 +82,7 @@ const Reminder = ({ navigation, route }) => {
           </View>
 
           <Text className="text-primary tablet:pb-4 text-2xl tablet:text-4xl font-[Karla-Bold] text-center">
-            Programmez votre rappels
+            Programmez votre rappel
           </Text>
           <Text className="text-xl tablet:text-2xl max-w-xl mx-auto text-center my-4">
             Plus vous remplirez votre questionnaire, plus vous en apprendrez sur
