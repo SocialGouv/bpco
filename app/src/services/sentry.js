@@ -1,4 +1,4 @@
-// import * as Sentry from "sentry-expo";
+import * as Sentry from "sentry-expo";
 
 // https://docs.sentry.io/platforms/javascript/enriching-events/context/#example-usages
 // https://docs.expo.dev/guides/using-sentry/
@@ -8,8 +8,10 @@ export const capture = (err, context = {}) => {
 
   if (typeof context === "string") {
     context = JSON.parse(context);
+    Sentry.Native.captureMessage(err, context);
   } else {
     context = JSON.parse(JSON.stringify(context));
+    Sentry.Native.captureException(err, context);
   }
 };
 

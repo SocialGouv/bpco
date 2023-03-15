@@ -13,7 +13,7 @@ import { useEffect, useState } from "react";
 import * as Notifications from "expo-notifications";
 import localStorage from "./src/utils/localStorage";
 import { StatusBar } from "expo-status-bar";
-// import * as Sentry from "sentry-expo";
+import * as Sentry from "sentry-expo";
 import { SENTRY_DSN } from "./src/config";
 import { version } from "./app.json";
 
@@ -27,17 +27,11 @@ Notifications.setNotificationHandler({
 
 SplashScreen.preventAutoHideAsync();
 
-// if (!__DEV__) {
-//   Sentry.init({
-//     dsn: SENTRY_DSN,
-//     enableInExpoDevelopment: false,
-//     environment: "app",
-//     setCommits: true,
-//     enableNative: false, // Set to true to enable Sentry for EAS builds.
-//     logLevel: 3,
-//     debug: false,
-//   });
-// }
+Sentry.init({
+  dsn: SENTRY_DSN,
+  enableInExpoDevelopment: true,
+  debug: __DEV__, // If `true`, Sentry will try to print out useful debugging information if something goes wrong with sending the event. Set it to `false` in production
+});
 
 export default function App() {
   const [initialRouteName, setInitialRouteName] = useState("tabs");

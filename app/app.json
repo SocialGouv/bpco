@@ -12,9 +12,12 @@
       "backgroundColor": "#ffffff"
     },
     "updates": {
-      "fallbackToCacheTimeout": 0
+      "fallbackToCacheTimeout": 0,
+      "url": "https://u.expo.dev/037ea21f-b193-457e-b165-b39b61cf98a5"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "bpco"
@@ -39,18 +42,26 @@
       "expo-build-properties",
       [
         "expo-build-properties",
+        {}
+      ],
+      "sentry-expo"
+    ],
+    "hooks": {
+      "postPublish": [
         {
-          // "android": {
-          //   "compileSdkVersion": 21,
-          //   "targetSdkVersion": 21,
-          //   "buildToolsVersion": "21.0.0"
-          // },
-          // "ios": {
-          //   "deploymentTarget": "9.0"
-          // }
+          "file": "sentry-expo/upload-sourcemaps",
+          "config": {
+            "organization": "incubateur",
+            "project": "bpco",
+            "authToken": "8c3dd858997a4a0daf675cf2608dd92b3ece789b0ca347d885cc98e425f72848",
+            "url": "https://sentry.fabrique.social.gouv.fr"
+          }
         }
       ]
-    ]
+    },
+    "runtimeVersion": {
+      "policy": "sdkVersion"
+    }
   },
   "android": {
     "googleServicesFile": "./google-services.json"
