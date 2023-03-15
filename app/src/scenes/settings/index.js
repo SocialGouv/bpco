@@ -26,7 +26,6 @@ const Settings = ({ navigation }) => {
 
   useEffect(() => {
     if (devModeCount > 15) {
-      setDevModeCount(0);
       Alert.alert(
         `Voulez-vous activer le mode développeur ?`,
         "Il vous permettra d'accéder à des outils de débogage.",
@@ -83,6 +82,13 @@ const Settings = ({ navigation }) => {
           subtitle="Dites-nous comment améliorer l'application"
           onClick={() => setNPSvisible(true)}
           icon="LightBulbSvg"
+        />
+        <Separator />
+        <SettingItem
+          title="Sources médicales"
+          path="medical-sources"
+          icon="LinkSvg"
+          navigation={navigation}
         />
         <Separator />
         {devModeActive ? (

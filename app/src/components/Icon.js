@@ -50,6 +50,7 @@ import AlertSVG from "../../assets/onboarding/Alert";
 import AlertOrangeSVG from "../../assets/onboarding/AlertOrange";
 import WarnFamilyPhone from "../../assets/WarnFamilyPhone";
 import Profile from "../../assets/Profile";
+import LinkSvg from "../../assets/Link";
 
 import {
   StyleSheet,
@@ -112,6 +113,7 @@ const mapIconToSvg = (icon) => {
     ReorderSvg,
     DeleteSvg,
     ShareSvg,
+    LinkSvg,
   };
   return iconMap[icon];
 };
