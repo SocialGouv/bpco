@@ -2,7 +2,7 @@
   "expo": {
     "name": "BPCO'Mieux",
     "slug": "bpco",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "orientation": "portrait",
     "icon": "./assets/imgs/logo.png",
     "userInterfaceStyle": "light",
@@ -15,9 +15,7 @@
       "fallbackToCacheTimeout": 0,
       "url": "https://u.expo.dev/037ea21f-b193-457e-b165-b39b61cf98a5"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "bpco"
@@ -40,10 +38,7 @@
     "owner": "bpco",
     "plugins": [
       "expo-build-properties",
-      [
-        "expo-build-properties",
-        {}
-      ],
+      ["expo-build-properties", {}],
       "sentry-expo"
     ],
     "hooks": {
