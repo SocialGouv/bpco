@@ -84,12 +84,12 @@ export const computeHasOxygen = async () => {
 export const renderAlertText = (alert) => {
   switch (alert) {
     case "green":
-      return "Tout va bien.";
+      return "Il semblerait ne pas exister de signes d’alarmes.";
     case "orange":
-      return "Consultez votre médecin dans les prochain jours.";
+      return "Il semblerait important de consulter votre médecin dans les prochains jours.";
     // case "red":
     case "red":
-      return "Appelez et consultez en urgence !";
+      return "D'après vos réponses, il semblerait nécessaire d’appeler et consulter en urgence !";
     default:
       return "";
   }
