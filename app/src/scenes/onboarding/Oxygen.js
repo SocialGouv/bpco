@@ -17,6 +17,7 @@ import logEvents from "../../services/logEvents";
 const Explanation = ({ navigation }) => {
   const [answerOxygen, setAnswerOxygen] = useState(null);
   const [answerVentilationDevice, setAnswerVentilationDevice] = useState(null);
+  const [disabled, setDisabled] = useState(true);
 
   useEffect(() => {
     (async () => {
@@ -26,6 +27,8 @@ const Explanation = ({ navigation }) => {
       if (ventilationDevice !== undefined)
         setAnswerVentilationDevice(ventilationDevice);
       await localStorage.setOnboardingStep(ONBOARDING_STEPS.STEP_OXYGEN);
+      if (oxygenStorage !== undefined && ventilationDevice !== undefined)
+        setDisabled(false);
     })();
   }, []);
 
@@ -40,10 +43,12 @@ const Explanation = ({ navigation }) => {
   const handlePressOxygen = (value) => {
     setAnswerOxygen(value);
     logEvents.logUserOxygenClick(value);
+    if (answerVentilationDevice !== null) setDisabled(false);
   };
   const handlePressVentilationDevice = (value) => {
     setAnswerVentilationDevice(value);
     logEvents.logUserVentilationDeviceClick(value);
+    if (answerOxygen !== null) setDisabled(false);
   };
 
   return (
@@ -87,6 +92,7 @@ const Explanation = ({ navigation }) => {
       </ScrollView>
       <StickyButtonContainer>
         <Button
+          disabled={disabled}
           title={`Suivant`}
           onPress={submit}
           buttonStyle={{ minWidth: 0 }}
