@@ -2,7 +2,7 @@
 
 class Api {
   init({ baseUrl, idsite, userId, _idvc }) {
-    console.log("✍️  matomo init:", { baseUrl, idsite, userId, _idvc });
+    // console.log("✍️  matomo init:", { baseUrl, idsite, userId, _idvc });
     this.baseUrl = baseUrl;
     this.idsite = idsite;
     this.userId = userId;
@@ -21,7 +21,7 @@ class Api {
   }
 
   setDimensions(newDimensions) {
-    console.log("✍️  newDimensions:", newDimensions);
+    // console.log("✍️  newDimensions:", newDimensions);
     this.dimensions = {
       ...(this.dimensions || {}),
       ...newDimensions,
@@ -29,7 +29,7 @@ class Api {
   }
 
   computeDimentions(dimensions = {}) {
-    console.log("✍️  dimensions:", dimensions);
+    // console.log("✍️  dimensions:", dimensions);
     // Get something like this:
     const d = {};
     for (let [key, value] of Object.entries(dimensions)) {
@@ -82,7 +82,8 @@ class Api {
         throw new Error("matomo not initialized yet");
       }
       if (__DEV__) {
-        return console.log(
+        return;
+        console.log(
           "not sending",
           JSON.stringify(
             {

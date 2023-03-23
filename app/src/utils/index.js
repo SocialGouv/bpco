@@ -75,9 +75,9 @@ export const getScoreWithState = ({ patientState, category }) => {
 };
 
 export const computeHasOxygen = async () => {
-  const oxygen = await localStorage.getOxygen();
-  if (!oxygen) return false;
-  return !!oxygen.oxygen || !!oxygen.device;
+  const oxygenStorage = await localStorage.getOxygen();
+  const ventilationDevice = await localStorage.getVentilationDevice();
+  return !!oxygenStorage || !!ventilationDevice;
 };
 
 // TODO : peut etre indexer sur le score ? plutot que le resultat "string"
