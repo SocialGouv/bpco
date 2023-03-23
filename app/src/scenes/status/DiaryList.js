@@ -1,20 +1,14 @@
 import React, { useContext, useCallback } from "react";
-import { View, TouchableOpacity, Animated } from "react-native";
+import { View, Animated, TouchableWithoutFeedback } from "react-native";
 import Text from "../../components/MyText";
 import { DiaryDataContext } from "../../context/diaryData";
 import { formatDateThread } from "../../utils/date/helpers";
 import StatusItem from "./status-item";
-import { canEdit } from "./utils/index";
 import { useNavigation } from "@react-navigation/native";
 
 export const DiaryList = ({ ...props }) => {
   const navigation = useNavigation();
   const [diaryData] = useContext(DiaryDataContext);
-  const sortedData = Object.keys(diaryData).sort((a, b) => {
-    a = a.split("/").reverse().join("");
-    b = b.split("/").reverse().join("");
-    return b.localeCompare(a);
-  });
 
   const renderItem = useCallback(
     ({ item: date }) => {
@@ -22,20 +16,15 @@ export const DiaryList = ({ ...props }) => {
         <View>
           <View className="flex flex-row items-center">
             <View className="w-2 h-2 rounded-full bg-primary" />
-            {canEdit(date) ? (
+            <TouchableWithoutFeedback
+              onPress={() =>
+                __DEV__ ? navigation.navigate("day-survey") : null
+              }
+            >
               <Text className="text-black text-xs pl-2 font-semibold">
                 {formatDateThread(date)}
               </Text>
-            ) : (
-              <TouchableOpacity
-              // style={styles.item}
-              // onPress={() => navigation.navigate("too-late", { date })}
-              >
-                <Text className="text-black text-xs pl-2 font-semibold">
-                  {formatDateThread(date)}
-                </Text>
-              </TouchableOpacity>
-            )}
+            </TouchableWithoutFeedback>
           </View>
           <StatusItem alert={diaryData[date]?.survey_alert} />
         </View>
@@ -46,9 +35,20 @@ export const DiaryList = ({ ...props }) => {
 
   const keyExtractor = useCallback((date) => date);
 
+  if (!diaryData)
+    return (
+      <View className="flex-1 bg-white items-center">
+        <Text className="text-gray-500">Chargement...</Text>
+      </View>
+    );
+
   return (
     <Animated.FlatList
-      data={sortedData}
+      data={Object.keys(diaryData).sort((a, b) => {
+        a = a.split("/").reverse().join("");
+        b = b.split("/").reverse().join("");
+        return b.localeCompare(a);
+      })}
       renderItem={renderItem}
       keyExtractor={keyExtractor}
       contentContainerStyle={{

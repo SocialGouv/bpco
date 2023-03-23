@@ -111,7 +111,7 @@ export const renderAlertIcon = (alert) => {
 
 export const computeNewSurveyAvailable = (diaryData) => {
   // TODO: what if the user does his survey late in the night (before 23:59:59) and comes back early (after 00:00:00)? Currently, two surveys can be done within less than 24h
-  return !diaryData[formatDay(beforeToday(0))];
+  return !diaryData || !diaryData[formatDay(beforeToday(0))];
 };
 
 export const wipeData = async () => {

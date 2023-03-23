@@ -1,5 +1,12 @@
 import React, { useState, useContext } from "react";
-import { StyleSheet, View, Keyboard, Platform, StatusBar } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Keyboard,
+  Platform,
+  StatusBar,
+  TouchableOpacity,
+} from "react-native";
 import Text from "../../components/MyText";
 import { colors } from "../../utils/colors";
 import { beforeToday, formatDay } from "../../utils/date/helpers";
@@ -71,17 +78,6 @@ const DaySurvey = ({ navigation, route }) => {
     );
   };
 
-  // TODO : make it better
-  if (
-    Object.entries(answers).length === 0 &&
-    !computeNewSurveyAvailable(diaryData)
-  ) {
-    // should not happen
-    // TODO : came to this screen but survey is not available (was already done today)
-    console.log("ERROR - survey already done");
-    navigation.navigate("tabs");
-  }
-
   return (
     <Screen
       containerStyle={{ marginBottom: 15 }}
@@ -109,6 +105,31 @@ const DaySurvey = ({ navigation, route }) => {
     >
       <View>
         <View style={{ marginBottom: 8 }}>
+          {__DEV__ ? (
+            <View>
+              <TouchableOpacity
+                className="p-2 bg-gray-100 text-gray-700"
+                onPress={() =>
+                  setAnswers({
+                    "03e034f7-b7fa-41cb-9f07-4415ef7354ca": false,
+                    "071ce2c0-4bf6-4b85-9931-1b0668a01646": 1,
+                    "0c1eb277-3f09-406a-9c23-bd77acf978ba": false,
+                    "45e77c87-8909-454f-b31f-2957e1921d8c": false,
+                    "4734d5a4-aa44-4b3e-a292-88a08fd16923": false,
+                    "8032ca3d-8a74-4630-b532-d8699d35a45a": 1,
+                    "aaa71e2b-9308-4240-bac4-d0cda013017d": false,
+                    "df328401-e88b-4226-95ea-2a6780940afb": false,
+                    "ecb26c1a-8d4a-4b19-84eb-1ff3eefb0619": true,
+                    "f5f58308-f78b-4ba6-a933-02979cbaf864": false,
+                    "fe53d77d-f434-405d-96ae-d664cf92113a": false,
+                    "a8acc717-2fdb-496d-94f8-75a7945dadfe": false,
+                  })
+                }
+              >
+                <Text>DEVTOOLS : MOCK data</Text>
+              </TouchableOpacity>
+            </View>
+          ) : null}
           <Text style={styles.date}>{renderTodayDate()}</Text>
           <Text style={styles.title}>Par rapport à hier, avez-vous...</Text>
           {questions

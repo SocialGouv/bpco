@@ -66,7 +66,7 @@ const fillUpEmptyDates = (startDate, data) => {
 const DiaryDataContext = React.createContext([{}, () => {}]);
 
 const DiaryDataProvider = ({ children }) => {
-  const [diaryData, setDiaryData] = useState({});
+  const [diaryData, setDiaryData] = useState();
 
   const setDiaryDataRequest = ({ date, data }) => {
     const newDiaryData = {

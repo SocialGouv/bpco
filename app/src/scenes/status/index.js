@@ -38,30 +38,30 @@ const Status = ({ navigation }) => {
 
   useEffect(() => {
     (async () => {
+      const isFirstAppLaunch = await localStorage.getIsFirstAppLaunch();
       const onboardingStep = await localStorage.getOnboardingStep();
-      const onboardingIsDone = await localStorage.getOnboardingDone();
 
-      //if ONBOARDING_DONE is true, do nothing
-      // todo : mieux gérer la redirection si pas de survey fait aujourd'hui
-      if (onboardingIsDone) {
-        if (computeNewSurveyAvailable(diaryData))
-          return navigation.replace("day-survey");
-        return;
-      } else {
-        const isFirstAppLaunch = await localStorage.getIsFirstAppLaunch();
-        if (isFirstAppLaunch !== "false") {
-          navigation.reset({
-            routes: [
-              {
-                name: "onboarding",
-                params: { screen: onboardingStep || "OnboardingPresentation" },
-              },
-            ],
-          });
-        }
+      if (isFirstAppLaunch !== "false") {
+        return navigation.reset({
+          routes: [
+            {
+              name: "onboarding",
+              params: { screen: onboardingStep || "OnboardingPresentation" },
+            },
+          ],
+        });
+      }
+
+      // si jamais fait de survey ? quepaso ?
+      console.log("✍️  diaryData:", diaryData);
+      if (!diaryData) return;
+
+      if (computeNewSurveyAvailable(diaryData)) {
+        console.log("we have a survey to do, lets redirect to it");
+        return navigation.replace("day-survey");
       }
     })();
-  }, [navigation]);
+  }, [diaryData]);
 
   useFocusEffect(
     React.useCallback(() => {

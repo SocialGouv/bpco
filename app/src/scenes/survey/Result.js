@@ -1,5 +1,6 @@
 import dayjs from "dayjs";
 import "dayjs/locale/fr";
+import { CommonActions } from "@react-navigation/native";
 import * as SMS from "expo-sms";
 import React from "react";
 import { Alert, Keyboard, StyleSheet, View } from "react-native";
@@ -15,7 +16,12 @@ const Result = ({ navigation, route }) => {
   const alertLevel = route.params?.alert;
 
   const submitDay = async ({}) => {
-    return navigation.replace("tabs");
+    return navigation.dispatch(
+      CommonActions.reset({
+        index: 0,
+        routes: [{ name: "tabs" }],
+      })
+    );
   };
 
   const renderTodayDate = () => {
