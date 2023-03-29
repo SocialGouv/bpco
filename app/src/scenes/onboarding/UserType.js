@@ -76,16 +76,6 @@ const UserType = ({ navigation }) => {
             color="#F4FCFD"
             handleClick={() => handleClick(USER_TYPES.sans_suivi)}
           />
-          <Card
-            title="Professionnel de santé"
-            color="#F4FCFD"
-            handleClick={() => handleClick(USER_TYPES.pro)}
-          />
-          <Card
-            title="Autres"
-            color="#F4FCFD"
-            handleClick={() => handleClick(USER_TYPES.autres)}
-          />
           <View className="border border-green-400 flex flex-row justify-center items-center m-5 p-2 rounded-2xl">
             <Image
               source={require("../../../assets/imgs/onboarding/professionnel-sante.png")}
