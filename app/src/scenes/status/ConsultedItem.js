@@ -18,7 +18,12 @@ const ConsultedItem = ({ navigation, alertLevel, alertDate }) => {
   return (
     <View className="pl-[15px] ml-1 border-l-[0.4px] border-primary">
       <View className="mb-3">
-        {renderCard(consultedData[alertDate], navigation)}
+        {renderCard(
+          consultedData[alertDate],
+          alertLevel,
+          alertDate,
+          navigation
+        )}
       </View>
     </View>
   );
@@ -26,7 +31,7 @@ const ConsultedItem = ({ navigation, alertLevel, alertDate }) => {
 
 export default ConsultedItem;
 
-const renderCard = (consultedDataItem, navigation) => {
+const renderCard = (consultedDataItem, alertLevel, alertDate, navigation) => {
   if (!consultedDataItem) {
     return (
       <Card

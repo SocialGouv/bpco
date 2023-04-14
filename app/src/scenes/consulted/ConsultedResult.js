@@ -7,6 +7,7 @@ import PhoneSuiviSvg from "../../../assets/PhoneSuivi";
 import dayjs from "dayjs";
 import { StickyButtonContainer } from "../onboarding/components/StickyButton";
 import Button from "../../components/Button";
+import HandsHeartSvg from "../../../assets/HandsHeart";
 dayjs.locale("fr");
 
 const ConsultedResult = ({ navigation, route }) => {
