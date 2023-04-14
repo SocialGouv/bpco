@@ -7,9 +7,9 @@ export default ({ alert }) => {
   if (alert) {
     return (
       <View className="pl-[15px] ml-1 -my-1 border-l-[0.4px] border-primary">
-        <View className="mb-6 pt-5">
+        <View className="mb-4 pt-5">
           <Card
-            preset="grey"
+            preset={alert !== "green" ? "orange" : "grey"}
             title={renderAlertText(alert)}
             icon={renderAlertIcon(alert)}
           />

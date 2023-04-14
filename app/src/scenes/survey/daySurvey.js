@@ -48,9 +48,10 @@ const DaySurvey = ({ navigation, route }) => {
 
   const submitDay = async () => {
     const yesterdayDiaryData = diaryData[formatDay(beforeToday(1))];
+    const yesterdayAlert = yesterdayDiaryData?.survey_alert;
     const { score, alert } = await computeResult({
       todayAnswers: answers,
-      yesterdayAlert: yesterdayDiaryData?.survey_alert,
+      yesterdayAlert,
     });
     const currentSurvey = {
       date: formatDay(beforeToday(0)),
@@ -66,7 +67,11 @@ const DaySurvey = ({ navigation, route }) => {
     logEvents.logSurveyValidate();
     logEvents.logSurveyScore(score);
     logEvents.logSurveyAlert(alert);
-    return navigation.push("day-survey-result", { alert });
+    return navigation.push("day-survey-result", {
+      alert,
+      yesterdayAlertLevel: yesterdayAlert,
+      yesterdayAlertDate: formatDay(beforeToday(1)),
+    });
   };
 
   const renderTodayDate = () => {

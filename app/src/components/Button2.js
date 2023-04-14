@@ -29,6 +29,7 @@ export const Button2 = ({
   iconSize,
   checked = false,
   testID = "",
+  secondaryText = null,
 }) => {
   square = square || circle;
   const appliedStyles = applyStyles({
@@ -90,32 +91,39 @@ export const Button2 = ({
             disabled && appliedStyles.disabled,
           ]}
         >
-          {!loading &&
-            _icon &&
-            (React.isValidElement(_icon)
-              ? React.cloneElement(_icon, {
-                  width: _iconSize,
-                  height: _iconSize,
-                  color: frontColor,
-                  styleContainer: iconStyles,
-                })
-              : _icon)}
-          {loading && (
-            <ActivityIndicator
-              size={_iconSize}
-              color={frontColor}
-              style={iconStyles}
-            />
-          )}
+          <View className="flex-row">
+            {!loading &&
+              _icon &&
+              (React.isValidElement(_icon)
+                ? React.cloneElement(_icon, {
+                    width: _iconSize,
+                    height: _iconSize,
+                    color: frontColor,
+                    styleContainer: iconStyles,
+                  })
+                : _icon)}
+            {loading && (
+              <ActivityIndicator
+                size={_iconSize}
+                color={frontColor}
+                style={iconStyles}
+              />
+            )}
 
-          {title && (
-            <Text
-              allowFontScaling={false}
-              style={[appliedStyles.text, textStyle]}
-              testID={`${testID}-text`}
-            >
-              {title}
-            </Text>
+            {title && (
+              <Text
+                allowFontScaling={false}
+                style={[appliedStyles.text, textStyle]}
+                testID={`${testID}-text`}
+              >
+                {title}
+              </Text>
+            )}
+          </View>
+          {secondaryText && (
+            <View className="mt-1">
+              <Text className="text-center">{secondaryText}</Text>
+            </View>
           )}
         </View>
       </TouchableOpacity>
@@ -182,9 +190,9 @@ const styles = {
   base: StyleSheet.create({
     container: {},
     button: {
-      flexDirection: "row",
+      flexDirection: "col",
       minHeight: 45,
-      borderRadius: 45,
+      borderRadius: 35,
       paddingHorizontal: 30,
       paddingVertical: 10,
       alignSelf: "center",

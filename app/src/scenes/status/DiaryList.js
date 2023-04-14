@@ -5,6 +5,7 @@ import { DiaryDataContext } from "../../context/diaryData";
 import { formatDateThread } from "../../utils/date/helpers";
 import StatusItem from "./status-item";
 import { useNavigation } from "@react-navigation/native";
+import ConsultedItem from "./ConsultedItem";
 
 export const DiaryList = ({ ...props }) => {
   const navigation = useNavigation();
@@ -13,7 +14,7 @@ export const DiaryList = ({ ...props }) => {
   const renderItem = useCallback(
     ({ item: date }) => {
       return (
-        <View>
+        <View className="mb-2">
           <View className="flex flex-row items-center">
             <View className="w-2 h-2 rounded-full bg-primary" />
             <TouchableWithoutFeedback
@@ -27,6 +28,13 @@ export const DiaryList = ({ ...props }) => {
             </TouchableWithoutFeedback>
           </View>
           <StatusItem alert={diaryData[date]?.survey_alert} />
+          {diaryData[date] && diaryData[date]?.survey_alert != "green" && (
+            <ConsultedItem
+              navigation={navigation}
+              alertLevel={diaryData[date].survey_alert}
+              alertDate={date}
+            />
+          )}
         </View>
       );
     },

@@ -261,6 +261,7 @@ export const BeckStepTitles = [
 
 // TODO : make storage keys an object
 
+export const STORAGE_KEY_CONSULTED_RESULTS = "@CONSULTED_RESULTS";
 export const STORAGE_KEY_SURVEY_RESULTS = "@SURVEY_RESULTS";
 export const STORAGE_KEY_START_DATE = "@SURVEY_DATE";
 export const STORAGE_KEY_SYMPTOMS = "@SYMPTOMS";

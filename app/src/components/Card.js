@@ -8,7 +8,7 @@ import {
   Dimensions,
 } from "react-native";
 import Icon from "./Icon";
-import Lungs from "../../assets/onboarding/Lungs";
+import ArrowRightSvg from "../../assets/arrow-right.js";
 
 export const Card = ({
   preset, // 'lighten'
@@ -60,14 +60,7 @@ export const Card = ({
               <View style={styles.childrenContainer}>{children}</View>
             )}
           </View>
-          {onPress && (
-            <Icon
-              icon="ChevronRightSvg"
-              color="#000091"
-              height="16"
-              width="16"
-            />
-          )}
+          {onPress && <ArrowRightSvg color="#C7CED5" />}
         </View>
         {children && !mergeChildren && (
           <View style={styles.childrenContainer}>{children}</View>
@@ -91,6 +84,7 @@ const applyStyles = ({ preset }) => {
 
   applyIfNeeded(appliedStyles, "preset==='lighten'", "lighten");
   applyIfNeeded(appliedStyles, "preset==='grey'", "grey");
+  applyIfNeeded(appliedStyles, "preset==='orange'", "orange");
 
   return appliedStyles;
 };
@@ -154,6 +148,12 @@ const _styles = {
     container: {
       backgroundColor: "#F8F9FB",
       borderColor: "#E7EAF1",
+    },
+  }),
+  orange: StyleSheet.create({
+    container: {
+      backgroundColor: "#FFE1CE",
+      borderColor: "#FFB384",
     },
   }),
 };
