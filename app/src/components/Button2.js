@@ -120,7 +120,7 @@ export const Button2 = ({
               </Text>
             )}
           </View>
-          {secondaryText && (
+          {!!secondaryText && (
             <View className="mt-1">
               <Text className="text-center">{secondaryText}</Text>
             </View>

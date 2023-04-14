@@ -7,14 +7,6 @@ import dayjs from "dayjs";
 const ConsultedItem = ({ navigation, alertLevel, alertDate }) => {
   const [consultedData] = useContext(ConsultedDataContext);
 
-  if (
-    !consultedData[alertDate] &&
-    dayjs().subtract(4, "day").isAfter(alertDate)
-  ) {
-    // don't show ConsultedItem if diary older than 4 days (and it has not been answered)
-    return null;
-  }
-
   return (
     <View className="pl-[15px] ml-1 border-l-[0.4px] border-primary">
       <View className="mb-3">
@@ -61,9 +53,7 @@ const renderCard = (consultedDataItem, alertLevel, alertDate, navigation) => {
   return (
     <Card
       preset="grey"
-      text={`Vous avez ${renderActionType(
-        consultedDataItem.consulted_answer
-      )} un professionnel de santé`}
+      text={renderActionType(consultedDataItem.consulted_answer)}
       icon={"PhoneCheck"}
     />
   );
@@ -72,12 +62,12 @@ const renderCard = (consultedDataItem, alertLevel, alertDate, navigation) => {
 const renderActionType = (consultedAnswer) => {
   switch (consultedAnswer) {
     case "phone":
-      return "appelé";
+      return "Vous avez appelé un professionnel de santé";
 
     case "RDV":
-      return "pris RDV avec";
+      return "Vous avez pris RDV avec un professionnel de santé";
 
     default:
-      return "consulté";
+      return "Vous avez consulté un professionnel de santé";
   }
 };

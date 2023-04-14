@@ -18,12 +18,7 @@ const Consulted = ({ navigation, route }) => {
 
   return (
     <SafeAreaViewWithOptionalHeader style={onboardingStyles.safe}>
-      <View
-        style={{
-          ...onboardingStyles.topContainer,
-          flexDirection: "row-reverse",
-        }}
-      >
+      <View className="flex flex-row-reverse space-between">
         <CloseButton
           onPress={() => {
             navigation.navigate("tabs");

@@ -13,6 +13,7 @@ export const DiaryList = ({ ...props }) => {
 
   const renderItem = useCallback(
     ({ item: date }) => {
+      const surveyAlert = diaryData[date]?.survey_alert;
       return (
         <View className="mb-2">
           <View className="flex flex-row items-center">
@@ -27,14 +28,15 @@ export const DiaryList = ({ ...props }) => {
               </Text>
             </TouchableWithoutFeedback>
           </View>
-          <StatusItem alert={diaryData[date]?.survey_alert} />
-          {diaryData[date] && diaryData[date]?.survey_alert != "green" && (
-            <ConsultedItem
-              navigation={navigation}
-              alertLevel={diaryData[date].survey_alert}
-              alertDate={date}
-            />
-          )}
+          <StatusItem alert={surveyAlert} />
+          {!!surveyAlert &&
+            (surveyAlert === "orange" || surveyAlert === "red") && (
+              <ConsultedItem
+                navigation={navigation}
+                alertLevel={surveyAlert}
+                alertDate={date}
+              />
+            )}
         </View>
       );
     },
