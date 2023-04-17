@@ -15,7 +15,7 @@ export const DiaryList = ({ ...props }) => {
     ({ item: date }) => {
       const surveyAlert = diaryData[date]?.survey_alert;
       return (
-        <View className="mb-2">
+        <View>
           <View className="flex flex-row items-center">
             <View className="w-2 h-2 rounded-full bg-primary" />
             <TouchableWithoutFeedback
@@ -28,15 +28,17 @@ export const DiaryList = ({ ...props }) => {
               </Text>
             </TouchableWithoutFeedback>
           </View>
-          <StatusItem alert={surveyAlert} />
-          {!!surveyAlert &&
-            (surveyAlert === "orange" || surveyAlert === "red") && (
-              <ConsultedItem
-                navigation={navigation}
-                alertLevel={surveyAlert}
-                alertDate={date}
-              />
-            )}
+          <View className="pl-[15px] ml-1 -my-1 pb-1 border-l-[0.4px] border-primary">
+            <StatusItem alert={surveyAlert} />
+            {!!surveyAlert &&
+              (surveyAlert === "orange" || surveyAlert === "red") && (
+                <ConsultedItem
+                  navigation={navigation}
+                  alertLevel={surveyAlert}
+                  alertDate={date}
+                />
+              )}
+          </View>
         </View>
       );
     },

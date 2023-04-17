@@ -2,21 +2,13 @@ import React, { useContext } from "react";
 import { View } from "react-native";
 import { Card } from "../../components/Card";
 import { ConsultedDataContext } from "../../context/consultedData";
-import dayjs from "dayjs";
 
 const ConsultedItem = ({ navigation, alertLevel, alertDate }) => {
   const [consultedData] = useContext(ConsultedDataContext);
 
   return (
-    <View className="pl-[15px] ml-1 border-l-[0.4px] border-primary">
-      <View className="mb-3">
-        {renderCard(
-          consultedData[alertDate],
-          alertLevel,
-          alertDate,
-          navigation
-        )}
-      </View>
+    <View className="mb-4">
+      {renderCard(consultedData[alertDate], alertLevel, alertDate, navigation)}
     </View>
   );
 };
