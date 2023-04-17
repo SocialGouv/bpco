@@ -7,6 +7,7 @@ import PhoneSuiviSvg from "../../../assets/PhoneSuivi";
 import dayjs from "dayjs";
 import { Button2 } from "../../components/Button2";
 import CloseButton from "../../components/CloseButton";
+import Button from "../../components/Button";
 dayjs.locale("fr");
 
 const ConsultedDetails = ({ navigation, route }) => {
@@ -16,25 +17,17 @@ const ConsultedDetails = ({ navigation, route }) => {
   };
 
   return (
-    <SafeAreaViewWithOptionalHeader style={onboardingStyles.safe}>
-      <View
-        style={{
-          ...onboardingStyles.topContainer,
-          flexDirection: "row-reverse",
-        }}
-      >
+    <SafeAreaViewWithOptionalHeader className="bg-white flex">
+      <View className="flex flex-row-reverse space-between">
         <CloseButton
           onPress={() => {
             navigation.navigate("tabs");
           }}
         />
       </View>
-      <ScrollView
-        style={onboardingStyles.scroll}
-        contentContainerStyle={onboardingStyles.scrollContentContainer}
-      >
-        <View style={onboardingStyles.containerCentered}>
-          <View style={onboardingStyles.imageContainer}>
+      <ScrollView className="flex" contentContainerStyle={{ flexGrow: 1 }}>
+        <View className="justify-center items-stretch px-4 flex-grow">
+          <View className="my-5 justify-center align-center flex flex-row">
             <PhoneSuiviSvg />
           </View>
           <Text className="text-primary tablet:pb-4 text-2xl tablet:text-4xl font-[Karla-Bold] text-center">

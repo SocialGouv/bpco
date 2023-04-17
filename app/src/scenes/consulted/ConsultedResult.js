@@ -14,13 +14,10 @@ const ConsultedResult = ({ navigation, route }) => {
   const answered = route.params.answered;
 
   return (
-    <SafeAreaViewWithOptionalHeader style={onboardingStyles.safe}>
-      <ScrollView
-        style={onboardingStyles.scroll}
-        contentContainerStyle={onboardingStyles.scrollContentContainer}
-      >
-        <View style={onboardingStyles.containerCentered}>
-          <View style={onboardingStyles.imageContainer}>
+    <SafeAreaViewWithOptionalHeader className="bg-white flex">
+      <ScrollView className="flex" contentContainerStyle={{ flexGrow: 1 }}>
+        <View className="justify-center items-stretch px-4 flex flex-grow">
+          <View className="my-5 justify-center align-center flex flex-row">
             {answered ? <HandsHeartSvg /> : <PhoneSuiviSvg />}
           </View>
           <Text className="text-primary tablet:pb-4 text-2xl tablet:text-4xl font-[Karla-Bold] text-center mb-20">
