@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { View, ScrollView } from "react-native";
+import { View, ScrollView, TouchableOpacity } from "react-native";
 import Text from "../../components/MyText";
 import { onboardingStyles } from "../onboarding/styles";
 import { SafeAreaViewWithOptionalHeader } from "../onboarding/ProgressHeader";
@@ -34,33 +34,21 @@ const ConsultedDetails = ({ navigation, route }) => {
             Mon suivi
           </Text>
           <View className="mt-10">
-            <Button2
-              fill
-              preset="secondary"
-              style={{ marginBottom: 20 }}
-              title="J’ai appelé"
-              onPress={() => {
-                submitAnswer("phone");
-              }}
+            <ButtonDetails
+              answer="phone"
+              submitAnswer={submitAnswer}
+              title={"J’ai appelé"}
             />
-            <Button2
-              fill
-              preset="secondary"
-              style={{ marginBottom: 20 }}
-              title="J’ai pris RDV"
+            <ButtonDetails
+              answer="RDV"
+              submitAnswer={submitAnswer}
+              title={"J'ai pris RDV"}
               secondaryText="(médecins traitants / pneumologues / structures d’urgence)"
-              onPress={() => {
-                submitAnswer("RDV");
-              }}
             />
-            <Button2
-              fill
-              preset="secondary"
-              style={{ marginBottom: 20 }}
-              title="J’ai consulté"
-              onPress={() => {
-                submitAnswer("consultation");
-              }}
+            <ButtonDetails
+              answer="consultation"
+              submitAnswer={submitAnswer}
+              title={"J’ai consulté"}
             />
           </View>
         </View>
@@ -70,3 +58,33 @@ const ConsultedDetails = ({ navigation, route }) => {
 };
 
 export default ConsultedDetails;
+
+const ButtonDetails = ({
+  title,
+  submitAnswer,
+  answer,
+  secondaryText = null,
+}) => {
+  return (
+    <TouchableOpacity
+      onPress={() => {
+        submitAnswer(answer);
+      }}
+    >
+      <View
+        className={`flex justify-center py-2 px-8 rounded-[35px] border border-DARK_BLUE mb-5`}
+      >
+        <Text
+          className={`font-[Karla-Bold] text-center text-xl text-DARK_BLUE`}
+        >
+          {title}
+        </Text>
+        {!!secondaryText && (
+          <View className="mt-1">
+            <Text className="text-center text-DARK_BLUE">{secondaryText}</Text>
+          </View>
+        )}
+      </View>
+    </TouchableOpacity>
+  );
+};
