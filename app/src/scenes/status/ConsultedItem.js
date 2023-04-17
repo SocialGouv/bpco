@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { View } from "react-native";
-import { Card } from "../../components/Card";
+import { Card } from "./StatusCard";
 import { ConsultedDataContext } from "../../context/consultedData";
 
 const ConsultedItem = ({ navigation, alertLevel, alertDate }) => {
