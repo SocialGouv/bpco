@@ -44,7 +44,7 @@ export const Card = ({
     >
       <PressableIfNeeded>
         <View className="flex flex-row items-center justify-start">
-          {icon && (
+          {!!icon && (
             <Icon
               width={iconSize}
               height={iconSize}
@@ -57,14 +57,14 @@ export const Card = ({
             <Image {...image} className="mr-4 max-w-[40px] max-h-[40px]" />
           )}
           <View className="flex-shrink flex-grow flex-col">
-            {title && (
+            {!!title && (
               <Text
                 className={`mb-[2px] font-[Karla-Bold] text-left text-[#26387C] text-[${titleFontSize}]`}
               >
                 {title}
               </Text>
             )}
-            {text && (
+            {!!text && (
               <Text
                 className={`mb-[2px] font-[Karla] text-left text-[#26387C] text-[${textFontSize}]`}
               >
@@ -72,7 +72,7 @@ export const Card = ({
               </Text>
             )}
           </View>
-          {onPress && <ArrowRightSvg color="#C7CED5" />}
+          {!!onPress && <ArrowRightSvg color="#C7CED5" />}
         </View>
       </PressableIfNeeded>
     </View>
