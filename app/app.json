@@ -2,7 +2,7 @@
   "expo": {
     "name": "BPCO'Mieux",
     "slug": "bpco",
-    "version": "1.0.5",
+    "version": "1.1.0",
     "orientation": "portrait",
     "icon": "./assets/imgs/logo.png",
     "userInterfaceStyle": "light",
