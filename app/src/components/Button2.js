@@ -190,7 +190,7 @@ const styles = {
   base: StyleSheet.create({
     container: {},
     button: {
-      flexDirection: "col",
+      flexDirection: "column",
       minHeight: 45,
       borderRadius: 35,
       paddingHorizontal: 30,
