@@ -6,6 +6,7 @@ import { formatDateThread } from "../../utils/date/helpers";
 import StatusItem from "./status-item";
 import { useNavigation } from "@react-navigation/native";
 import ConsultedItem from "./ConsultedItem";
+import dayjs from "dayjs";
 
 export const DiaryList = ({ ...props }) => {
   const navigation = useNavigation();
@@ -14,6 +15,11 @@ export const DiaryList = ({ ...props }) => {
   const renderItem = useCallback(
     ({ item: date }) => {
       const surveyAlert = diaryData[date]?.survey_alert;
+      const showConsulted =
+        dayjs().diff(date, "day") >= 1 &&
+        !!surveyAlert &&
+        (surveyAlert === "orange" || surveyAlert === "red");
+
       return (
         <View>
           <View className="flex flex-row items-center">
@@ -30,14 +36,13 @@ export const DiaryList = ({ ...props }) => {
           </View>
           <View className="pl-[15px] ml-1 -my-1 pb-1 border-l-[0.4px] border-primary">
             <StatusItem alert={surveyAlert} />
-            {!!surveyAlert &&
-              (surveyAlert === "orange" || surveyAlert === "red") && (
-                <ConsultedItem
-                  navigation={navigation}
-                  alertLevel={surveyAlert}
-                  alertDate={date}
-                />
-              )}
+            {showConsulted && (
+              <ConsultedItem
+                navigation={navigation}
+                alertLevel={surveyAlert}
+                alertDate={date}
+              />
+            )}
           </View>
         </View>
       );

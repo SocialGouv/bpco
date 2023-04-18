@@ -321,7 +321,7 @@ export const fake3 = {
 };
 
 export const fake4 = {
-  "2023-04-11": {
+  "2023-04-15": {
     _version: 1,
     created_at: "2023-04-13T13:23:54.936Z",
     survey_alert: "red",
@@ -340,7 +340,7 @@ export const fake4 = {
     },
     survey_score: 17,
   },
-  "2023-04-12": {
+  "2023-04-16": {
     _version: 1,
     created_at: "2023-04-13T13:23:54.936Z",
     survey_alert: "orange",
@@ -359,7 +359,7 @@ export const fake4 = {
     },
     survey_score: 17,
   },
-  "2023-04-13": {
+  "2023-04-17": {
     _version: 1,
     created_at: "2023-04-14T06:18:13.170Z",
     survey_alert: "red",
