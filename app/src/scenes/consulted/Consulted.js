@@ -8,6 +8,7 @@ import { renderAlertIcon } from "../../utils";
 import dayjs from "dayjs";
 import { ConsultedBooleanInput } from "./ConsultedBooleanInput";
 import CloseButton from "../../components/CloseButton";
+import logEvents from "../../services/logEvents";
 dayjs.locale("fr");
 
 const Consulted = ({ navigation, route }) => {
@@ -20,6 +21,7 @@ const Consulted = ({ navigation, route }) => {
       <View className="flex flex-row-reverse space-between">
         <CloseButton
           onPress={() => {
+            // logEvents.logConsultedAnswer("close");
             navigation.navigate("tabs");
           }}
         />

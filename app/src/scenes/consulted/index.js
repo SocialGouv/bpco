@@ -5,6 +5,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import ConsultedResult from "./ConsultedResult";
 import { ConsultedDataContext } from "../../context/consultedData";
 import { formatDay } from "../../utils/date/helpers";
+import logEvents from "../../services/logEvents";
 
 const ConsultedRouter = ({ navigation, route }) => {
   const [consultedData, setConsultedData] = useContext(ConsultedDataContext);
@@ -21,9 +22,7 @@ const ConsultedRouter = ({ navigation, route }) => {
       },
     };
     setConsultedData(currentConsultedAnswer);
-    // logEvents.logSurveyValidate();
-    // logEvents.logSurveyScore(score);
-    // logEvents.logSurveyAlert(alert);
+    // logEvents.logConsultedDetails(answer);
   };
 
   const Stack = createStackNavigator();

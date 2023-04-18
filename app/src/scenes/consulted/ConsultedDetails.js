@@ -21,6 +21,7 @@ const ConsultedDetails = ({ navigation, route }) => {
       <View className="flex flex-row-reverse space-between">
         <CloseButton
           onPress={() => {
+            // logEvents.logConsultedAnswer("close");
             navigation.navigate("tabs");
           }}
         />

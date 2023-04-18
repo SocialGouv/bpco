@@ -1,6 +1,7 @@
 import React from "react";
 import { View, TouchableOpacity } from "react-native";
 import Text from "../../components/MyText";
+import logEvents from "../../services/logEvents";
 
 export const ConsultedBooleanInput = ({
   center = true,
@@ -15,6 +16,7 @@ export const ConsultedBooleanInput = ({
     >
       <TouchableOpacity
         onPress={() => {
+          // logEvents.logConsultedAnswer("yes");
           navigation.navigate("ConsultedDetails");
         }}
       >
