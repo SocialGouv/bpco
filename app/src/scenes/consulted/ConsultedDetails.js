@@ -8,11 +8,13 @@ import dayjs from "dayjs";
 import { Button2 } from "../../components/Button2";
 import CloseButton from "../../components/CloseButton";
 import Button from "../../components/Button";
+import logEvents from "../../services/logEvents";
 dayjs.locale("fr");
 
-const ConsultedDetails = ({ navigation, route }) => {
-  const submitAnswer = (answer) => {
-    route.params.submitAnswer(answer);
+const ConsultedDetails = ({ navigation, route, submitAnswer }) => {
+  const submitAnswerAndGoToResults = (answer) => {
+    logEvents.logConsultedDetails(answer);
+    submitAnswer(answer);
     navigation.navigate("ConsultedResult", { answered: true });
   };
 
@@ -21,7 +23,7 @@ const ConsultedDetails = ({ navigation, route }) => {
       <View className="flex flex-row-reverse space-between">
         <CloseButton
           onPress={() => {
-            // logEvents.logConsultedAnswer("close");
+            logEvents.logConsultedDetails("close");
             navigation.navigate("tabs");
           }}
         />
@@ -37,18 +39,18 @@ const ConsultedDetails = ({ navigation, route }) => {
           <View className="mt-10">
             <ButtonDetails
               answer="phone"
-              submitAnswer={submitAnswer}
+              submitAnswerAndGoToResults={submitAnswerAndGoToResults}
               title={"J’ai appelé"}
             />
             <ButtonDetails
               answer="RDV"
-              submitAnswer={submitAnswer}
+              submitAnswerAndGoToResults={submitAnswerAndGoToResults}
               title={"J'ai pris RDV"}
               secondaryText="(médecins traitants / pneumologues / structures d’urgence)"
             />
             <ButtonDetails
               answer="consultation"
-              submitAnswer={submitAnswer}
+              submitAnswerAndGoToResults={submitAnswerAndGoToResults}
               title={"J’ai consulté"}
             />
           </View>
@@ -62,14 +64,14 @@ export default ConsultedDetails;
 
 const ButtonDetails = ({
   title,
-  submitAnswer,
+  submitAnswerAndGoToResults,
   answer,
   secondaryText = null,
 }) => {
   return (
     <TouchableOpacity
       onPress={() => {
-        submitAnswer(answer);
+        submitAnswerAndGoToResults(answer);
       }}
     >
       <View

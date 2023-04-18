@@ -16,7 +16,7 @@ export const ConsultedBooleanInput = ({
     >
       <TouchableOpacity
         onPress={() => {
-          // logEvents.logConsultedAnswer("yes");
+          logEvents.logConsultedAnswer("yes");
           navigation.navigate("ConsultedDetails");
         }}
       >
@@ -28,6 +28,7 @@ export const ConsultedBooleanInput = ({
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => {
+          logEvents.logConsultedAnswer("no");
           submitAnswer("no");
           navigation.navigate("ConsultedResult", { answered: false });
         }}

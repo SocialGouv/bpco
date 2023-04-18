@@ -7,7 +7,7 @@ import { ConsultedDataContext } from "../../context/consultedData";
 import { formatDay } from "../../utils/date/helpers";
 import logEvents from "../../services/logEvents";
 
-const ConsultedRouter = ({ navigation, route }) => {
+const ConsultedRouter = ({ route }) => {
   const [consultedData, setConsultedData] = useContext(ConsultedDataContext);
   const alertLevel = route.params.alertLevel;
   const alertDate = route.params.alertDate;
@@ -22,7 +22,6 @@ const ConsultedRouter = ({ navigation, route }) => {
       },
     };
     setConsultedData(currentConsultedAnswer);
-    // logEvents.logConsultedDetails(answer);
   };
 
   const Stack = createStackNavigator();
@@ -34,14 +33,13 @@ const ConsultedRouter = ({ navigation, route }) => {
     >
       <Stack.Screen
         name={"Consulted"}
-        component={Consulted}
-        initialParams={{ alertLevel, alertDate, submitAnswer }}
-      />
-      <Stack.Screen
-        name={"ConsultedDetails"}
-        component={ConsultedDetails}
-        initialParams={{ submitAnswer }}
-      />
+        initialParams={{ alertLevel, alertDate }}
+      >
+        {(p) => <Consulted {...p} submitAnswer={submitAnswer} />}
+      </Stack.Screen>
+      <Stack.Screen name={"ConsultedDetails"}>
+        {(p) => <ConsultedDetails {...p} submitAnswer={submitAnswer} />}
+      </Stack.Screen>
       <Stack.Screen name={"ConsultedResult"} component={ConsultedResult} />
     </Stack.Navigator>
   );

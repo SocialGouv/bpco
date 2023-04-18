@@ -11,17 +11,16 @@ import CloseButton from "../../components/CloseButton";
 import logEvents from "../../services/logEvents";
 dayjs.locale("fr");
 
-const Consulted = ({ navigation, route }) => {
+const Consulted = ({ navigation, route, submitAnswer }) => {
   const alertLevel = route.params.alertLevel;
   const alertDate = route.params.alertDate;
-  const submitAnswer = route.params.submitAnswer;
 
   return (
     <SafeAreaViewWithOptionalHeader className="bg-white flex">
       <View className="flex flex-row-reverse space-between">
         <CloseButton
           onPress={() => {
-            // logEvents.logConsultedAnswer("close");
+            logEvents.logConsultedAnswer("close");
             navigation.navigate("tabs");
           }}
         />
