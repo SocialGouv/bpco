@@ -105,6 +105,7 @@ class Router extends React.Component {
           ref={(r) => (this.navigationRef = r)}
           onStateChange={this.onStateChange}
           linking={linking}
+          onReady={this.props.onReady}
         >
           <Stack.Navigator
             initialRouteName={this.props.initialRouteName}

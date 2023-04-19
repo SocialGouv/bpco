@@ -9,13 +9,15 @@ import { OnboardingProgressHeaderProvider } from "./src/scenes/onboarding/Progre
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import * as Notifications from "expo-notifications";
 import localStorage from "./src/utils/localStorage";
 import { StatusBar } from "expo-status-bar";
 import * as Sentry from "sentry-expo";
 import { SENTRY_DSN } from "./src/config";
 import { version } from "./app.json";
+
+SplashScreen.preventAutoHideAsync();
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -25,12 +27,10 @@ Notifications.setNotificationHandler({
   }),
 });
 
-SplashScreen.preventAutoHideAsync();
-
 Sentry.init({
   dsn: SENTRY_DSN,
-  enableInExpoDevelopment: true,
-  debug: __DEV__, // If `true`, Sentry will try to print out useful debugging information if something goes wrong with sending the event. Set it to `false` in production
+  // enableInExpoDevelopment: true,
+  // debug: __DEV__, // If `true`, Sentry will try to print out useful debugging information if something goes wrong with sending the event. Set it to `false` in production
 });
 
 export default function App() {
@@ -46,10 +46,13 @@ export default function App() {
       const onboardingIsDone = await localStorage.getOnboardingDone();
       if (!onboardingIsDone) setInitialRouteName("onboarding");
       else setInitialRouteName("tabs");
-      if (fontsLoaded) {
-        SplashScreen.hideAsync();
-      }
     })();
+  }, [fontsLoaded]);
+
+  const onReadyRootNavigator = useCallback(async () => {
+    if (fontsLoaded) {
+      await SplashScreen.hideAsync();
+    }
   }, [fontsLoaded]);
 
   if (!fontsLoaded) {
@@ -64,7 +67,10 @@ export default function App() {
             <OnboardingProgressHeaderProvider>
               <InfoModalProvider>
                 <StatusBar style="auto" />
-                <Router initialRouteName={initialRouteName} />
+                <Router
+                  initialRouteName={initialRouteName}
+                  onReady={onReadyRootNavigator}
+                />
                 {/* TODO <NPS /> */}
               </InfoModalProvider>
             </OnboardingProgressHeaderProvider>
