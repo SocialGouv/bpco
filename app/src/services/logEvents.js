@@ -182,7 +182,7 @@ const logConsultedAnswer = async (answer) => {
   await logEvent({
     category: CATEGORIES.CONSULTED,
     action: ACTIONS.CONSULTED_ANSWER,
-    value: answer,
+    name: answer,
   });
 };
 
@@ -190,7 +190,7 @@ const logConsultedDetails = async (answer) => {
   await logEvent({
     category: CATEGORIES.CONSULTED,
     action: ACTIONS.CONSULTED_DETAILS,
-    value: answer,
+    name: answer,
   });
 };
 
