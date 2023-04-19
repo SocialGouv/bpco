@@ -31,6 +31,7 @@ const Result = ({ navigation, route }) => {
               params: {
                 alertLevel: yesterdayAlertLevel,
                 alertDate: yesterdayAlertDate,
+                previousScreen: "day-survey-result",
               },
             },
           ],

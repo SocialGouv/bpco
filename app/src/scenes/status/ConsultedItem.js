@@ -26,6 +26,7 @@ const renderCard = (consultedDataItem, alertLevel, alertDate, navigation) => {
           navigation.push("consulted-after-alert", {
             alertLevel,
             alertDate,
+            previousScreen: "DiaryList",
           })
         }
       />

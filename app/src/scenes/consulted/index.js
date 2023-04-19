@@ -21,6 +21,8 @@ const ConsultedRouter = ({ route }) => {
         consulted_answer: answer,
       },
     };
+    logEvents.logConsultedDateAnswered(alertDate);
+    logEvents.logConsultedPreviousScreen(route.params.previousScreen ?? "");
     setConsultedData(currentConsultedAnswer);
   };
 

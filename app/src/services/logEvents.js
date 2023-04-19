@@ -129,6 +129,8 @@ const ACTIONS = {
   SURVEY_ITEM_CLICK: "SURVEY_ITEM_CLICK",
   CONSULTED_ANSWER: "CONSULTED_ANSWER",
   CONSULTED_DETAILS: "CONSULTED_DETAILS",
+  CONSULTED_DATE_ANSWERED: "CONSULTED_DATE_ANSWERED",
+  CONSULTED_PREVIOUS_SCREEN: "CONSULTED_PREVIOUS_SCREEN",
 };
 
 const logAppVisit = async () => {
@@ -183,6 +185,22 @@ const logConsultedAnswer = async (answer) => {
     category: CATEGORIES.CONSULTED,
     action: ACTIONS.CONSULTED_ANSWER,
     name: answer,
+  });
+};
+
+const logConsultedDateAnswered = async (date) => {
+  await logEvent({
+    category: CATEGORIES.CONSULTED,
+    action: ACTIONS.CONSULTED_DATE_ANSWERED,
+    name: date,
+  });
+};
+
+const logConsultedPreviousScreen = async (previousScreen) => {
+  await logEvent({
+    category: CATEGORIES.CONSULTED,
+    action: ACTIONS.CONSULTED_PREVIOUS_SCREEN,
+    name: previousScreen,
   });
 };
 
@@ -468,4 +486,6 @@ export default {
   logFamilyPhoneNumberValidate,
   logConsultedAnswer,
   logConsultedDetails,
+  logConsultedDateAnswered,
+  logConsultedPreviousScreen,
 };
