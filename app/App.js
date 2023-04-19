@@ -16,6 +16,7 @@ import { StatusBar } from "expo-status-bar";
 import * as Sentry from "sentry-expo";
 import { SENTRY_DSN } from "./src/config";
 import { version } from "./app.json";
+import { View } from "react-native";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -56,7 +57,8 @@ export default function App() {
   }, [fontsLoaded]);
 
   if (!fontsLoaded) {
-    return null;
+    console.log("LOADING...");
+    return <View />;
   }
 
   return (
