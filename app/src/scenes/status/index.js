@@ -21,7 +21,7 @@ import { Card } from "../../components/Card";
 import Text from "../../components/MyText";
 import Icon from "../../components/Icon";
 import dayjs from "dayjs";
-import { computeNewSurveyAvailable } from "../../utils";
+import { computeNewSurveyAvailable, computeShowNPS } from "../../utils";
 
 // import { updateInactivityReminder } from "../reminder/inactivityReminder";
 // import { useLatestChangesModal } from "../news/latestChangesModal";
@@ -60,6 +60,8 @@ const Status = ({ navigation }) => {
         console.log("we have a survey to do, lets redirect to it");
         return navigation.replace("day-survey");
       }
+
+      if (await computeShowNPS(diaryData)) setNPSvisible(true);
     })();
   }, [diaryData]);
 
@@ -70,6 +72,15 @@ const Status = ({ navigation }) => {
       })();
     }, [])
   );
+
+  const renderFooter = useCallback(() => {
+    return (
+      <>
+        <Bubble />
+        <ContributeCard onPress={() => setNPSvisible(true)} />
+      </>
+    );
+  }, [diaryData]);
 
   return (
     <SafeAreaView style={[styles.safe]} className="bg-primary flex-1">
@@ -94,7 +105,7 @@ const Status = ({ navigation }) => {
           </View>
         </View>
       )}
-      <DiaryList ListFooterComponent={<Bubble />} />
+      <DiaryList ListFooterComponent={renderFooter} />
     </SafeAreaView>
   );
 };
