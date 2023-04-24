@@ -6,7 +6,7 @@ import { renderAlertIcon, renderAlertText } from "../../utils";
 export default ({ alert }) => {
   if (alert) {
     return (
-      <View className="mb-4 pt-5">
+      <View className="mb-2 pt-5">
         <Card
           preset={alert !== "green" ? "orange" : "grey"}
           title={renderAlertText(alert)}
