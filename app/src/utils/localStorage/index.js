@@ -19,6 +19,7 @@ import {
   STORAGE_KEY_USER_SEX,
   STORAGE_KEY_USER_BIRTHYEAR,
   STORAGE_KEY_USER_WEIGHT,
+  STORAGE_KEY_LAST_NPS_SHOWN,
 } from "../constants";
 import { updateSymptomsFormatIfNeeded } from "./utils";
 
@@ -264,7 +265,21 @@ const getUserWeight = async () => {
 const setUserWeight = async (weight) =>
   await AsyncStorage.setItem(STORAGE_KEY_USER_WEIGHT, JSON.stringify(weight));
 
+const getLastNPSShown = async () => {
+  const lastNPSShown = await AsyncStorage.getItem(STORAGE_KEY_LAST_NPS_SHOWN);
+  if (lastNPSShown) {
+    return JSON.parse(lastNPSShown);
+  }
+};
+const setLastNPSShown = async (lastNPSShown) =>
+  await AsyncStorage.setItem(
+    STORAGE_KEY_LAST_NPS_SHOWN,
+    JSON.stringify(lastNPSShown)
+  );
+
 export default {
+  getLastNPSShown,
+  setLastNPSShown,
   getBirthyear,
   setBirthyear,
   getUserWeight,

@@ -14,8 +14,30 @@ import AlertComponent from "../../components/alerts";
 
 const Result = ({ navigation, route }) => {
   const alertLevel = route.params?.alert;
+  const yesterdayAlertDate = route.params?.yesterdayAlertDate;
+  const yesterdayAlertLevel = route.params?.yesterdayAlertLevel;
 
   const submitDay = async ({}) => {
+    if (
+      yesterdayAlertLevel &&
+      (yesterdayAlertLevel === "orange" || yesterdayAlertLevel === "red")
+    ) {
+      return navigation.dispatch(
+        CommonActions.reset({
+          index: 0,
+          routes: [
+            {
+              name: "consulted-after-alert",
+              params: {
+                alertLevel: yesterdayAlertLevel,
+                alertDate: yesterdayAlertDate,
+                previousScreen: "day-survey-result",
+              },
+            },
+          ],
+        })
+      );
+    }
     return navigation.dispatch(
       CommonActions.reset({
         index: 0,

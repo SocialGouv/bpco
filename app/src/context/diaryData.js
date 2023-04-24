@@ -25,33 +25,34 @@ import {
   fakeDiaryData2,
   fake3,
   startDate as fakeStartDate,
+  fake4,
 } from "../scenes/status/fake-diary-data";
 import { beforeToday, formatDay, getArrayOfDates } from "../utils/date/helpers";
 
 const wipeData = async () => {
-  await AsyncStorage.removeItem(STORAGE_KEY_START_DATE);
+  // await AsyncStorage.removeItem(STORAGE_KEY_START_DATE);
   await AsyncStorage.removeItem(STORAGE_KEY_SURVEY_RESULTS);
-  await AsyncStorage.removeItem(STORAGE_KEY_SYMPTOMS);
-  await AsyncStorage.removeItem(STORAGE_KEY_INDICATEURS);
-  await AsyncStorage.removeItem(STORAGE_KEY_IS_FIRST_LAUNCH);
-  await AsyncStorage.removeItem(STORAGE_KEY_USER_TYPE);
-  await AsyncStorage.removeItem(STORAGE_KEY_MEDICAL_TREATMENT);
-  await AsyncStorage.removeItem(STORAGE_KEY_NOTES_VERSION);
-  await AsyncStorage.removeItem(STORAGE_KEY_VISIT_PRO_NPS);
-  await AsyncStorage.removeItem(STORAGE_KEY_CUSTOM_DRUGS);
-  await AsyncStorage.removeItem(STORAGE_KEY_IS_BECK_ACTIVATED);
-  await AsyncStorage.removeItem(STORAGE_KEY_BECK_WHERE_LIST);
-  await AsyncStorage.removeItem(STORAGE_KEY_BECK_WHO_LIST);
-  await AsyncStorage.removeItem(STORAGE_KEY_BECK_SENSATION_LIST);
-  await AsyncStorage.removeItem(STORAGE_KEY_BECK_EMOTION_LIST);
-  await AsyncStorage.removeItem(STORAGE_KEY_ONBOARDING_STEP);
-  await AsyncStorage.removeItem(STORAGE_KEY_ONBOARDING_DONE);
-  await AsyncStorage.removeItem("@Reminder");
+  // await AsyncStorage.removeItem(STORAGE_KEY_SYMPTOMS);
+  // await AsyncStorage.removeItem(STORAGE_KEY_INDICATEURS);
+  // await AsyncStorage.removeItem(STORAGE_KEY_IS_FIRST_LAUNCH);
+  // await AsyncStorage.removeItem(STORAGE_KEY_USER_TYPE);
+  // await AsyncStorage.removeItem(STORAGE_KEY_MEDICAL_TREATMENT);
+  // await AsyncStorage.removeItem(STORAGE_KEY_NOTES_VERSION);
+  // await AsyncStorage.removeItem(STORAGE_KEY_VISIT_PRO_NPS);
+  // await AsyncStorage.removeItem(STORAGE_KEY_CUSTOM_DRUGS);
+  // await AsyncStorage.removeItem(STORAGE_KEY_IS_BECK_ACTIVATED);
+  // await AsyncStorage.removeItem(STORAGE_KEY_BECK_WHERE_LIST);
+  // await AsyncStorage.removeItem(STORAGE_KEY_BECK_WHO_LIST);
+  // await AsyncStorage.removeItem(STORAGE_KEY_BECK_SENSATION_LIST);
+  // await AsyncStorage.removeItem(STORAGE_KEY_BECK_EMOTION_LIST);
+  // await AsyncStorage.removeItem(STORAGE_KEY_ONBOARDING_STEP);
+  // await AsyncStorage.removeItem(STORAGE_KEY_ONBOARDING_DONE);
+  // await AsyncStorage.removeItem("@Reminder");
 };
 
 export const setupFakeData = async () => {
   await AsyncStorage.setItem(STORAGE_KEY_START_DATE, formatDay(fakeStartDate));
-  await AsyncStorage.setItem(STORAGE_KEY_SURVEY_RESULTS, JSON.stringify(fake3));
+  await AsyncStorage.setItem(STORAGE_KEY_SURVEY_RESULTS, JSON.stringify(fake4));
 };
 
 const fillUpEmptyDates = (startDate, data) => {

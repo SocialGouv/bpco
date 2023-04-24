@@ -95,6 +95,7 @@ const CATEGORIES = {
   RECOMMEND: "RECOMMEND",
   PROFILE: "PROFILE",
   SURVEY: "SURVEY",
+  CONSULTED: "CONSULTED",
 };
 const ACTIONS = {
   APP_OPEN: "APP_OPEN",
@@ -126,6 +127,10 @@ const ACTIONS = {
   SURVEY_SCORE: "SURVEY_SCORE",
   SURVEY_ALERT: "SURVEY_ALERT",
   SURVEY_ITEM_CLICK: "SURVEY_ITEM_CLICK",
+  CONSULTED_ANSWER: "CONSULTED_ANSWER",
+  CONSULTED_DETAILS: "CONSULTED_DETAILS",
+  CONSULTED_DATE_ANSWERED: "CONSULTED_DATE_ANSWERED",
+  CONSULTED_PREVIOUS_SCREEN: "CONSULTED_PREVIOUS_SCREEN",
 };
 
 const logAppVisit = async () => {
@@ -172,6 +177,38 @@ const logSurveyAlert = async (alert) => {
     category: CATEGORIES.SURVEY,
     action: ACTIONS.SURVEY_ALERT,
     name: alert,
+  });
+};
+
+const logConsultedAnswer = async (answer) => {
+  await logEvent({
+    category: CATEGORIES.CONSULTED,
+    action: ACTIONS.CONSULTED_ANSWER,
+    name: answer,
+  });
+};
+
+const logConsultedDateAnswered = async (date) => {
+  await logEvent({
+    category: CATEGORIES.CONSULTED,
+    action: ACTIONS.CONSULTED_DATE_ANSWERED,
+    name: date,
+  });
+};
+
+const logConsultedPreviousScreen = async (previousScreen) => {
+  await logEvent({
+    category: CATEGORIES.CONSULTED,
+    action: ACTIONS.CONSULTED_PREVIOUS_SCREEN,
+    name: previousScreen,
+  });
+};
+
+const logConsultedDetails = async (answer) => {
+  await logEvent({
+    category: CATEGORIES.CONSULTED,
+    action: ACTIONS.CONSULTED_DETAILS,
+    name: answer,
   });
 };
 
@@ -447,4 +484,8 @@ export default {
   logOnboardingFamilyPhoneNumberValidate,
   logOnboardingFamilyPhoneNumberLater,
   logFamilyPhoneNumberValidate,
+  logConsultedAnswer,
+  logConsultedDetails,
+  logConsultedDateAnswered,
+  logConsultedPreviousScreen,
 };
