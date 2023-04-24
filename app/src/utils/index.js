@@ -28,7 +28,6 @@ import {
   STORAGE_KEY_OXYGEN,
   STORAGE_KEY_LAST_NPS_SHOWN,
 } from "../utils/constants";
-import dayjs from "dayjs";
 
 export const classNames = (...classes) => {
   return classes.filter(Boolean).join(" ");
