@@ -118,8 +118,7 @@ export const computeNewSurveyAvailable = (diaryData) => {
 
 export const computeShowNPS = async (diaryData) => {
   const lastNPS = await localStorage.getLastNPSShown();
-  if (!!lastNPS && dayjs(lastNPS).isAfter(dayjs().subtract(3, "day")))
-    return false;
+  if (!!lastNPS) return false;
 
   const daysAnswered = Object.keys(diaryData).filter((day) => !!diaryData[day]);
   if (daysAnswered.length < 3) return false;
