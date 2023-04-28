@@ -134,6 +134,24 @@ const ACTIONS = {
   CONSULTED_PREVIOUS_SCREEN: "CONSULTED_PREVIOUS_SCREEN",
   REMINDER_SET: "REMINDER_SET",
   REMINDER_VALIDATE: "REMINDER_VALIDATE",
+  PUSH_NOTIFICATIONS_REGISTER_ERROR_FINAL_STATUS:
+    "PUSH_NOTIFICATIONS_REGISTER_ERROR_FINAL_STATUS",
+  PUSH_NOTIFICATIONS_REGISTER_ERROR_DEVICE:
+    "PUSH_NOTIFICATIONS_REGISTER_ERROR_DEVICE",
+};
+
+const logPushNotificationsRegisterErrorFinalStatus = async () => {
+  await logEvent({
+    category: CATEGORIES.REMINDER,
+    action: ACTIONS.PUSH_NOTIFICATIONS_REGISTER_ERROR_FINAL_STATUS,
+  });
+};
+
+const logPushNotificationsRegisterErrorDevice = async () => {
+  await logEvent({
+    category: CATEGORIES.REMINDER,
+    action: ACTIONS.PUSH_NOTIFICATIONS_REGISTER_ERROR_DEVICE,
+  });
 };
 
 const logOnboardingReminderSet = async (reminder) => {
@@ -144,7 +162,7 @@ const logOnboardingReminderSet = async (reminder) => {
   });
 };
 
-const loggOnboardingReminderValidate = async (reminder) => {
+const logOnboardingReminderValidate = async (reminder) => {
   await logEvent({
     category: CATEGORIES.ONBOARDING,
     action: ACTIONS.REMINDER_VALIDATE,
@@ -525,6 +543,8 @@ export default {
   logConsultedPreviousScreen,
   logReminderValidate,
   logReminderSet,
-  loggOnboardingReminderValidate,
+  logOnboardingReminderValidate,
   logOnboardingReminderSet,
+  logPushNotificationsRegisterErrorDevice,
+  logPushNotificationsRegisterErrorFinalStatus,
 };

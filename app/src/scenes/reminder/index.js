@@ -59,7 +59,6 @@ const Reminder = ({ navigation, route }) => {
     if (!dayjs(newReminder).isValid()) return;
     setReminder(dayjs(newReminder));
     setReminderSetupVisible(false);
-    // TODO: save reminder, schedule notification...
     await localStorage.setReminder(newReminder);
     await registerForPushNotificationsAsync();
     await scheduleDailyReminer(
@@ -155,6 +154,7 @@ const registerForPushNotificationsAsync = async () => {
     if (finalStatus !== "granted") {
       // alert("Failed to get push token for push notification!");
       Alert.alert("Erreur", "impossible d'activer les notifications");
+      logEvents.logPushNotificationsRegisterErrorFinalStatus(finalStatus);
       return;
     }
     // token = (await Notifications.getExpoPushTokenAsync()).data;
@@ -165,6 +165,8 @@ const registerForPushNotificationsAsync = async () => {
       "Erreur",
       "impossible d'activer les notifications sur cet appareil"
     );
+    logEvents.logPushNotificationsRegisterErrorDevice(finalStatus);
+    return;
   }
 
   // return token;
