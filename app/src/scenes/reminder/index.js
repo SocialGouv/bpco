@@ -165,7 +165,7 @@ const registerForPushNotificationsAsync = async () => {
       "Erreur",
       "impossible d'activer les notifications sur cet appareil"
     );
-    logEvents.logPushNotificationsRegisterErrorDevice(finalStatus);
+    logEvents.logPushNotificationsRegisterErrorDevice();
     return;
   }
 

@@ -140,10 +140,11 @@ const ACTIONS = {
     "PUSH_NOTIFICATIONS_REGISTER_ERROR_DEVICE",
 };
 
-const logPushNotificationsRegisterErrorFinalStatus = async () => {
+const logPushNotificationsRegisterErrorFinalStatus = async (finalStatus) => {
   await logEvent({
     category: CATEGORIES.REMINDER,
     action: ACTIONS.PUSH_NOTIFICATIONS_REGISTER_ERROR_FINAL_STATUS,
+    name: finalStatus,
   });
 };
 
