@@ -24,6 +24,7 @@ import { colors } from "../../utils/colors";
 import dayjs from "dayjs";
 import * as Device from "expo-device";
 import * as Notifications from "expo-notifications";
+import logEvents from "../../services/logEvents";
 
 const Reminder = ({ navigation, route }) => {
   const DEFAULT_REMINDER = dayjs().hour(8).minute(0);
@@ -45,6 +46,10 @@ const Reminder = ({ navigation, route }) => {
     if (!existingReminder) {
       setReminderRequest(DEFAULT_REMINDER);
     }
+
+    inOnboarding
+      ? logEvents.logOnboardingReminderValidate(reminder)
+      : logEvents.logReminderValidate(reminder);
     navigation.navigate(
       inOnboarding ? ONBOARDING_STEPS.STEP_EXPLANATION : "tabs"
     );
@@ -62,9 +67,9 @@ const Reminder = ({ navigation, route }) => {
       dayjs(newReminder).get("minute")
     );
 
-    // await scheduleNotification(newReminder);
-    // const scheduled =
-    //   await NotificationService.getScheduledLocalNotifications();
+    inOnboarding
+      ? logEvents.logOnboardingReminderSet(reminder)
+      : logEvents.logReminderSet(reminder);
   };
 
   return (

@@ -34,7 +34,7 @@ export const DiaryList = ({ ...props }) => {
               </Text>
             </TouchableWithoutFeedback>
           </View>
-          <View className="pl-[15px] ml-1 -my-1 pb-1 border-l-[0.4px] border-primary">
+          <View className="pl-[15px] ml-1 -my-1 pb-3 border-l-[0.4px] border-primary">
             <StatusItem alert={surveyAlert} />
             {showConsulted ? (
               <ConsultedItem

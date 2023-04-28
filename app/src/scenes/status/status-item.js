@@ -15,6 +15,6 @@ export default ({ alert }) => {
       </View>
     );
   } else {
-    return <View className="my-4" />;
+    return <View className="my-2" />;
   }
 };

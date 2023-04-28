@@ -96,6 +96,7 @@ const CATEGORIES = {
   PROFILE: "PROFILE",
   SURVEY: "SURVEY",
   CONSULTED: "CONSULTED",
+  REMINDER: "REMINDER",
 };
 const ACTIONS = {
   APP_OPEN: "APP_OPEN",
@@ -131,6 +132,40 @@ const ACTIONS = {
   CONSULTED_DETAILS: "CONSULTED_DETAILS",
   CONSULTED_DATE_ANSWERED: "CONSULTED_DATE_ANSWERED",
   CONSULTED_PREVIOUS_SCREEN: "CONSULTED_PREVIOUS_SCREEN",
+  REMINDER_SET: "REMINDER_SET",
+  REMINDER_VALIDATE: "REMINDER_VALIDATE",
+};
+
+const logOnboardingReminderSet = async (reminder) => {
+  await logEvent({
+    category: CATEGORIES.ONBOARDING,
+    action: ACTIONS.REMINDER_SET,
+    name: reminder,
+  });
+};
+
+const loggOnboardingReminderValidate = async (reminder) => {
+  await logEvent({
+    category: CATEGORIES.ONBOARDING,
+    action: ACTIONS.REMINDER_VALIDATE,
+    name: reminder,
+  });
+};
+
+const logReminderSet = async (reminder) => {
+  await logEvent({
+    category: CATEGORIES.REMINDER,
+    action: ACTIONS.REMINDER_SET,
+    name: reminder,
+  });
+};
+
+const logReminderValidate = async (reminder) => {
+  await logEvent({
+    category: CATEGORIES.REMINDER,
+    action: ACTIONS.REMINDER_VALIDATE,
+    name: reminder,
+  });
 };
 
 const logAppVisit = async () => {
@@ -488,4 +523,8 @@ export default {
   logConsultedDetails,
   logConsultedDateAnswered,
   logConsultedPreviousScreen,
+  logReminderValidate,
+  logReminderSet,
+  loggOnboardingReminderValidate,
+  logOnboardingReminderSet,
 };
