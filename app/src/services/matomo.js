@@ -82,7 +82,6 @@ class Api {
         throw new Error("matomo not initialized yet");
       }
       if (__DEV__) {
-        return;
         console.log(
           "not sending",
           JSON.stringify(
@@ -95,6 +94,7 @@ class Api {
             2
           )
         );
+        return;
       }
       const url = `${this.baseUrl}?${this.computeParams(params, this.idsite)}`;
       const res = await fetch(encodeURI(url));

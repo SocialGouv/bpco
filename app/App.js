@@ -3,6 +3,7 @@ import "react-native-gesture-handler";
 import Router from "./src/navigation/router";
 // TODO import NPS from "./src/services/NPS/NPS";
 import { DiaryDataProvider } from "./src/context/diaryData";
+import { ConsultedDataProvider } from "./src/context/consultedData";
 import { NeedUpdateContextProvider } from "./src/context/needUpdate";
 import { InfoModalProvider } from "./src/components/InfoModal";
 import { OnboardingProgressHeaderProvider } from "./src/scenes/onboarding/ProgressHeader";
@@ -66,16 +67,18 @@ export default function App() {
       <SafeAreaProvider>
         <NeedUpdateContextProvider>
           <DiaryDataProvider>
-            <OnboardingProgressHeaderProvider>
-              <InfoModalProvider>
-                <StatusBar style="auto" />
-                <Router
-                  initialRouteName={initialRouteName}
-                  onReady={onReadyRootNavigator}
-                />
-                {/* TODO <NPS /> */}
-              </InfoModalProvider>
-            </OnboardingProgressHeaderProvider>
+            <ConsultedDataProvider>
+              <OnboardingProgressHeaderProvider>
+                <InfoModalProvider>
+                  <StatusBar style="auto" />
+                  <Router
+                    initialRouteName={initialRouteName}
+                    onReady={onReadyRootNavigator}
+                  />
+                  {/* TODO <NPS /> */}
+                </InfoModalProvider>
+              </OnboardingProgressHeaderProvider>
+            </ConsultedDataProvider>
           </DiaryDataProvider>
         </NeedUpdateContextProvider>
       </SafeAreaProvider>

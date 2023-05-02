@@ -26,6 +26,7 @@ import {
   STORAGE_KEY_REMINDER,
   STORAGE_KEY_VENTILATION_DEVICE,
   STORAGE_KEY_OXYGEN,
+  STORAGE_KEY_LAST_NPS_SHOWN,
 } from "../utils/constants";
 
 export const classNames = (...classes) => {
@@ -114,6 +115,17 @@ export const computeNewSurveyAvailable = (diaryData) => {
   return !diaryData || !diaryData[formatDay(beforeToday(0))];
 };
 
+export const computeShowNPS = async (diaryData) => {
+  const lastNPS = await localStorage.getLastNPSShown();
+  if (!!lastNPS) return false;
+
+  const daysAnswered = Object.keys(diaryData).filter((day) => !!diaryData[day]);
+  if (daysAnswered.length < 3) return false;
+
+  await localStorage.setLastNPSShown(formatDay(beforeToday(0)));
+  return true;
+};
+
 export const wipeData = async () => {
   await AsyncStorage.removeItem(STORAGE_KEY_START_DATE);
   await AsyncStorage.removeItem(STORAGE_KEY_SURVEY_RESULTS);
@@ -139,5 +151,6 @@ export const wipeData = async () => {
   await AsyncStorage.removeItem(STORAGE_KEY_REMINDER);
   await AsyncStorage.removeItem(STORAGE_KEY_VENTILATION_DEVICE);
   await AsyncStorage.removeItem(STORAGE_KEY_OXYGEN);
+  await AsyncStorage.removeItem(STORAGE_KEY_LAST_NPS_SHOWN);
   await AsyncStorage.removeItem("@Reminder");
 };

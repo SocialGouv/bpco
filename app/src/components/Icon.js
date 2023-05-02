@@ -51,6 +51,10 @@ import AlertOrangeSVG from "../../assets/onboarding/AlertOrange";
 import WarnFamilyPhone from "../../assets/WarnFamilyPhone";
 import Profile from "../../assets/Profile";
 import LinkSvg from "../../assets/Link";
+import QuestionMark from "../../assets/QuestionMark";
+import QuestionSetting from "../../assets/QuestionSetting";
+import PhoneCheck from "../../assets/PhoneCheck";
+import HandCross from "../../assets/HandCross";
 
 import {
   StyleSheet,
@@ -62,6 +66,10 @@ import {
 
 const mapIconToSvg = (icon) => {
   const iconMap = {
+    HandCross,
+    PhoneCheck,
+    QuestionSetting,
+    QuestionMark,
     WarnFamilyPhone,
     Profile,
     AlertOrangeSVG,

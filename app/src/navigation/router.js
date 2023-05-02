@@ -22,6 +22,7 @@ import Reminder from "../scenes/reminder";
 import SetWarnFamily from "../scenes/warnFamily";
 import Profile from "../scenes/profile";
 import MedicalSources from "../scenes/medical-sources";
+import ConsultedRouter from "../scenes/consulted";
 
 const Stack = createStackNavigator();
 
@@ -122,6 +123,10 @@ class Router extends React.Component {
             <Stack.Screen
               name="day-survey-result"
               component={DaySurveyResult}
+            />
+            <Stack.Screen
+              name="consulted-after-alert"
+              component={ConsultedRouter}
             />
             <Stack.Screen name="reminder" component={Reminder} />
             <Stack.Screen name="set-warn-family" component={SetWarnFamily} />
