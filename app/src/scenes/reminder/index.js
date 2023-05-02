@@ -24,6 +24,7 @@ import { colors } from "../../utils/colors";
 import dayjs from "dayjs";
 import * as Device from "expo-device";
 import * as Notifications from "expo-notifications";
+import logEvents from "../../services/logEvents";
 
 const Reminder = ({ navigation, route }) => {
   const DEFAULT_REMINDER = dayjs().hour(8).minute(0);
@@ -45,6 +46,10 @@ const Reminder = ({ navigation, route }) => {
     if (!existingReminder) {
       setReminderRequest(DEFAULT_REMINDER);
     }
+
+    inOnboarding
+      ? logEvents.logOnboardingReminderValidate(reminder)
+      : logEvents.logReminderValidate(reminder);
     navigation.navigate(
       inOnboarding ? ONBOARDING_STEPS.STEP_EXPLANATION : "tabs"
     );
@@ -54,7 +59,6 @@ const Reminder = ({ navigation, route }) => {
     if (!dayjs(newReminder).isValid()) return;
     setReminder(dayjs(newReminder));
     setReminderSetupVisible(false);
-    // TODO: save reminder, schedule notification...
     await localStorage.setReminder(newReminder);
     await registerForPushNotificationsAsync();
     await scheduleDailyReminer(
@@ -62,9 +66,9 @@ const Reminder = ({ navigation, route }) => {
       dayjs(newReminder).get("minute")
     );
 
-    // await scheduleNotification(newReminder);
-    // const scheduled =
-    //   await NotificationService.getScheduledLocalNotifications();
+    inOnboarding
+      ? logEvents.logOnboardingReminderSet(reminder)
+      : logEvents.logReminderSet(reminder);
   };
 
   return (
@@ -150,6 +154,7 @@ const registerForPushNotificationsAsync = async () => {
     if (finalStatus !== "granted") {
       // alert("Failed to get push token for push notification!");
       Alert.alert("Erreur", "impossible d'activer les notifications");
+      logEvents.logPushNotificationsRegisterErrorFinalStatus(finalStatus);
       return;
     }
     // token = (await Notifications.getExpoPushTokenAsync()).data;
@@ -160,6 +165,8 @@ const registerForPushNotificationsAsync = async () => {
       "Erreur",
       "impossible d'activer les notifications sur cet appareil"
     );
+    logEvents.logPushNotificationsRegisterErrorDevice();
+    return;
   }
 
   // return token;
