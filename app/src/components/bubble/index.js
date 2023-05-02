@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import ReminderBubble from "./reminder-bubble";
-const ReminderStorageKey = "@Reminder";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import localStorage from "../../utils/localStorage";
 
 export default () => {
   const navigation = useNavigation();
@@ -11,7 +10,7 @@ export default () => {
   useFocusEffect(
     React.useCallback(() => {
       (async () => {
-        const reminder = await AsyncStorage.getItem(ReminderStorageKey);
+        const reminder = await localStorage.getReminder();
         setReminderBubbleVisible(!reminder);
       })();
     }, [])
