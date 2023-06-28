@@ -1,8 +1,8 @@
+import React from "react";
 import dayjs from "dayjs";
 import "dayjs/locale/fr";
 import { CommonActions } from "@react-navigation/native";
 import * as SMS from "expo-sms";
-import React from "react";
 import { Alert, Keyboard, StyleSheet, View } from "react-native";
 import { Button2 } from "../../components/Button2";
 import Text from "../../components/MyText";
@@ -14,14 +14,13 @@ import AlertComponent from "../../components/alerts";
 
 const Result = ({ navigation, route }) => {
   const alertLevel = route.params?.alert;
-  const yesterdayAlertDate = route.params?.yesterdayAlertDate;
-  const yesterdayAlertLevel = route.params?.yesterdayAlertLevel;
 
   const submitDay = async ({}) => {
-    if (
-      yesterdayAlertLevel &&
-      (yesterdayAlertLevel === "orange" || yesterdayAlertLevel === "red")
-    ) {
+    const needSurveyFeedback = await localStorage.getNeedSurveyFeedback();
+    const needSurveyFeedbackItem = (needSurveyFeedback || []).find(
+      (e) => e.date !== dayjs().format("YYYY-MM-DD")
+    );
+    if (needSurveyFeedbackItem) {
       return navigation.dispatch(
         CommonActions.reset({
           index: 0,
@@ -29,8 +28,8 @@ const Result = ({ navigation, route }) => {
             {
               name: "consulted-after-alert",
               params: {
-                alertLevel: yesterdayAlertLevel,
-                alertDate: yesterdayAlertDate,
+                alertLevel: needSurveyFeedbackItem.data.survey_alert,
+                alertDate: needSurveyFeedbackItem.date,
                 previousScreen: "day-survey-result",
               },
             },

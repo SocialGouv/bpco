@@ -6,6 +6,7 @@ import ConsultedResult from "./ConsultedResult";
 import { ConsultedDataContext } from "../../context/consultedData";
 import { formatDay } from "../../utils/date/helpers";
 import logEvents from "../../services/logEvents";
+import localStorage from "../../utils/localStorage";
 
 const ConsultedRouter = ({ route }) => {
   const [consultedData, setConsultedData] = useContext(ConsultedDataContext);
@@ -24,6 +25,11 @@ const ConsultedRouter = ({ route }) => {
     logEvents.logConsultedDateAnswered(alertDate);
     logEvents.logConsultedPreviousScreen(route.params.previousScreen ?? "");
     setConsultedData(currentConsultedAnswer);
+    await localStorage.deleteNeedSurveyFeedbackItem({ date: alertDate });
+  };
+
+  const onClose = async () => {
+    await localStorage.deleteNeedSurveyFeedbackItem({ date: alertDate });
   };
 
   const Stack = createStackNavigator();
@@ -37,7 +43,9 @@ const ConsultedRouter = ({ route }) => {
         name={"Consulted"}
         initialParams={{ alertLevel, alertDate }}
       >
-        {(p) => <Consulted {...p} submitAnswer={submitAnswer} />}
+        {(p) => (
+          <Consulted {...p} submitAnswer={submitAnswer} onClose={onClose} />
+        )}
       </Stack.Screen>
       <Stack.Screen name={"ConsultedDetails"}>
         {(p) => <ConsultedDetails {...p} submitAnswer={submitAnswer} />}

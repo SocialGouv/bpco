@@ -19,6 +19,7 @@ import {
   STORAGE_KEY_BECK_EMOTION_LIST,
   STORAGE_KEY_ONBOARDING_STEP,
   STORAGE_KEY_ONBOARDING_DONE,
+  STORAGE_KEY_NEED_SURVEY_FEEDBACK,
 } from "../utils/constants";
 import {
   fakeDiaryData,
@@ -31,7 +32,7 @@ import { beforeToday, formatDay, getArrayOfDates } from "../utils/date/helpers";
 
 const wipeData = async () => {
   // await AsyncStorage.removeItem(STORAGE_KEY_START_DATE);
-  await AsyncStorage.removeItem(STORAGE_KEY_SURVEY_RESULTS);
+  // await AsyncStorage.removeItem(STORAGE_KEY_SURVEY_RESULTS);
   // await AsyncStorage.removeItem(STORAGE_KEY_SYMPTOMS);
   // await AsyncStorage.removeItem(STORAGE_KEY_INDICATEURS);
   // await AsyncStorage.removeItem(STORAGE_KEY_IS_FIRST_LAUNCH);
@@ -47,6 +48,7 @@ const wipeData = async () => {
   // await AsyncStorage.removeItem(STORAGE_KEY_BECK_EMOTION_LIST);
   // await AsyncStorage.removeItem(STORAGE_KEY_ONBOARDING_STEP);
   // await AsyncStorage.removeItem(STORAGE_KEY_ONBOARDING_DONE);
+  // await AsyncStorage.removeItem(STORAGE_KEY_NEED_SURVEY_FEEDBACK);
   // await AsyncStorage.removeItem("@Reminder");
 };
 
