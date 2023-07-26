@@ -11,5 +11,6 @@ jobs:
       use: build
       with:
         imagePackage: api
+        context: ./api 
         buildArgs:
           COMMIT_SHA: "{{ $.Values.global.sha }}"
