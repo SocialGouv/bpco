@@ -1,7 +1,10 @@
 projectName: bpco-mieux
 ciNamespace: ci-bpco-mieux
+
 dependencies:
   fabrique:
-    import: socialgouv/kontinuous/plugins/fabrique
-    options:
-      registry: ghcr.io
+    extends:
+    - name: ovh
+      ifEnv: [dev,preprod]
+    - name: buildkit-service
+      ifEnv: [dev,preprod]

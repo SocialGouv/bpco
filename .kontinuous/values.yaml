@@ -1,5 +1,16 @@
 api:
   ~chart: app
+  ~needs: [build-api]
   imagePackage: api
   containerPort: 3000
   probesPath: "/healthz"
+
+jobs:
+  runs:
+    build-api:
+      use: build
+      with:
+        imagePackage: api
+        context: ./api 
+        buildArgs:
+          COMMIT_SHA: "{{ $.Values.global.sha }}"
