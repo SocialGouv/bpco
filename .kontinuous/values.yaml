@@ -5,9 +5,9 @@ api:
   containerPort: 3000
   probesPath: "/healthz"
   securityContext:
-    fsGroup: 101
-    runAsUser: 101
-    runAsGroup: 101
+    fsGroup: 1000
+    runAsUser: 1000
+    runAsGroup: 1000
 
 jobs:
   runs:
