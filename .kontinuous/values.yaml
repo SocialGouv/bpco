@@ -4,6 +4,10 @@ api:
   imagePackage: api
   containerPort: 3000
   probesPath: "/healthz"
+  securityContext:
+    fsGroup: 1000
+    runAsUser: 1000
+    runAsGroup: 1000
 
 jobs:
   runs:
@@ -11,6 +15,6 @@ jobs:
       use: build
       with:
         imagePackage: api
-        context: ./api 
+        context: ./api
         buildArgs:
           COMMIT_SHA: "{{ $.Values.global.sha }}"
