@@ -11,7 +11,7 @@ import CloseButton from "../../components/CloseButton";
 import logEvents from "../../services/logEvents";
 dayjs.locale("fr");
 
-const Consulted = ({ navigation, route, submitAnswer }) => {
+const Consulted = ({ navigation, route, submitAnswer, onClose }) => {
   const alertLevel = route.params.alertLevel;
   const alertDate = route.params.alertDate;
 
@@ -20,6 +20,7 @@ const Consulted = ({ navigation, route, submitAnswer }) => {
       <View className="flex flex-row-reverse space-between">
         <CloseButton
           onPress={() => {
+            onClose();
             logEvents.logConsultedAnswer("close");
             navigation.navigate("tabs");
           }}

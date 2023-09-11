@@ -22,6 +22,7 @@ import { questions } from "../../utils/constants";
 import { computeHasOxygen } from "../../utils";
 import { computeResult } from "./utils";
 import logEvents from "../../services/logEvents";
+import localStorage from "../../utils/localStorage";
 
 const DaySurvey = ({ navigation, route }) => {
   const [diaryData, setDiaryData] = useContext(DiaryDataContext);
@@ -67,11 +68,10 @@ const DaySurvey = ({ navigation, route }) => {
     logEvents.logSurveyValidate();
     logEvents.logSurveyScore(score);
     logEvents.logSurveyAlert(alert);
-    return navigation.push("day-survey-result", {
-      alert,
-      yesterdayAlertLevel: yesterdayAlert,
-      yesterdayAlertDate: formatDay(beforeToday(1)),
-    });
+    if (["orange", "red"].includes(currentSurvey.data.survey_alert)) {
+      await localStorage.addNeedSurveyFeedbackItem(currentSurvey);
+    }
+    return navigation.push("day-survey-result", { alert });
   };
 
   const renderTodayDate = () => {
@@ -111,7 +111,28 @@ const DaySurvey = ({ navigation, route }) => {
       <View>
         <View style={{ marginBottom: 8 }}>
           {__DEV__ ? (
-            <View>
+            <View className="flex flex-row">
+              <TouchableOpacity
+                className="p-2 bg-gray-100 text-gray-700"
+                onPress={() =>
+                  setAnswers({
+                    "03e034f7-b7fa-41cb-9f07-4415ef7354ca": true,
+                    "071ce2c0-4bf6-4b85-9931-1b0668a01646": 1,
+                    "0c1eb277-3f09-406a-9c23-bd77acf978ba": true,
+                    "45e77c87-8909-454f-b31f-2957e1921d8c": true,
+                    "4734d5a4-aa44-4b3e-a292-88a08fd16923": true,
+                    "8032ca3d-8a74-4630-b532-d8699d35a45a": 1,
+                    "aaa71e2b-9308-4240-bac4-d0cda013017d": true,
+                    "df328401-e88b-4226-95ea-2a6780940afb": true,
+                    "ecb26c1a-8d4a-4b19-84eb-1ff3eefb0619": true,
+                    "f5f58308-f78b-4ba6-a933-02979cbaf864": true,
+                    "fe53d77d-f434-405d-96ae-d664cf92113a": true,
+                    "a8acc717-2fdb-496d-94f8-75a7945dadfe": true,
+                  })
+                }
+              >
+                <Text>MOCK data RED</Text>
+              </TouchableOpacity>
               <TouchableOpacity
                 className="p-2 bg-gray-100 text-gray-700"
                 onPress={() =>
@@ -124,14 +145,14 @@ const DaySurvey = ({ navigation, route }) => {
                     "8032ca3d-8a74-4630-b532-d8699d35a45a": 1,
                     "aaa71e2b-9308-4240-bac4-d0cda013017d": false,
                     "df328401-e88b-4226-95ea-2a6780940afb": false,
-                    "ecb26c1a-8d4a-4b19-84eb-1ff3eefb0619": true,
+                    "ecb26c1a-8d4a-4b19-84eb-1ff3eefb0619": false,
                     "f5f58308-f78b-4ba6-a933-02979cbaf864": false,
                     "fe53d77d-f434-405d-96ae-d664cf92113a": false,
                     "a8acc717-2fdb-496d-94f8-75a7945dadfe": false,
                   })
                 }
               >
-                <Text>DEVTOOLS : MOCK data</Text>
+                <Text>MOCK data GREEN</Text>
               </TouchableOpacity>
             </View>
           ) : null}

@@ -20,6 +20,7 @@ import {
   STORAGE_KEY_USER_BIRTHYEAR,
   STORAGE_KEY_USER_WEIGHT,
   STORAGE_KEY_LAST_NPS_SHOWN,
+  STORAGE_KEY_NEED_SURVEY_FEEDBACK,
 } from "../constants";
 import { updateSymptomsFormatIfNeeded } from "./utils";
 
@@ -277,6 +278,34 @@ const setLastNPSShown = async (lastNPSShown) =>
     JSON.stringify(lastNPSShown)
   );
 
+const getNeedSurveyFeedback = async () => {
+  const needSurveyFeedback = await AsyncStorage.getItem(
+    STORAGE_KEY_NEED_SURVEY_FEEDBACK
+  );
+  return JSON.parse(needSurveyFeedback) || [];
+};
+
+const addNeedSurveyFeedbackItem = async (needSurveyFeedbackItem) => {
+  const needSurveyFeedback = await getNeedSurveyFeedback();
+  needSurveyFeedback.push(needSurveyFeedbackItem);
+  await AsyncStorage.setItem(
+    STORAGE_KEY_NEED_SURVEY_FEEDBACK,
+    JSON.stringify(needSurveyFeedback)
+  );
+  return needSurveyFeedback;
+};
+
+const deleteNeedSurveyFeedbackItem = async ({ date }) => {
+  console.log("✍️  deleteNeedSurveyFeedbackItem date:", date);
+  let needSurveyFeedback = await getNeedSurveyFeedback();
+  needSurveyFeedback = needSurveyFeedback.filter((e) => e.date !== date);
+  await AsyncStorage.setItem(
+    STORAGE_KEY_NEED_SURVEY_FEEDBACK,
+    JSON.stringify(needSurveyFeedback)
+  );
+  return needSurveyFeedback;
+};
+
 export default {
   getLastNPSShown,
   setLastNPSShown,
@@ -321,4 +350,7 @@ export default {
   getIndicateurs,
   setIndicateurs,
   addIndicateur,
+  getNeedSurveyFeedback,
+  addNeedSurveyFeedbackItem,
+  deleteNeedSurveyFeedbackItem,
 };
