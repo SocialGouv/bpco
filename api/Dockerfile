@@ -3,6 +3,8 @@ ARG PRODUCTION
 
 RUN chown -R 1000:1000 /home/node && \
   chmod -R 755 /home/node && \
+  chown 1000:1000 /tmp && \
+  chmod 1777 /tmp && \
   mkdir /api && \
   chown 1000:1000 /api
 
