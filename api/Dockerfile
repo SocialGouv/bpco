@@ -10,7 +10,7 @@ RUN yarn fetch workspaces focus --production
 
 COPY src ./src
 
-COPY .env.staging .env.production ./
+COPY --chown=1000:1000 .env.staging .env.production ./
 RUN if [ -z "$PRODUCTION" ]; then mv .env.staging .env && rm .env.production; else mv .env.production .env && rm .env.staging; fi
 
 ENV NODE_ENV=production
