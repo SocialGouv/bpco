@@ -1,6 +1,7 @@
 FROM node:16-alpine3.16
 ARG PRODUCTION
 
+RUN mkdir /api && chown 1000:1000 /api
 USER 1000
 WORKDIR /api
 
