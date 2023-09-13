@@ -3,7 +3,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 const Stack = createStackNavigator();
 
-import OnboardingPresentation from "./OnboardingPresentation";
+import OnboardingPresentation from "./OnboardingPresentationv2";
+import HowItWorks from "./HowItWorks";
 import UserType from "./UserType";
 import Reminder from "../reminder";
 import { ONBOARDING_STEPS } from "../../utils/constants";
@@ -44,7 +45,14 @@ const Onboarding = () => {
         name={ONBOARDING_STEPS.STEP_PRESENTATION}
         component={OnboardingPresentation}
       />
-
+      <Stack.Screen
+        name={ONBOARDING_STEPS.STEP_HOW_IT_WORKS}
+        options={headerOptions}
+        component={ProgressScreen({
+          slideIndex: 0,
+          Component: HowItWorks,
+        })}
+      />
       <Stack.Screen
         name={ONBOARDING_STEPS.STEP_USER_TYPE}
         options={headerOptions}

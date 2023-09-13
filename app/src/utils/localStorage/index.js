@@ -12,6 +12,7 @@ import {
   STORAGE_KEY_ONBOARDING_STEP,
   STORAGE_KEY_ONBOARDING_DONE,
   STORAGE_KEY_NPS_PRO_CONTACT,
+  STORAGE_KEY_PNEUMOLOGUE,
   STORAGE_KEY_OXYGEN,
   STORAGE_KEY_VENTILATION_DEVICE,
   STORAGE_KEY_REMINDER,
@@ -191,6 +192,19 @@ const addCustomDrug = async (drug) => {
   return customDrugs;
 };
 
+const getPneumologue = async () => {
+  const pneumologue = await AsyncStorage.getItem(STORAGE_KEY_PNEUMOLOGUE);
+  if (pneumologue) {
+    return JSON.parse(pneumologue);
+  }
+};
+
+const setPneumologue = async (pneumologue) =>
+  await AsyncStorage.setItem(
+    STORAGE_KEY_PNEUMOLOGUE,
+    JSON.stringify(pneumologue)
+  );
+
 const getOxygen = async () => {
   const oxygen = await AsyncStorage.getItem(STORAGE_KEY_OXYGEN);
   if (oxygen) {
@@ -319,6 +333,8 @@ export default {
   setFamilyPhoneNumber,
   getReminder,
   setReminder,
+  getPneumologue,
+  setPneumologue,
   getOxygen,
   setOxygen,
   getVentilationDevice,

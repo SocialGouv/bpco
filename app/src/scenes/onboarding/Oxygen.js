@@ -15,6 +15,7 @@ import { colors } from "../../utils/colors";
 import logEvents from "../../services/logEvents";
 
 const Explanation = ({ navigation }) => {
+  const [answerPneumologue, setAnswerPneumologue] = useState(null);
   const [answerOxygen, setAnswerOxygen] = useState(null);
   const [answerVentilationDevice, setAnswerVentilationDevice] = useState(null);
   const [disabled, setDisabled] = useState(true);
@@ -23,18 +24,27 @@ const Explanation = ({ navigation }) => {
     (async () => {
       const oxygenStorage = await localStorage.getOxygen();
       if (oxygenStorage !== undefined) setAnswerOxygen(oxygenStorage);
+      const pneumologueStorage = await localStorage.getPneumologue();
+      if (pneumologueStorage !== undefined)
+        setAnswerPneumologue(pneumologueStorage);
       const ventilationDevice = await localStorage.getVentilationDevice();
       if (ventilationDevice !== undefined)
         setAnswerVentilationDevice(ventilationDevice);
       await localStorage.setOnboardingStep(ONBOARDING_STEPS.STEP_OXYGEN);
-      if (oxygenStorage !== undefined && ventilationDevice !== undefined)
+      if (
+        oxygenStorage !== undefined &&
+        ventilationDevice !== undefined &&
+        pneumologueStorage !== undefined
+      )
         setDisabled(false);
     })();
   }, []);
 
   const submit = () => {
+    localStorage.setPneumologue(answerPneumologue);
     localStorage.setOxygen(answerOxygen);
     localStorage.setVentilationDevice(answerVentilationDevice);
+    logEvents.logUserPneumologueSelect(answerPneumologue);
     logEvents.logUserOxygenSelect(answerOxygen);
     logEvents.logUserVentilationDeviceSelect(answerVentilationDevice);
     navigation.navigate(ONBOARDING_STEPS.STEP_REMINDER, { inOnboarding: true });
@@ -43,12 +53,19 @@ const Explanation = ({ navigation }) => {
   const handlePressOxygen = (value) => {
     setAnswerOxygen(value);
     logEvents.logUserOxygenClick(value);
-    if (answerVentilationDevice !== null) setDisabled(false);
+    if (answerVentilationDevice !== null && answerPneumologue !== null)
+      setDisabled(false);
+  };
+  const handlePressPneumologue = (value) => {
+    setAnswerPneumologue(value);
+    logEvents.logUserPneumologueClick(value);
+    if (answerOxygen !== null && answerVentilationDevice !== null)
+      setDisabled(false);
   };
   const handlePressVentilationDevice = (value) => {
     setAnswerVentilationDevice(value);
     logEvents.logUserVentilationDeviceClick(value);
-    if (answerOxygen !== null) setDisabled(false);
+    if (answerOxygen !== null && answerPneumologue !== null) setDisabled(false);
   };
 
   return (
@@ -66,6 +83,14 @@ const Explanation = ({ navigation }) => {
               Faisons connaissance
             </Text>
           </View>
+          <Text className="text-center text-xl text-gray-900">
+            Êtes-vous suivi actuellement par un pneumologue?
+          </Text>
+          <BooleanInput
+            center
+            value={answerPneumologue}
+            onChange={handlePressPneumologue}
+          />
           <View style={onboardingStyles.imageContainer}>
             <OxygenBottle />
           </View>

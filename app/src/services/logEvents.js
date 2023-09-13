@@ -106,6 +106,8 @@ const ACTIONS = {
   NPS_SEND: "NPS_SEND",
   PRO_NPS_SEND: "PRO_NPS_SEND",
   ONBOARDING_USER_TYPE_CHOOSE: "ONBOARDING_USER_TYPE_CHOOSE",
+  ONBOARDING_USER_PNEUMOLOGUE_SELECT: "ONBOARDING_USER_PNEUMOLOGUE_SELECT",
+  ONBOARDING_USER_PNEUMOLOGUE_CLICK: "ONBOARDING_USER_PNEUMOLOGUE_CLICK",
   ONBOARDING_USER_OXYGEN_SELECT: "ONBOARDING_USER_OXYGEN_SELECT",
   ONBOARDING_USER_OXYGEN_CLICK: "ONBOARDING_USER_OXYGEN_CLICK",
   ONBOARDING_USER_VENTILATION_DEVICE_SELECT:
@@ -353,6 +355,20 @@ const logUserTypeSelect = async (userType) => {
   });
 };
 
+const logUserPneumologueSelect = async (pneumologue) => {
+  await logEvent({
+    category: CATEGORIES.ONBOARDING,
+    action: ACTIONS.ONBOARDING_USER_PNEUMOLOGUE_SELECT,
+    name: pneumologue,
+  });
+};
+const logUserPneumologueClick = async (pneumologue) => {
+  await logEvent({
+    category: CATEGORIES.ONBOARDING,
+    action: ACTIONS.ONBOARDING_USER_PNEUMOLOGUE_CLICK,
+    name: pneumologue,
+  });
+};
 const logUserOxygenSelect = async (oxygen) => {
   await logEvent({
     category: CATEGORIES.ONBOARDING,
@@ -509,6 +525,8 @@ export default {
   logNPSOpen,
   logNPSSend,
   logUserTypeSelect,
+  logUserPneumologueSelect,
+  logUserPneumologueClick,
   logUserOxygenSelect,
   logUserOxygenClick,
   logUserVentilationDeviceSelect,

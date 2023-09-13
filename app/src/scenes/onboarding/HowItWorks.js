@@ -2,44 +2,25 @@ import React from "react";
 import {
   StyleSheet,
   View,
-  TouchableOpacity,
   ScrollView,
   Dimensions,
-  Image,
   Platform,
   StatusBar,
 } from "react-native";
+import Button from "../../components/Button";
 import Text from "../../components/MyText";
 import { colors } from "../../utils/colors";
 import localStorage from "../../utils/localStorage";
-import logEvents from "../../services/logEvents";
-import Matomo from "../../services/matomo";
-import {
-  MATOMO_DIMENSION,
-  ONBOARDING_STEPS,
-  USER_TYPES,
-} from "../../utils/constants";
+import { ONBOARDING_STEPS } from "../../utils/constants";
 import { SafeAreaViewWithOptionalHeader } from "./ProgressHeader";
 import { OnboardingBackButton } from "./components/BackButton";
 import { onboardingStyles } from "./styles";
-// import { StickyButtonContainer } from "../StickyButton";
+import { StickyButtonContainer } from "./components/StickyButton";
 
 const UserType = ({ navigation }) => {
-  const handleClick = async (value) => {
-    //send matomo
-    logEvents.logUserTypeSelect(value);
-    Matomo.setDimensions({
-      [MATOMO_DIMENSION.USER_TYPE]: value,
-    });
-    //navigate to explanation
-    navigation.navigate(ONBOARDING_STEPS.STEP_OXYGEN);
-    //set local storage
-    await localStorage.setUserType(value);
-  };
-
   React.useEffect(() => {
     (async () => {
-      await localStorage.setOnboardingStep(ONBOARDING_STEPS.STEP_USER_TYPE);
+      await localStorage.setOnboardingStep(ONBOARDING_STEPS.STEP_HOW_IT_WORKS);
     })();
   }, []);
 
@@ -55,62 +36,78 @@ const UserType = ({ navigation }) => {
         <View style={onboardingStyles.container}>
           <View style={styles.header}>
             <Text className="text-primary pb-4 tablet:pb-6 text-2xl tablet:text-4xl font-[Karla-Bold]">
-              Faisons connaissance
-            </Text>
-            <Text className="text-black pb-4 tablet:pb-6 text-lg tablet:text-3xl">
-              Qui vous a recommandé l’application ?
+              Comment ça marche ?
             </Text>
           </View>
-          <Card
-            title="Mon médecin généraliste"
-            color="#F4FCFD"
-            handleClick={() => handleClick(USER_TYPES.suivi_recommande)}
-          />
-          <View className="my-1" />
-          <Card
-            title="Mon pneumologue"
-            color="#F4FCFD"
-            handleClick={() => handleClick(USER_TYPES.suivi_non_recommande)}
-          />
-          <View className="my-1" />
-          <Card
-            title="Mon réseau (ami.ie, association...)"
-            color="#F4FCFD"
-            handleClick={() => handleClick(USER_TYPES.sans_suivi)}
-          />
-          <View className="my-1" />
-          <Card
-            title="Moi-même ( store, site internet...)"
-            color="#F4FCFD"
-            handleClick={() => handleClick(USER_TYPES.sans_suivi)}
-          />
-          <View className="border border-green-400 flex flex-row justify-center items-center m-5 p-2 rounded-2xl">
-            <Image
-              source={require("../../../assets/imgs/onboarding/professionnel-sante.png")}
-              style={styles.hintImage}
-            />
-            <Text style={styles.hintText}>
-              N’hésitez pas à montrer l’application à un professionnel de santé
-              pour vous aider
-            </Text>
+          <View>
+            <View className="flex flex-row items-start">
+              <View className="w-6 h-6 bg-[#26387C] flex justify-center items-center mr-2">
+                <Text className="text-white">1</Text>
+              </View>
+              <Text className="flex-1">
+                <Text className="text-[#26387C]">S’AUTO EVALUER</Text>
+                {"\n"}
+                <Text className="text-[#26387C]">12 questions</Text> sur votre
+                état de santé en moins de{" "}
+                <Text className="text-[#26387C]">30 SECONDES</Text>
+              </Text>
+            </View>
+            <View className="my-4" />
+            <View className="flex flex-row items-start">
+              <View className="w-6 h-6 bg-[#02C37E] flex justify-center items-center mr-2">
+                <Text className="text-white">2</Text>
+              </View>
+              <Text className="flex-1">
+                <Text className="text-[#02C37E]">
+                  OBTENIR UNE PRECONISATION
+                </Text>
+                {"\n"}
+                <Text className="text-[#02C37E]">Instantanément</Text>
+              </Text>
+            </View>
+            <View className="my-4" />
+            <View className="flex flex-row items-start">
+              <View className="w-6 h-6 bg-[#19717A] flex justify-center items-center mr-2">
+                <Text className="text-white">3</Text>
+              </View>
+              <Text className="flex-1">
+                <Text className="text-[#19717A]">SUIVRE LA RECOMMANDATION</Text>
+                {"\n"}
+                Accompagnement personnalisé en{" "}
+                <Text className="text-[#19717A]">cas d’alerte</Text> orange et
+                rouge
+              </Text>
+            </View>
+            <View className="my-4" />
+            <View className="flex flex-row items-start">
+              <View className="w-6 h-6 bg-[#FF914D] flex justify-center items-center mr-2">
+                <Text className="text-white">4</Text>
+              </View>
+              <Text className="flex-1">
+                <Text className="text-[#FF914D]">
+                  FAIRE LE BILAN AVEC SON MEDECIN
+                </Text>
+                {"\n"}
+                Historique de{" "}
+                <Text className="text-[#FF914D]">suivi personnalisé</Text> à
+                présenter à votre médecin lors d’un rdv
+              </Text>
+            </View>
           </View>
         </View>
       </ScrollView>
+      <StickyButtonContainer>
+        <Button
+          onPress={() => {
+            navigation.navigate(ONBOARDING_STEPS.STEP_USER_TYPE);
+          }}
+          title="Suivant"
+        />
+      </StickyButtonContainer>
     </SafeAreaViewWithOptionalHeader>
   );
 };
 
-const Card = ({ title, handleClick }) => {
-  return (
-    <TouchableOpacity onPress={handleClick}>
-      <View className="bg-primary rounded-2xl p-5 flex items-center justify-center">
-        <Text className="text-white text-base text-center font-[Karla-Bold]">
-          {title}
-        </Text>
-      </View>
-    </TouchableOpacity>
-  );
-};
 const styles = StyleSheet.create({
   buttonsContainer: {
     display: "flex",
