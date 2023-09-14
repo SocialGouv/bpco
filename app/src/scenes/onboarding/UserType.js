@@ -22,7 +22,6 @@ import {
 import { SafeAreaViewWithOptionalHeader } from "./ProgressHeader";
 import { OnboardingBackButton } from "./components/BackButton";
 import { onboardingStyles } from "./styles";
-// import { StickyButtonContainer } from "../StickyButton";
 
 const UserType = ({ navigation }) => {
   const handleClick = async (value) => {
@@ -64,25 +63,29 @@ const UserType = ({ navigation }) => {
           <Card
             title="Mon médecin généraliste"
             color="#F4FCFD"
-            handleClick={() => handleClick(USER_TYPES.suivi_recommande)}
+            handleClick={() =>
+              handleClick(USER_TYPES.suivi_recommande_generaliste)
+            }
           />
           <View className="my-1" />
           <Card
             title="Mon pneumologue"
             color="#F4FCFD"
-            handleClick={() => handleClick(USER_TYPES.suivi_non_recommande)}
+            handleClick={() =>
+              handleClick(USER_TYPES.suivi_recommande_pneumologue)
+            }
           />
           <View className="my-1" />
           <Card
             title="Mon réseau (ami.ie, association...)"
             color="#F4FCFD"
-            handleClick={() => handleClick(USER_TYPES.sans_suivi)}
+            handleClick={() => handleClick(USER_TYPES.recommande_reseau)}
           />
           <View className="my-1" />
           <Card
             title="Moi-même ( store, site internet...)"
             color="#F4FCFD"
-            handleClick={() => handleClick(USER_TYPES.sans_suivi)}
+            handleClick={() => handleClick(USER_TYPES.recommande_moi_meme)}
           />
           <View className="border border-green-400 flex flex-row justify-center items-center m-5 p-2 rounded-2xl">
             <Image

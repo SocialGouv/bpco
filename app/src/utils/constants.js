@@ -325,6 +325,10 @@ export const USER_TYPES = {
   sans_suivi: "sans_suivi",
   pro: "pro",
   autres: "autres",
+  suivi_recommande_generaliste: "suivi_recommande_generaliste",
+  suivi_recommande_pneumologue: "suivi_recommande_pneumologue",
+  recommande_reseau: "recommande_reseau",
+  recommande_moi_meme: "recommande_moi_meme",
 };
 
 export const questionsScores = {
@@ -409,7 +413,7 @@ export const questionsScores = {
     withoutOxygen: 2,
   },
   "071ce2c0-4bf6-4b85-9931-1b0668a01646": {
-    name: "Quantifier votre essoufflement ",
+    name: "Qualifier votre essoufflement ",
     category: "3",
     type: "smiley",
     disabledWithoutOxygen: false,
@@ -499,7 +503,7 @@ export const questions = [
     disabledWithoutOxygen: false,
   },
   {
-    name: "Quantifier votre essoufflement ",
+    name: "Qualifier votre essoufflement ",
     uuid: "071ce2c0-4bf6-4b85-9931-1b0668a01646",
     category: "3",
     type: "smiley",
