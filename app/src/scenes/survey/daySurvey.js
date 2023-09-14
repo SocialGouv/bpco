@@ -7,6 +7,7 @@ import {
   StatusBar,
   TouchableOpacity,
 } from "react-native";
+import { CommonActions } from "@react-navigation/native";
 import Text from "../../components/MyText";
 import { colors } from "../../utils/colors";
 import { beforeToday, formatDay } from "../../utils/date/helpers";
@@ -32,6 +33,27 @@ const DaySurvey = ({ navigation, route }) => {
   useFocusEffect(
     React.useCallback(() => {
       (async () => {
+        const needSurveyFeedback = await localStorage.getNeedSurveyFeedback();
+        const needSurveyFeedbackItem = (needSurveyFeedback || []).find(
+          (e) => e.date !== dayjs().format("YYYY-MM-DD")
+        );
+        if (needSurveyFeedbackItem) {
+          return navigation.dispatch(
+            CommonActions.reset({
+              index: 0,
+              routes: [
+                {
+                  name: "consulted-after-alert",
+                  params: {
+                    alertLevel: needSurveyFeedbackItem.data.survey_alert,
+                    alertDate: needSurveyFeedbackItem.date,
+                    previousScreen: "day-survey",
+                  },
+                },
+              ],
+            })
+          );
+        }
         const userHasOxygen = await computeHasOxygen();
         setHasOxygen(userHasOxygen);
       })();

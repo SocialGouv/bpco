@@ -16,27 +16,6 @@ const Result = ({ navigation, route }) => {
   const alertLevel = route.params?.alert;
 
   const submitDay = async ({}) => {
-    const needSurveyFeedback = await localStorage.getNeedSurveyFeedback();
-    const needSurveyFeedbackItem = (needSurveyFeedback || []).find(
-      (e) => e.date !== dayjs().format("YYYY-MM-DD")
-    );
-    if (needSurveyFeedbackItem) {
-      return navigation.dispatch(
-        CommonActions.reset({
-          index: 0,
-          routes: [
-            {
-              name: "consulted-after-alert",
-              params: {
-                alertLevel: needSurveyFeedbackItem.data.survey_alert,
-                alertDate: needSurveyFeedbackItem.date,
-                previousScreen: "day-survey-result",
-              },
-            },
-          ],
-        })
-      );
-    }
     return navigation.dispatch(
       CommonActions.reset({
         index: 0,
