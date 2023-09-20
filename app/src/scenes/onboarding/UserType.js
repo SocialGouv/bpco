@@ -87,7 +87,7 @@ const UserType = ({ navigation }) => {
             color="#F4FCFD"
             handleClick={() => handleClick(USER_TYPES.recommande_moi_meme)}
           />
-          <View className="border border-green-400 flex flex-row justify-center items-center m-5 p-2 rounded-2xl">
+          <View className="border border-green-400 flex flex-row justify-center items-center m-5 mt-10 p-2 rounded-2xl">
             <Image
               source={require("../../../assets/imgs/onboarding/professionnel-sante.png")}
               style={styles.hintImage}
@@ -106,8 +106,8 @@ const UserType = ({ navigation }) => {
 const Card = ({ title, handleClick }) => {
   return (
     <TouchableOpacity onPress={handleClick}>
-      <View className="bg-primary rounded-2xl p-5 flex items-center justify-center">
-        <Text className="text-white text-base text-center font-[Karla-Bold]">
+      <View className="bg-primary rounded-2xl p-5 flex items-center justify-center mb-1">
+        <Text className="text-white text-lg text-center font-[Karla-Bold]">
           {title}
         </Text>
       </View>

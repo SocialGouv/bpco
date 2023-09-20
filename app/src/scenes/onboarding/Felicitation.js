@@ -25,7 +25,7 @@ const Onboarding = ({ navigation }) => {
           </View>
           <View style={onboardingStyles.containerBottom}>
             <View style={onboardingStyles.containerBottomTitle}>
-              <Text className="text-primary text-base tablet:text-2xl font-[Karla-Bold] text-center">
+              <Text className="text-primary text-2xl tablet:text-2xl font-[Karla-Bold] text-center">
                 Vous êtes prêt(e) à réaliser votre suivi
               </Text>
             </View>

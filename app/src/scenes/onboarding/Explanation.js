@@ -33,8 +33,11 @@ const Explanation = ({ navigation }) => {
         contentContainerStyle={onboardingStyles.scrollContentContainer}
       >
         <View style={styles.header}>
-          <Text className="text-primary text-xl tablet:text-4xl font-[Karla-Bold] text-center">
-            Une alerte, réagissez immédiatement
+          <Text className="text-primary text-2xl tablet:text-4xl font-[Karla-Bold] text-center">
+            Une alerte,
+          </Text>
+          <Text className="text-primary text-2xl tablet:text-4xl font-[Karla-Bold] text-center">
+            RÉAGISSEZ IMMÉDIATEMENT
           </Text>
         </View>
 

@@ -24,10 +24,10 @@ const Onboarding = ({ navigation }) => {
             source={require("../../../assets/imgs/adaptive-icon.png")}
             className="w-56 h-56"
           />
-          <Text className="text-3xl text-[#3BB678] font-[Karla-Bold]">
+          <Text className="text-[32px] text-[#3BB678] font-[Karla-Extra-Bold]">
             BPCO'Mieux
           </Text>
-          <Text className="text-base text-primary text-center">
+          <Text className="text-[17px] leading-5 text-primary text-center font-[Karla-Bold]">
             Le compagnon numérique dédié aux patients atteints de{" "}
             <Text className="text-[#3BB678]">B</Text>
             roncho<Text className="text-[#3BB678]">P</Text>neumopathie{" "}
@@ -35,9 +35,9 @@ const Onboarding = ({ navigation }) => {
             <Text className="text-[#3BB678]">O</Text>bstructive
           </Text>
           <View className="my-4" />
-          <Text className="text-[#FF914D]">100% gratuit</Text>
-          <Text className="text-[#FF914D]">100% anonyme</Text>
-          <Text className="text-[#FF914D]">Aucune récupération de données</Text>
+          <Text className="text-[#FF914D] text-[17px] leading-5 font-[Karla-Bold]">100% gratuit</Text>
+          <Text className="text-[#FF914D] text-[17px] leading-5 font-[Karla-Bold]">100% anonyme</Text>
+          <Text className="text-[#FF914D] text-[17px] leading-5 font-[Karla-Bold]">Aucune récupération de données</Text>
         </View>
       </ScrollView>
       <StickyButtonContainer>
