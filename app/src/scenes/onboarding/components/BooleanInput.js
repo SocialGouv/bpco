@@ -23,11 +23,11 @@ export const BooleanInput = ({
     <View
       className={`flex flex-row ${
         center ? "justify-center" : "justify-start"
-      } gap-12 items-center pt-5`}
+      } gap-12 items-center pt-2`}
     >
       <TouchableOpacity onPress={() => onChange(false)}>
         <View
-          className={`flex justify-center h-14 px-8 rounded-full border border-[#26387C] ${
+          className={`flex justify-center px-4 py-2 rounded-full border border-[#26387C] ${
             typeof value === "boolean" && !value ? color[order]?.false.bg : ""
           }`}
         >
@@ -44,7 +44,7 @@ export const BooleanInput = ({
       </TouchableOpacity>
       <TouchableOpacity onPress={() => onChange(true)}>
         <View
-          className={`flex justify-center h-14 px-8 rounded-full border border-[#26387C] ${
+          className={`flex justify-center px-5 py-2 rounded-full border border-[#26387C] ${
             typeof value === "boolean" && value ? color[order]?.true.bg : ""
           }`}
         >

@@ -41,37 +41,37 @@ const UserType = ({ navigation }) => {
           </View>
           <View>
             <View className="flex flex-row items-start">
-              <View className="w-6 h-6 bg-[#26387C] flex justify-center items-center mr-2">
-                <Text className="text-white">1</Text>
+              <View className="w-8 h-8 bg-[#26387C] flex justify-center items-center mr-2">
+                <Text className="text-white text-lg">1</Text>
               </View>
-              <Text className="flex-1">
-                <Text className="text-[#26387C]">S’AUTO EVALUER</Text>
+              <Text className="flex-1 text-lg">
+                <Text className="text-[#26387C] font-[Karla-Bold]">S’AUTO EVALUER</Text>
                 {"\n"}
-                <Text className="text-[#26387C]">12 questions</Text> sur votre
+                <Text className="text-[#26387C] font-[Karla-Bold]">12 questions</Text> sur votre
                 état de santé en moins de{" "}
-                <Text className="text-[#26387C]">30 SECONDES</Text>
+                <Text className="text-[#26387C] font-[Karla-Bold]">30 SECONDES</Text>
               </Text>
             </View>
             <View className="my-4" />
             <View className="flex flex-row items-start">
-              <View className="w-6 h-6 bg-[#02C37E] flex justify-center items-center mr-2">
+              <View className="w-8 h-8 bg-[#02C37E] flex justify-center items-center mr-2">
                 <Text className="text-white">2</Text>
               </View>
-              <Text className="flex-1">
-                <Text className="text-[#02C37E]">
+              <Text className="flex-1 text-lg">
+                <Text className="text-[#02C37E] font-[Karla-Bold]">
                   OBTENIR UNE PRECONISATION
                 </Text>
                 {"\n"}
-                <Text className="text-[#02C37E]">Instantanément</Text>
+                <Text className="text-[#02C37E] font-[Karla-Bold]">Instantanément</Text>
               </Text>
             </View>
             <View className="my-4" />
             <View className="flex flex-row items-start">
-              <View className="w-6 h-6 bg-[#19717A] flex justify-center items-center mr-2">
-                <Text className="text-white">3</Text>
+              <View className="w-8 h-8 bg-[#19717A] flex justify-center items-center mr-2">
+                <Text className="text-white text-lg">3</Text>
               </View>
-              <Text className="flex-1">
-                <Text className="text-[#19717A]">SUIVRE LA RECOMMANDATION</Text>
+              <Text className="flex-1 text-lg">
+                <Text className="text-[#19717A] font-[Karla-Bold]">SUIVRE LA RECOMMANDATION</Text>
                 {"\n"}
                 Accompagnement personnalisé en{" "}
                 <Text className="text-[#19717A]">cas d’alerte</Text> orange et
@@ -80,16 +80,16 @@ const UserType = ({ navigation }) => {
             </View>
             <View className="my-4" />
             <View className="flex flex-row items-start">
-              <View className="w-6 h-6 bg-[#FF914D] flex justify-center items-center mr-2">
-                <Text className="text-white">4</Text>
+              <View className="w-8 h-8 bg-[#FF914D] flex justify-center items-center mr-2">
+                <Text className="text-white text-lg">4</Text>
               </View>
-              <Text className="flex-1">
-                <Text className="text-[#FF914D]">
+              <Text className="flex-1 text-lg">
+                <Text className="text-[#FF914D] font-[Karla-Bold]">
                   FAIRE LE BILAN AVEC SON MEDECIN
                 </Text>
                 {"\n"}
                 Historique de{" "}
-                <Text className="text-[#FF914D]">suivi personnalisé</Text> à
+                <Text className="text-[#FF914D] font-[Karla-Bold]">suivi personnalisé</Text> à
                 présenter à votre médecin lors d’un rdv
               </Text>
             </View>

@@ -40,6 +40,7 @@ export default function App() {
   const [fontsLoaded] = useFonts({
     Karla: require("./assets/fonts/Karmilla-Regular.ttf"),
     "Karla-Bold": require("./assets/fonts/Karmilla-Bold.ttf"),
+    "Karla-Extra-Bold": require("./assets/fonts/Karla-ExtraBold.ttf"),
   });
 
   useEffect(() => {
