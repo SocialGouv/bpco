@@ -145,28 +145,26 @@ const applyStyles = ({
     ...styles.base,
   };
 
-  const applyIfNeeded = (cumStyles, condition, styleKey) => {
-    if (eval(condition)) {
-      cumStyles.button = { ...cumStyles.button, ...styles[styleKey].button };
-      cumStyles.container = {
-        ...cumStyles.container,
-        ...styles[styleKey].container,
-      };
-      cumStyles.text = { ...cumStyles.text, ...styles[styleKey].text };
-      cumStyles.icon = { ...cumStyles.icon, ...styles[styleKey].icon };
-      cumStyles.disabled = {
-        ...cumStyles.disabled,
-        ...styles[styleKey].disabled,
-      };
-    }
+  const applyIfNeeded = (cumStyles, styleKey) => {
+    cumStyles.button = { ...cumStyles.button, ...styles[styleKey].button };
+    cumStyles.container = {
+      ...cumStyles.container,
+      ...styles[styleKey].container,
+    };
+    cumStyles.text = { ...cumStyles.text, ...styles[styleKey].text };
+    cumStyles.icon = { ...cumStyles.icon, ...styles[styleKey].icon };
+    cumStyles.disabled = {
+      ...cumStyles.disabled,
+      ...styles[styleKey].disabled,
+    };
   };
 
-  applyIfNeeded(appliedStyles, "preset==='primary'", "primary");
-  applyIfNeeded(appliedStyles, "preset==='secondary'", "secondary");
-  applyIfNeeded(appliedStyles, "type==='outline'", "outline");
-  applyIfNeeded(appliedStyles, "type==='clear'", "clear");
-  applyIfNeeded(appliedStyles, "size==='small'", "small");
-  applyIfNeeded(appliedStyles, "preset==='onboarding2'", "onboarding2");
+  preset === "primary" ? applyIfNeeded(appliedStyles, "primary") : null;
+  preset === "secondary" ? applyIfNeeded(appliedStyles, "secondary") : null;
+  type === "outline" ? applyIfNeeded(appliedStyles, "outline") : null;
+  type === "clear" ? applyIfNeeded(appliedStyles, "clear") : null;
+  size === "small" ? applyIfNeeded(appliedStyles, "small") : null;
+  preset === "onboarding2" ? applyIfNeeded(appliedStyles, "onboarding2") : null;
 
   if (!fill && size === "default" && !square && !circle)
     appliedStyles.button.minWidth = "70%";

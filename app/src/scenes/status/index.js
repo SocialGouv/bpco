@@ -53,7 +53,7 @@ const Status = ({ navigation }) => {
       }
 
       // si jamais fait de survey ? quepaso ?
-      console.log("✍️  diaryData:", diaryData);
+      // console.log("✍️  diaryData:", diaryData);
       if (!diaryData) return;
 
       if (computeNewSurveyAvailable(diaryData)) {
