@@ -1,0 +1,17 @@
+diff --git a/node_modules/react-native-date-picker/android/src/main/java/com/henninghall/date_picker/DatePickerModule.java b/node_modules/react-native-date-picker/android/src/main/java/com/henninghall/date_picker/DatePickerModule.java
+index 7bf5f34..533c037 100644
+--- a/node_modules/react-native-date-picker/android/src/main/java/com/henninghall/date_picker/DatePickerModule.java
++++ b/node_modules/react-native-date-picker/android/src/main/java/com/henninghall/date_picker/DatePickerModule.java
+@@ -21,6 +21,12 @@ public class DatePickerModule extends ReactContextBaseJavaModule {
+ 
+     private AlertDialog dialog;
+ 
++    @Override    
++    public boolean canOverrideExistingModule() {        
++        return true;    
++    }  
++
++
+     DatePickerModule(ReactApplicationContext context) {
+         super(context);
+         ApplicationStarter.initialize(context, false); // false = no need to prefetch on time data background tread
