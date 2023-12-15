@@ -30,10 +30,9 @@ const LegalMentions = ({ navigation }) => {
         centre) :
       </Text>
       <Text style={styles.default}>
-        Microsoft France{"\n"}
-        39 Quai du Président Roosevelt{"\n"}
-        92130 ISSY-LES-MOULINEAUX{"\n"}
-        France
+        OVH SAS{"\n"}
+        2 rue Kellermann{"\n"}
+        59100 Roubaix - France.
       </Text>
       <Text style={styles.h1}>Accessibilité</Text>
       <Text style={styles.default}>

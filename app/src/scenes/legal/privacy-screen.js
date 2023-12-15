@@ -217,18 +217,18 @@ const Privacy = ({ navigation }) => {
       <Text style={styles.h2}>Sous-traitants</Text>
       <Li>
         <Text style={styles.default}>
-          <Text style={styles.bold}>Microsoft Azure</Text>, France{"\n"}
+          <Text style={styles.bold}>OVH SAS</Text>, France{"\n"}
           <Text style={styles.italic}>Hébergement de l’application</Text>
           {"\n"}
           <TouchableOpacity
             onPress={() =>
               Linking.openURL(
-                "https://privacy.microsoft.com/fr-fr/privacystatement"
+                "https://www.ovhcloud.com/fr/personal-data-protection/"
               )
             }
           >
             <Text style={styles.link}>
-              https://privacy.microsoft.com/fr-fr/privacystatement
+              https://www.ovhcloud.com/fr/personal-data-protection/
             </Text>
           </TouchableOpacity>
         </Text>
