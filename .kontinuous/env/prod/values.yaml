@@ -9,4 +9,4 @@ jobs:
       use: build
       with:
         buildArgs:
-          PRODUCTION="true"
+          PRODUCTION: "true"
