@@ -2,3 +2,11 @@ api:
   envFrom:
     - secretRef:
         name: api
+
+jobs:
+  runs:
+    build-api:
+      use: build
+      with:
+        buildArgs:
+          PRODUCTION="true"
