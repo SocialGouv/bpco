@@ -59,6 +59,11 @@ class ApiService {
 
       const response = await this.fetch(url, config);
 
+      if (!response.ok) {
+        console.log(response);
+        throw new Error("error fetching api");
+      }
+
       if (response.json) {
         const readableRes = await response.json();
         if (readableRes.sendInApp)
