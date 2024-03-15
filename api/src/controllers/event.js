@@ -34,6 +34,20 @@ router.post(
     const appversion = Number(req.headers?.appversion ?? 0);
     const appdevice = req.headers?.appdevice;
 
+    if (req.body?.event?.category === "APP" && req.body?.event?.action === "APP_OPEN" && new Date() > new Date("2024-03-18")) {
+      return res.status(200).send({
+        ok: true,
+        sendInApp: [
+          "Information: BPCO'Mieux ne sera plus maintenue à partir du 15 avril 2024.",
+          "",
+          [
+            { text: "En savoir plus", link: "https://bpcomieux.fabrique.social.gouv.fr/fin-de-service" },
+            { text: "Fermer", style: "cancel" },
+          ],
+          { cancelable: true },
+        ],
+      });
+    }
     return res.status(200).send({ ok: true });
   })
 );
