@@ -38,7 +38,7 @@ router.post(
       return res.status(200).send({
         ok: true,
         sendInApp: [
-          "Information: BPCO'Mieux ne sera plus maintenue à partir du 15 avril 2024.",
+          "Information: L'application mobile BPCO'Mieux ne sera plus maintenue à partir du 15 avril 2024.",
           "",
           [
             { text: "En savoir plus", link: "https://bpcomieux.fabrique.social.gouv.fr/fin-de-service" },
